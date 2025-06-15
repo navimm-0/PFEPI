@@ -161,12 +161,12 @@ SCRIPT/: funcionalidad con main.js, validaciones.js
 
   Crear archivo nuevo:
 
-    touch HTML/contacto.html
+      New-Item -Path HTML/fracciones.html -ItemType File
 
   Subir el archivo:
 
 
-    git add HTML/contacto.html
+    git add HTML/fracciones.html
 
     git commit -m "Agrega contacto.html a la sección HTML"
 
