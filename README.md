@@ -8,13 +8,16 @@ Antes de hacer cualquier operación en Git, configura tu identidad:
 
 
 git config --global user.name "Tu Nombre"
+
 git config --global user.email "tucorreo@example.com"
 
 :white_check_mark: Esto garantiza que los commits aparezcan con tu nombre.
 
 :inbox_tray: CLONAR EL REPOSITORIO (una vez por máquina)
 
+
 git clone https://github.com/navimm-0/PFEPI.git
+
 cd PFEPI
 
 Esto crea una copia local del repositorio para trabajar desde tu equipo.
@@ -31,6 +34,7 @@ PFEPI/
 Crear esta estructura:
 
 touch index.html
+
 mkdir CSS HTML SCRIPT IMG
 
 Si alguna carpeta está vacía y deseas que Git la incluya:
@@ -59,9 +63,11 @@ git status
 Agrega todos los cambios:
 
 git add .
+
 Guarda los cambios con un mensaje:
 
 git commit -m "Agrega nueva funcionalidad en SCRIPT/ y estilos en CSS/"
+
 Sube los cambios al repositorio remoto:
 
 
@@ -80,36 +86,48 @@ git pull origin main
 Eliminar archivo:
 
 git rm HTML/ayuda.html
+
 git commit -m "Elimina archivo ayuda.html"
+
 git push origin main
 
 Eliminar carpeta completa:
 
 git rm -r IMG/
+
 git commit -m "Elimina carpeta de imágenes"
+
 git push origin main
 
 :arrows_clockwise: CAMBIAR NOMBRE DE RAMA Y ENLAZAR A GITHUB (solo si usaste git init)
 
 git branch -M main
+
 git remote add origin https://github.com/navimm-0/PFEPI.git
+
 git push -u origin main
 
 :test_tube: COMANDOS ÚTILES Y DE APOYO
+
 Ver qué archivos han cambiado:
 
 git status
+
 Ver historial de commits:
 
 
 git log
+
 Ver las ramas actuales:
 
 git branch
+
 Cambiar de rama:
 
 git checkout nombre-rama
+
 :soap: BUENAS PRÁCTICAS DE TRABAJO EN EQUIPO
+
 :arrows_counterclockwise: Haz git pull antes de comenzar a trabajar.
 
 :white_check_mark: Haz git status y git add con frecuencia.
@@ -127,10 +145,13 @@ SCRIPT/: funcionalidad con main.js, validaciones.js
 IMG/: logos, íconos, banners
 
 :dividers: EJEMPLO DE CICLO COMPLETO
+
 Iniciar sesión, clonar repositorio:
 
 git clone https://github.com/navimm-0/PFEPI.git
+
 cd PFEPI
+
 Crear archivo nuevo:
 
 touch HTML/contacto.html
@@ -139,5 +160,7 @@ Subir el archivo:
 
 
 git add HTML/contacto.html
+
 git commit -m "Agrega contacto.html a la sección HTML"
+
 git push origin main
