@@ -72,7 +72,7 @@ Guarda los cambios con un mensaje:
 
     git commit -m "Agrega nueva funcionalidad en SCRIPT/ y estilos en CSS/"
 
-    Sube los cambios al repositorio remoto:
+ Sube los cambios al repositorio remoto:
 
     git push origin main
 
