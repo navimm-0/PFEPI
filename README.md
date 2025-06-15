@@ -11,7 +11,7 @@
 
     git config --global user.email "tucorreo@example.com"
 
-    :white_check_mark: Esto garantiza que los commits aparezcan con tu nombre.
+:white_check_mark: Esto garantiza que los commits aparezcan con tu nombre.
 
 :inbox_tray: CLONAR EL REPOSITORIO (una vez por máquina)
 
@@ -20,7 +20,7 @@
 
     cd PFEPI
 
-    Esto crea una copia local del repositorio para trabajar desde tu equipo.
+ Esto crea una copia local del repositorio para trabajar desde tu equipo.
 
 :file_folder: ESTRUCTURA OFICIAL DEL PROYECTO
 
@@ -56,7 +56,7 @@ Abre con tu editor preferido (VS Code, Notepad, nano, etc.):
 
     code index.html
 
-    Haz los cambios necesarios y guarda.
+Haz los cambios necesarios y guarda.
 
 :outbox_tray: SUBIR ARCHIVOS NUEVOS O EDITADOS
 
@@ -64,11 +64,11 @@ Abre con tu editor preferido (VS Code, Notepad, nano, etc.):
 
     git status
 
-    Agrega todos los cambios:
+Agrega todos los cambios:
 
     git add .
 
-  Guarda los cambios con un mensaje:
+Guarda los cambios con un mensaje:
 
     git commit -m "Agrega nueva funcionalidad en SCRIPT/ y estilos en CSS/"
 
@@ -76,7 +76,7 @@ Abre con tu editor preferido (VS Code, Notepad, nano, etc.):
 
     git push origin main
 
-    :white_check_mark: ¡Listo! Tus cambios ahora están en GitHub.
+:white_check_mark: ¡Listo! Tus cambios ahora están en GitHub.
 
 :arrows_counterclockwise: ACTUALIZAR TU COPIA LOCAL
 
