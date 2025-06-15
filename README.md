@@ -48,9 +48,9 @@ Si alguna carpeta está vacía y deseas que Git la incluya:
 
 Git no guarda carpetas vacías a menos que tengan al menos un archivo (como .gitkeep).
 
-    :writing_hand: AGREGAR O MODIFICAR ARCHIVOS
+:writing_hand: AGREGAR O MODIFICAR ARCHIVOS
 
-    :small_blue_diamond: Editar un archivo
+:small_blue_diamond: Editar un archivo
 
 Abre con tu editor preferido (VS Code, Notepad, nano, etc.):
 
