@@ -44,7 +44,11 @@ Crear esta estructura:
 Si alguna carpeta está vacía y deseas que Git la incluya:
 
 
-    touch CSS/.gitkeep HTML/.gitkeep SCRIPT/.gitkeep IMG/.gitkeep
+        New-Item -Path .\CSS\.gitkeep -ItemType File
+        New-Item -Path .\HTML\.gitkeep -ItemType File
+        New-Item -Path .\SCRIPT\.gitkeep -ItemType File
+        New-Item -Path .\IMG\.gitkeep -ItemType File
+
 
 Git no guarda carpetas vacías a menos que tengan al menos un archivo (como .gitkeep).
 
