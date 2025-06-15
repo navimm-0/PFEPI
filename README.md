@@ -127,25 +127,25 @@ Abre con tu editor preferido (VS Code, Notepad, nano, etc.):
 
     Cambiar de rama:
 
-  git checkout nombre-rama
+    git checkout nombre-rama
 
 :soap: BUENAS PRÁCTICAS DE TRABAJO EN EQUIPO
 
-    :arrows_counterclockwise: Haz "git pull" antes de comenzar a trabajar.
+:arrows_counterclockwise: Haz "git pull" antes de comenzar a trabajar.
 
-    :white_check_mark: Haz "git status" y git add con frecuencia.
+ :white_check_mark: Haz "git status" y git add con frecuencia.
 
-    :speech_balloon: Usa mensajes de commit claros y específicos.
+:speech_balloon: Usa mensajes de commit claros y específicos.
 
-    :books: Cada carpeta tiene un propósito:
+:books: Cada carpeta tiene un propósito:
 
-      CSS/: estilos (style.css, responsive.css)
+CSS/: estilos (style.css, responsive.css)
 
-      HTML/: páginas como contacto.html, nosotros.html
+HTML/: páginas como contacto.html, nosotros.html
 
-      SCRIPT/: funcionalidad con main.js, validaciones.js
+SCRIPT/: funcionalidad con main.js, validaciones.js
 
-      IMG/: logos, íconos, banners
+ IMG/: logos, íconos, banners
 
 :dividers: EJEMPLO DE CICLO COMPLETO
 
