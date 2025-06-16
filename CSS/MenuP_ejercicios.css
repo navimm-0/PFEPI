@@ -1,0 +1,171 @@
+:root {
+  --naranja-logo: #f98e1c;
+  --azul-logo: #2aace3;
+  --verde-logo: #8bc34a;
+  --amarillo-logo: #fff3cd;
+  --gris-logo: #333;
+  --blanco: #fff;
+}
+
+/* Espaciado general para que no se oculte bajo el header */
+main {
+  padding-top: 90px;
+}
+
+/* HEADER fijo */
+header.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+/* Botón regresar */
+.contenedor-btn-regresar {
+  max-width: 1150px;
+  margin: 1.2rem auto 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.btn-regresar {
+  background-color: var(--naranja-logo);
+  color: var(--blanco);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-regresar:hover {
+  background-color: var(--azul-logo);
+  transform: scale(1.03);
+}
+
+/* Título principal */
+.chuy {
+  margin-top: 1.5rem; /* más arriba */
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background-color: #fffbe6; /* fondo claro estilo pastel */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chuy h1 {
+  font-size: 2.2rem;
+  font-weight: 1978.2;
+  color: var(--gris-logo);
+  margin: 0;
+}
+
+.chuy .marca {
+  display: inline-block;
+  background: linear-gradient(to right, var(--naranja-logo), var(--azul-logo));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+
+/* Estilo para el contenedor general de los temas */
+.zona-caminos {
+  background-color: #fef9f2; /* Cambia este color si deseas otro fondo */
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  margin: 2rem auto 3rem;
+  max-width: 1150px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo interno para los temas */
+.camino-temas {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Cada tema (título y sus tarjetas) */
+.tema {
+  background-color: rgb(242, 242, 242);
+  border-left: 8px solid var(--naranja-logo);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.tema:hover {
+  transform: translateY(-4px);
+}
+
+.tema h2 {
+  margin-bottom: 1.5rem;
+  color: var(--gris-logo);
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Tarjetas de teoría y evaluación */
+.tarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}
+
+.tarjeta {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 1.6rem 1.2rem;
+  width: 220px;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  color: var(--gris-logo);
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, var(--naranja-logo), var(--azul-logo));
+  color: var(--blanco);
+}
+
+.tarjeta .icono {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.tarjeta .texto {
+  font-size: 1.1rem;
+}
+
+.tarjeta .etiqueta {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--verde-logo);
+  color: var(--blanco);
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta:hover .etiqueta {
+  background: var(--amarillo-logo);
+  color: var(--gris-logo);
+}
