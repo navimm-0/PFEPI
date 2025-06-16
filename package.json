@@ -1,0 +1,25 @@
+{
+  "name": "pfepi",
+  "version": "1.0.0",
+  "description": ":movie_camera: VIDEO TUTORIAL\r :link: ¡VER ANTES DE INICIAR!:\r     https://youtu.be/F4KcMFW8g7I?si=GQR5Xg4tJTRt7iBF",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navimm-0/PFEPI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/navimm-0/PFEPI/issues"
+  },
+  "homepage": "https://github.com/navimm-0/PFEPI#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
+  }
+}
