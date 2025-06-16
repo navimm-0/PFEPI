@@ -8,11 +8,17 @@
   --hueso: #fffdf7;
   --gris-logo: #333333;
   --blanco: #ffffff;
+  --amarillo-chuy: #ff9f63; 
+}
+:root {
+  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Nunito", sans-serif;
+  --nav-font: "Inter", sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--default-font);
   background: linear-gradient(90deg, #65bddb, #f6db7b, #f1919f);
   overflow-x: hidden;
   color: var(--gris-logo);
@@ -111,7 +117,7 @@ canvas#stars-bg {
 }
 
 .hero .marca .a2 {
-  color: var(--amarillo-logo);
+  color: var(--amarillo-chuy);
 }
 
 .hero .marca .y {
@@ -192,4 +198,13 @@ canvas#stars-bg {
   color: var(--naranja-logo);
   font-size: 1rem;
   cursor: pointer;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+}
+nav,
+.navmenu,
+.btn-regresar,
+a {
+  font-family: var(--nav-font);
 }
