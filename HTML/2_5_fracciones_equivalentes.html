@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Comparación y Equivalencia de Fracciones</title>
+  <link rel="stylesheet" href="/CSS/2_5_fracciones_equivalentes.css" />
+</head>
+<body>
+  <header>
+    <h1>¡Fracciones Equivalentes y Comparaciones!</h1>
+    <p>Aprende a comparar partes de un todo 🍕🧠</p>
+  </header>
+
+  <main>
+
+<section class="tema" id="fracciones-equivalentes">
+  <h2>🔁 Fracciones Equivalentes</h2>
+  <p>
+    Dos fracciones son <strong>equivalentes</strong> si representan la <strong>misma cantidad</strong>, aunque tengan números diferentes.
+    Por ejemplo:
+  </p>
+  <p><strong>1/2 = 2/4 = 4/8</strong></p>
+
+  <div class="imagenes-galletas">
+    <div class="item"><img src="/img/media.png" alt="1/2" /></div>
+    <span class="signo">=</span>
+    <div class="item"><img src="/img/dos_cuartos.png" alt="2/4" /></div>
+    <span class="signo">=</span>
+    <div class="item"><img src="/img/cuatro_octavos.png" alt="4/8" /></div>
+  </div>
+</section>
+
+<section class="tema" id="comparar-fracciones">
+  <h2>⚖️ Comparar Fracciones</h2>
+  <p>
+    Para comparar fracciones, podemos convertirlas a un mismo denominador o a decimal. Por ejemplo:
+  </p>
+  <p><strong>¿Qué es mayor: 1/3 o 1/4?</strong></p>
+  <div class="ejemplo">
+    <p>1/3 = 0.333...<br>1/4 = 0.25</p>
+    <p><strong>1/3 es mayor</strong></p>
+  </div>
+</section>
+
+<section class="tema" id="interactivo-equivalentes">
+  <h2>🧮 Verifica si dos fracciones son equivalentes</h2>
+  <p>Escribe dos fracciones para ver si son equivalentes entre sí.</p>
+
+  <div class="interactivo">
+    <label for="n1">Numerador 1:</label>
+    <input type="number" id="n1" placeholder="Ej. 1" />
+
+    <label for="d1">Denominador 1:</label>
+    <input type="number" id="d1" placeholder="Ej. 2" />
+
+    <label for="n2">Numerador 2:</label>
+    <input type="number" id="n2" placeholder="Ej. 2" />
+
+    <label for="d2">Denominador 2:</label>
+    <input type="number" id="d2" placeholder="Ej. 4" />
+
+    <button onclick="verificarEquivalencia()">Verificar equivalencia</button>
+
+    <div id="resultadoEquivalencia"></div>
+  </div>
+</section>
+
+<section class="tema" id="interactivo-comparar">
+  <h2>📊 ¿Cuál fracción es mayor?</h2>
+  <p>Ingresa dos fracciones y te diremos cuál es más grande.</p>
+
+  <div class="interactivo">
+    <label for="nc1">Numerador A:</label>
+    <input type="number" id="nc1" placeholder="Ej. 3" />
+    <label for="dc1">Denominador A:</label>
+    <input type="number" id="dc1" placeholder="Ej. 5" />
+
+    <label for="nc2">Numerador B:</label>
+    <input type="number" id="nc2" placeholder="Ej. 2" />
+    <label for="dc2">Denominador B:</label>
+    <input type="number" id="dc2" placeholder="Ej. 3" />
+
+    <button onclick="compararFracciones()">Comparar</button>
+
+    <div id="resultadoComparacion"></div>
+  </div>
+</section>
+
+    <button onclick="volver()">🔙 Volver</button>
+    <a href="2_5_fracciones_equivalentes_evaluacion.html" class="boton-evaluacion">📝 Ir a la Evaluación</a>
+  </main>
+
+  <script src="/SCRIPT/2_5_fracciones_equivalentes.js"></script>
+</body>
+</html>

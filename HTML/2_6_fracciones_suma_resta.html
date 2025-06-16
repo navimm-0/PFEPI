@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Suma y Resta de Fracciones</title>
+  <link rel="stylesheet" href="/CSS/2_6_fracciones_suma_resta.css" />
+</head>
+<body>
+  <header>
+    <h1>¡Suma y resta de fracciones con el mismo denominador!</h1>
+    <p>Aprende a sumar y restar fracciones fácilmente 🍕➕➖</p>
+  </header>
+
+  <main>
+
+<section class="tema" id="introduccion">
+  <h2>📌 ¿Cómo sumar o restar fracciones con el mismo denominador?</h2>
+  <p>
+    Cuando las fracciones tienen el <strong>mismo número abajo</strong> (denominador), solo sumamos o restamos los <strong>numeradores</strong>.
+  </p>
+</section>
+
+<section class="tema" id="ejemplo-suma">
+  <h2>➕ Ejemplo de suma</h2>
+  <p>
+    Si tienes <strong>1/4 de una pizza</strong> y luego te dan <strong>2/4 más</strong>, tienes:
+  </p>
+
+  <div class="ejemplo">
+    <p>1/4 + 2/4 = <strong>3/4</strong></p>
+
+    <div class="imagenes-galletas">
+      <div class="item"><img src="/img/frac_1_4.png" alt="1/4 de pizza" /></div>
+      <span class="signo">+</span>
+      <div class="item"><img src="/img/frac_2_4.png" alt="2/4 de pizza" /></div>
+    </div>
+  </div>
+</section>
+
+<section class="tema" id="ejemplo-resta">
+  <h2>➖ Ejemplo de resta</h2>
+  <p>
+    Si tienes <strong>3/4 de una pizza</strong> y comes <strong>1/4</strong>, te queda:
+  </p>
+
+  <div class="ejemplo">
+    <p>3/4 - 1/4 = <strong>2/4</strong></p>
+
+    <div class="imagenes-galletas">
+      <div class="item"><img src="/img/frac_3_4.png" alt="3/4 de pizza" /></div>
+      <span class="signo">−</span>
+      <div class="item"><img src="/img/frac_1_4.png" alt="1/4 de pizza" /></div>
+    </div>
+
+    <p>Y si simplificamos: <strong>2/4 = 1/2</strong></p>
+  </div>
+</section>
+
+<section class="tema" id="interactivo-suma-resta">
+  <h2>🧮 Practica tú</h2>
+  <p>Escribe dos fracciones con el mismo denominador y elige si quieres sumarlas o restarlas.</p>
+
+  <div class="interactivo">
+    <label for="num1">Numerador 1:</label>
+    <input type="number" id="num1" placeholder="Ej. 1" />
+    <label for="num2">Numerador 2:</label>
+    <input type="number" id="num2" placeholder="Ej. 2" />
+    <label for="den">Denominador (igual para ambas):</label>
+    <input type="number" id="den" placeholder="Ej. 4" />
+
+    <div style="margin-top: 1rem;">
+      <button onclick="calcularFraccion('suma')">➕ Sumar</button>
+      <button onclick="calcularFraccion('resta')">➖ Restar</button>
+    </div>
+
+    <div id="resultadoFraccion"></div>
+  </div>
+</section>
+
+    <button onclick="volver()">🔙 Volver</button>
+    <a href="/HTML/2_6_fracciones_suma_resta_evaluacion.html" class="boton-evaluacion">📝 Ir a la Evaluación</a>
+  </main>
+
+  <script src="/SCRIPT/2_6_fracciones_suma_resta.js"></script>
+</body>
+</html>

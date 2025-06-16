@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Decimales y Fracciones</title>
+  <link rel="stylesheet" href="/CSS/2_7_introduccion_decimales.css" />
+</head>
+<body>
+  <header>
+    <h1>¡Bienvenido al mundo de los decimales!</h1>
+    <p>Descubre cómo los decimales y las fracciones están conectados 🔢✨</p>
+  </header>
+
+  <main>
+
+<section class="tema" id="que-es-un-decimal">
+  <h2>📌 ¿Qué es un número decimal?</h2>
+  <p>
+    Un <strong>número decimal</strong> representa una parte de un todo, ¡igual que las fracciones! Se escribe con una <strong>coma o punto</strong>.
+    Por ejemplo: <strong>0.5</strong> representa <strong>la mitad</strong>.
+  </p>
+</section>
+
+<section class="tema" id="relacion-fraccion-decimal">
+  <h2>🔁 Relación entre fracciones y decimales</h2>
+  <p>
+    Puedes <strong>convertir fracciones en decimales</strong> dividiendo el numerador entre el denominador.
+  </p>
+  <div class="ejemplo">
+    <p><strong>1/2 = 1 ÷ 2 = 0.5</strong></p>
+    <p><strong>3/4 = 3 ÷ 4 = 0.75</strong></p>
+    <p><strong>1/10 = 1 ÷ 10 = 0.1</strong></p>
+  </div>
+</section>
+
+<section class="tema" id="ejemplo-visual">
+  <h2>🍰 Fracciones y decimales visuales</h2>
+  <p>Observa esta fracción: <strong>1/4</strong>. ¿Sabías que también se escribe como <strong>0.25</strong>?</p>
+  <div class="imagenes-galletas">
+    <div class="item"><img src="/img/frac_1_4.png" alt="1/4 representado gráficamente" /></div>
+    <span class="signo">=</span>
+    <p><strong>0.25</strong></p>
+  </div>
+</section>
+
+<section class="tema" id="interactivo-decimales">
+  <h2>🧮 Convierte una fracción en decimal</h2>
+  <p>Escribe una fracción y observa su valor decimal.</p>
+
+  <div class="interactivo">
+    <label for="numerador">Numerador:</label>
+    <input type="number" id="numerador" placeholder="Ej. 1" />
+    <label for="denominador">Denominador:</label>
+    <input type="number" id="denominador" placeholder="Ej. 4" />
+
+    <button onclick="convertirADecimal()">Convertir</button>
+
+    <div id="resultadoDecimal"></div>
+  </div>
+</section>
+
+    <button onclick="volver()">🔙 Volver</button>
+    <a href="/HTML/2_7_introduccion_decimales_evaluacion.html" class="boton-evaluacion">📝 Ir a la Evaluación</a>
+  </main>
+
+  <script src="/SCRIPT/2_7_introduccion_decimales.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Perímetro y Área de Figuras Planas</title>
+  <link rel="stylesheet" href="/CSS/2_8_area_figuras.css" />
+</head>
+<body>
+  <header>
+    <h1>📏 Perímetro y Área de Figuras Planas</h1>
+    <p>Aprende cómo calcular los bordes y el espacio interior de varias figuras geométricas 🧮</p>
+  </header>
+
+  <main>
+
+<section class="tema">
+  <h2>🔶 Cuadrado</h2>
+  <p>Todos sus lados son iguales.</p>
+  <p><strong>Perímetro:</strong> P = 4 × lado</p>
+  <p><strong>Área:</strong> A = lado × lado</p>
+  <div class="imagenes-galletas">
+    <div class="item"><img src="/img/cuadrado.png" alt="Cuadrado" /></div>
+  </div>
+</section>
+
+<section class="tema">
+  <h2>🔷 Rectángulo</h2>
+  <p>Tiene lados opuestos iguales.</p>
+  <p><strong>Perímetro:</strong> P = 2 × (base + altura)</p>
+  <p><strong>Área:</strong> A = base × altura</p>
+  <div class="imagenes-galletas">
+    <div class="item"><img src="/img/rectangulo.png" alt="Rectángulo" /></div>
+  </div>
+</section>
+
+<section class="tema">
+  <h2>🔺 Triángulo</h2>
+  <p>La suma de sus lados da el perímetro.</p>
+  <p><strong>Perímetro:</strong> P = lado1 + lado2 + lado3</p>
+  <p><strong>Área:</strong> A = (base × altura) ÷ 2</p>
+  <div class="imagenes-galletas">
+    <div class="item"><img src="/img/triangulo.png" alt="Triángulo" /></div>
+  </div>
+</section>
+
+<section class="tema">
+  <h2>⚪ Círculo</h2>
+  <p>¡Una figura sin esquinas!</p>
+  <p><strong>Perímetro (circunferencia):</strong> C = 2 × π × radio</p>
+  <p><strong>Área:</strong> A = π × radio²</p>
+  <div class="imagenes-galletas">
+    <div class="item"><img src="/img/circulo.png" alt="Círculo" /></div>
+  </div>
+</section>
+
+<section class="tema">
+  <h2>⬡ Polígonos regulares</h2>
+  <p>Tienen todos los lados y ángulos iguales.</p>
+  <p><strong>Perímetro:</strong> P = número de lados × medida de un lado</p>
+  <p><strong>Área:</strong> Depende del tipo de polígono (se puede usar apotema para algunos casos).</p>
+  <div class="imagenes-galletas">
+    <div class="item"><img src="/img/hexagono.png" alt="Polígono regular" /></div>
+  </div>
+</section>
+
+<section class="tema">
+  <h2>✏️ Calculadora Interactiva</h2>
+  <div class="interactivo">
+    <label for="figura">Elige una figura:</label>
+    <select id="figura" onchange="mostrarFormulario()">
+      <option value="">-- Selecciona --</option>
+      <option value="cuadrado">Cuadrado</option>
+      <option value="rectangulo">Rectángulo</option>
+      <option value="triangulo">Triángulo</option>
+      <option value="circulo">Círculo</option>
+    </select>
+
+    <div id="formularioFigura"></div>
+    <div id="resultado"></div>
+  </div>
+</section>
+
+    <button onclick="volver()">🔙 Volver</button>
+    <a href="/HTML/2_8_area_figuras_evaluacion.html" class="boton-evaluacion">📝 Ir a la Evaluación</a>
+  </main>
+
+  <script src="/SCRIPT/2_8_area_figuras.js"></script>
+</body>
+</html>
