@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Proporciones</title>
+    <link rel="stylesheet" href="../CSS/2_11_proporciones_y_regla_de_tres_ejercicio_1.css" />
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="brand">
+                <img src="../IMG/logo.png" alt="Math Way logo">
+            </div>
+            <nav>
+                <a href="HTML/login.html">Login</a>
+                <a href="HTML/registro.html">Registrarse</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="problema">
+        Ayer 2 camiones transportaron una mercancía desde el puerto hasta el almacén. Hoy 3 camiones, iguales a los de ayer,
+        tendrán que hacer 6 viajes para transportar la misma cantidad de mercancía del almacén al centro comercial. ¿Cuántos
+        viajes tuvieron que hacer ayer los camiones?
+    </div>
+
+    <div class="Imagen"><img src="../IMG/almacendoscamiones.png"></div>
+    <div class="Imagen"><img src="../IMG/almacentrescamiones.png"></div>
+
+    <div id="contenedoropciones">
+        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 5 viajes</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 9 viajes</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 12 viajes</button>
+    </div>
+
+    <div id="mensaje"></div>
+     <div id="contenedorBoton">
+        <button id="btnSiguiente" onclick="location.href='ejercicio2.html'">Siguiente ➜</button>
+    </div>
+
+    <!-- Script de lógica-->
+    <script src="../SCRIPT/2_11_proporciones_y_regla_de_tres_ejercicio_1.js"></script>
+</body>
+
+</html>

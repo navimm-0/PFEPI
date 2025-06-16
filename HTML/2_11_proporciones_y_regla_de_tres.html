@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Proporciones y Regla de Tres</title>
+  <link rel="stylesheet" href="../CSS/2_11_proporciones_y_regla_de_tres.css" />
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="brand">
+        <img src="../IMG/logo.png" alt="Math Way logo">
+      </div>
+      <nav>
+        <a href="HTML/login.html">Login</a>
+        <a href="HTML/registro.html">Registrarse</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="header-sec">
+    <h1>¡Bienvenido a Proporciones y Regla de Tres!</h1>
+    <p>Aprende a resolver problemas usando comparaciones mágicas ✨📏</p>
+  </div>
+
+  <main>
+    <section class="tema" id="que-son">
+      <h2>📏 ¿Qué son las proporciones?</h2>
+      <p>
+        Una <strong>proporción</strong> es una comparación entre dos cantidades que mantienen una relación constante.
+        Si al aumentar una cantidad también aumenta la otra en la misma medida, estamos hablando de una <strong>proporcionalidad directa</strong>.
+      </p>
+      <p>
+        Por ejemplo: si 2 caramelos → 1 amigo, entonces para 5 amigos → <strong>10 caramelos</strong>.
+      </p>
+    </section>
+
+    <section class="tema" id="regla-de-tres">
+      <h2>🧮 ¿Qué es la regla de tres?</h2>
+      <p>
+        La <strong>regla de tres</strong> es un método matemático que nos permite encontrar un valor desconocido cuando sabemos que existe una relación proporcional entre tres cantidades.
+      </p>
+      <p>
+        Se utiliza mucho para resolver problemas cotidianos donde se comparan magnitudes proporcionales.
+      </p>
+    </section>
+
+    <section class="tema" id="ejemplo-regla-de-tres">
+      <h2>📐 Ejemplo con mapas</h2>
+      <p>
+        Al llegar al hotel nos han dado un mapa con los lugares de interés de la ciudad, y nos dijeron que 5 centímetros del mapa representaban 600 metros de la realidad.
+      </p>
+      <p>
+        Hoy queremos ir a un parque que se encuentra a 8 centímetros del hotel en el mapa. ¿A qué distancia del hotel se encuentra este parque?
+      </p>
+      <p>
+        Como 5 cm representan 600 m, y la relación es proporcional (a mayor distancia en el mapa, mayor en la realidad), hacemos:
+      </p>
+      <ul>
+        <li>1 cm representa: 600 ÷ 5 = <strong>120 m</strong></li>
+        <li>8 cm representan: 120 × 8 = <strong>960 m</strong></li>
+      </ul>
+      <p>
+        <strong>Respuesta:</strong> El parque se encuentra a 960 metros del hotel.
+      </p>
+    </section>
+
+    <section class="tema" id="interactivo">
+      <h2>🎯 Practiquemos</h2>
+      <p>Completa el siguiente problema:</p>
+      <div class="interactivo">
+        <p>Si 4 lápices cuestan 8 pesos, ¿cuánto cuestan 6 lápices?</p>
+        <label for="respuesta">Tu respuesta:</label>
+        <input type="number" id="respuesta" placeholder="Escribe un número" />
+        <button onclick="verificarRespuesta()">Verificar</button>
+        <div id="resultadoRelacion"></div>
+      </div>
+    </section>
+
+    <button onclick="volver()">🔙 Volver</button>
+    <a href="../HTML/2_11_proporciones_y_regla_de_tres_ejercicio_1.html" class="boton-evaluacion">📝 Realizar ejercicios</a>
+  </main>
+
+  <script src="../SCRIPT/2_11_proporciones_y_regla_de_tres.js"></script>
+</body>
+</html>
