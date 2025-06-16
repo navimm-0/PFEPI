@@ -1,0 +1,150 @@
+    :root {
+      --rojo-logo: #f44336;
+      --amarillo-logo: #85fd35;
+      --azul-logo: #03a9f4;
+      --naranja-logo: #f91cb7;
+      --verde-logo: #e4e12e;
+      --cyan-logo: #2aace3;
+      --hueso: #fffdf7;
+      --gris-logo: #333333;
+      --blanco: #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #ebe4d0 0%, #4b84ac 50%, #8a6bab 100%);
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      color: var(--gris-logo);
+      position: relative;
+      min-height: 100vh;
+      background-attachment: fixed;
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--rojo-logo), var(--amarillo-logo));
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--blanco);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .tema {
+      background-color: var(--blanco);
+      border-left: 8px solid var(--naranja-logo);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease-in;
+    }
+
+    .tema h2 {
+      color: var(--naranja-logo);
+      margin-bottom: 0.8rem;
+    }
+
+    .ejemplo {
+      background-color: var(--amarillo-logo);
+      border-left: 6px solid var(--naranja-logo);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .imagenes-galletas {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+
+    .imagenes-galletas .item img {
+      max-width: 60px;
+      height: auto;
+      display: block;
+    }
+
+    .imagenes-galletas .signo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--naranja-logo);
+      margin: 0 5px;
+      user-select: none;
+    }
+
+    .imagen_regla {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .imagen_regla img {
+      width: 80px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    button {
+      display: block;
+      margin: 2rem auto;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--naranja-logo);
+      border: none;
+      border-radius: 8px;
+      color: var(--blanco);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--azul-logo);
+    }
+
+    button:last-of-type {
+      background-color: var(--verde-logo);
+    }
+
+    button:last-of-type:hover {
+      background-color: #689f38;
+    }
+
+    a.boton-evaluacion {
+      display: block;
+      text-align: center;
+      margin: 2rem auto;
+      padding: 0.8rem 1.5rem;
+      background-color: var(--verde-logo);
+      color: var(--blanco);
+      font-size: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      width: fit-content;
+      transition: background 0.3s ease;
+    }
+
+    a.boton-evaluacion:hover {
+      background-color: #689f38;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  
