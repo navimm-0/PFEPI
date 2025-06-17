@@ -4,65 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mathway - Concepto de Fracciones</title>
-  <link rel="stylesheet" href="../CSS/2_4_fracciones.css" />
+  <link rel="stylesheet" href="../CSS/barrageneral.css">
+  <link rel="stylesheet" href="../CSS/fondogeneral.css">
+  <link rel="stylesheet" href="../CSS/2_4_fracciones.css">
+  <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>¡Bienvenido a Fracciones!</h1>
-    <p>Aprende a dividir y compartir con estilo 🎂🧠</p>
+
+  <!-- Fondo animado -->
+  <canvas id="stars-bg"></canvas>
+
+  <!-- Header con barra de búsqueda -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div
+      class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html" class="active">Inicio</a></li>
+          <li><a href="#about">Avance</a></li>
+          <li><a href="#features">Temario</a></li>
+          <li><a href="#contact">Cuenta</a></li>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+
+    </div>
   </header>
 
   <main>
+    <section class="chuy">
+      <h1>¡Bienvenido a Fracciones!</h1>
+      <p>Aprende a dividir y compartir con estilo 🎂🧠</p>
+    </section>
 
-<section class="tema" id="que-es-fraccion">
-  <h2>🔢 ¿Qué es una fracción?</h2>
-  <p>
-    Una <strong>fracción</strong> representa una parte de un todo. 
-    Se escribe así: <strong>a / b</strong>, donde <strong>a</strong> es el numerador (las partes que tienes) y <strong>b</strong> es el denominador (las partes totales).
-  </p>
-  <p>Por ejemplo, si tienes <strong>1/4</strong> de una pizza, significa que la pizza está dividida en 4 partes y tú tienes solo 1.</p>
-  
-  <div class="imagenes-galletas">
-    <div class="item"><img src="../IMG/pizza_cuarto.png" alt="Un cuarto de pizza" /></div>
-  </div>
-</section>
+    <section class="tema" id="que-es-fraccion">
+      <h2>🔢 ¿Qué es una fracción?</h2>
+      <p>
+        Una <strong>fracción</strong> representa una parte de un todo. 
+        Se escribe así: <strong>a / b</strong>, donde <strong>a</strong> es el numerador y <strong>b</strong> el denominador.
+      </p>
+      <p>Por ejemplo, si tienes <strong>1/4</strong> de una pizza, significa que está dividida en 4 partes y tienes 1.</p>
+      <div class="imagenes-galletas">
+        <div class="item"><img src="../IMG/pizza_cuarto.png" alt="Un cuarto de pizza" /></div>
+      </div>
+    </section>
 
-<section class="tema" id="ejemplo-visual">
-  <h2>🍰 Fracciones en la vida real</h2>
-  <p>
-    Supón que tienes un pastel y lo cortas en 6 partes iguales. Si te comes 2 de esas partes, ¿qué fracción comiste?
-  </p>
-  <div class="ejemplo">
-    <p>Comiste <strong>2/6</strong> del pastel.</p>
-    <p>¡Esto también se puede simplificar a <strong>1/3</strong>!</p>
+    <section class="tema" id="ejemplo-visual">
+      <h2>🍰 Fracciones en la vida real</h2>
+      <p>
+        Si cortas un pastel en 6 partes iguales y comes 2, ¿qué fracción comiste?
+      </p>
+      <div class="ejemplo">
+        <p>Comiste <strong>2/6</strong> del pastel.</p>
+        <p>¡Esto también se puede simplificar a <strong>1/3</strong>!</p>
+        <div class="imagenes-galletas">
+          <div class="item"><img src="../IMG/pastel_comido.png" alt="Dos sextos del pastel" /></div>
+        </div>
+      </div>
+    </section>
 
-    <div class="imagenes-galletas">
-      <div class="item"><img src="../IMG/pastel_comido.png" alt="Dos sextos del pastel" /></div>
-    </div>
-  </div>
-</section>
+    <section class="tema" id="interactivo-fraccion">
+      <h2>🧮 Practica con fracciones</h2>
+      <p>Escribe cuántas partes tiene el todo y cuántas tienes tú. Te diremos tu fracción y si se puede simplificar.</p>
+      <div class="interactivo">
+        <label for="partesTotales">¿En cuántas partes está dividido el objeto?</label>
+        <input type="number" id="partesTotales" placeholder="Ej. 8" />
+        <label for="partesUsadas">¿Cuántas partes tienes?</label>
+        <input type="number" id="partesUsadas" placeholder="Ej. 4" />
+        <button onclick="calcularFraccion()">Mostrar fracción</button>
+        <div id="resultadoFraccion"></div>
+      </div>
+    </section>
 
-<section class="tema" id="interactivo-fraccion">
-  <h2>🧮 Practica con fracciones</h2>
-  <p>Escribe cuántas partes tiene el todo y cuántas partes tienes tú. Te diremos tu fracción y si puedes simplificarla.</p>
-
-  <div class="interactivo">
-    <label for="partesTotales">¿En cuántas partes está dividido el objeto?</label>
-    <input type="number" id="partesTotales" placeholder="Ej. 8" />
-
-    <label for="partesUsadas">¿Cuántas partes tienes?</label>
-    <input type="number" id="partesUsadas" placeholder="Ej. 4" />
-
-    <button onclick="calcularFraccion()">Mostrar fracción</button>
-
-    <div id="resultadoFraccion"></div>
-  </div>
-</section>
-
-    <button onclick="volver()">🔙 Volver</button>
+    <button class="boton-volver" onclick="volver()">🔙 Volver</button>
     <a href="2_4_fracciones_evaluacion.html" class="boton-evaluacion">📝 Ir a la Evaluación</a>
   </main>
 
+  <script src="../SCRIPT/stars.js"></script>
   <script src="../SCRIPT/2_4_fracciones.js"></script>
+  <script src="../SCRIPT/barraresponsiva.js"></script>
+
 </body>
 </html>

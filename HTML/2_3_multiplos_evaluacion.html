@@ -4,15 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Evaluación - Múltiplos y Divisores</title>
+
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="../CSS/barrageneral.css" />
+  <link rel="stylesheet" href="../CSS/fondogeneral.css" />
   <link rel="stylesheet" href="../CSS/2_3_multiplos.css" />
+  <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Iconos y fuentes -->
+  <link href="../IMG/favicon.png" rel="icon">
+  <link href="../IMG/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Nunito&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <header>
-    <h1>📝 Evaluación: Múltiplos y Divisores</h1>
-    <p>Responde las siguientes preguntas y demuestra lo que aprendiste 🎯</p>
+  <!-- Fondo de estrellas -->
+  <canvas id="stars-bg"></canvas>
+
+  <!-- Header con barra de navegación y búsqueda -->
+ <header id="header" class="header d-flex align-items-center fixed-top">
+    <div
+      class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html" class="active">Inicio</a></li>
+          <li><a href="#about">Avance</a></li>
+          <li><a href="#features">Temario</a></li>
+          <li><a href="#contact">Cuenta</a></li>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+
+    </div>
   </header>
 
+  <!-- Contenido principal -->
   <main>
+    <section class="chuy">
+      <h1>📝 Evaluación: Múltiplos y Divisores</h1>
+      <p>Responde las siguientes preguntas y demuestra lo que aprendiste 🎯</p>
+    </section>
+
     <section class="tema" id="evaluacion">
       <form id="formEvaluacion">
         <div id="contenedorPreguntas"></div>
@@ -20,9 +65,14 @@
       </form>
       <div id="resultadoFinal"></div>
     </section>
-    <button onclick="volver()">🔙 Volver</button>
+
+ <button class="boton-volver" onclick="volver()">🔙 Volver</button>
+
   </main>
 
+  <!-- Scripts -->
+  <script src="../SCRIPT/stars.js"></script>
   <script src="../SCRIPT/2_3_multiplos_evaluacion.js"></script>
+  <script src="../SCRIPT/barraresponsiva.js"></script>
 </body>
 </html>
