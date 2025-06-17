@@ -1,86 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mathway - Múltiplos y Divisores</title>
-  <link rel="stylesheet" href="../CSS/2_3_multiplos.css" />
+<!-- Primero fondo para variables -->
+<link rel="stylesheet" href="../CSS/fondogeneral.css">
+<!-- Luego la barra de navegación que depende de las variables -->
+<link rel="stylesheet" href="../CSS/barrageneral.css">
+<!-- Finalmente el estilo específico -->
+<link rel="stylesheet" href="../CSS/2_3_multiplos.css">
+<link href="../CSS/bootstrap-icons.css" rel="stylesheet"> 
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- Iconos y fuentes -->
+  <link href="../IMG/favicon.png" rel="icon">
+  <link href="../IMG/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Nunito&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <header>
-    <h1>¡Bienvenido a Múltiplos y Divisores!</h1>
-    <p>Descubre los secretos de los números con ejemplos visuales ✨🔢</p>
-  </header>
+  <!-- Fondo animado de estrellas -->
+  <canvas id="stars-bg"></canvas>
 
-  <main>
+  <!-- Barra superior -->
+   <header id="header" class="header d-flex align-items-center fixed-top">
+    <div
+      class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-<section class="tema" id="que-son">
-  <h2>🔍 ¿Qué son los múltiplos y divisores?</h2>
-  <p>
-    Un <strong>múltiplo</strong> de un número es el resultado de multiplicarlo por otro número entero.
-    Por ejemplo, los múltiplos de 3 son: <strong>3, 6, 9, 12, 15...</strong>
-  </p>
-  <p>
-    Un <strong>divisor</strong> de un número es aquel que lo divide exactamente, sin dejar residuo.
-    Por ejemplo, los divisores de 12 son: <strong>1, 2, 3, 4, 6, 12</strong>
-  </p>
-</section>
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
 
-<section class="tema" id="ejemplo-multiplos">
-  <h2>🧮 Ejemplo de Múltiplos</h2>
-  <p>
-    Imagina que tienes cajas con <strong>5 canicas cada una</strong>. ¿Cuántas canicas tendrás si llenas varias cajas?
-  </p>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html" class="active">Inicio</a></li>
+          <li><a href="#about">Avance</a></li>
+          <li><a href="#features">Temario</a></li>
+          <li><a href="#contact">Cuenta</a></li>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
-  <div class="ejemplo">
-    <p>1 caja → 5 canicas</p>
-    <p>2 cajas → 10 canicas</p>
-    <p>3 cajas → 15 canicas</p>
-    <p>...</p>
-    <p>¡Estás viendo los múltiplos de 5!</p>
+      <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
 
-    <div class="imagenes-galletas">
-      <div class="item"><img src="../IMG/canica.png" alt="Canicas" /></div>
-      <span class="signo">×</span>
-      <div class="item"><img src="../IMG/caja.png" alt="Caja" /></div>
     </div>
-  </div>
-</section>
+  </header>
+  <!-- Contenido principal -->
+  <main>
+    <section class="chuy">
+      <h1>¡Bienvenido a Múltiplos y Divisores!</h1>
+      <p>Descubre los secretos de los números con ejemplos visuales ✨🔢</p>
+    </section>
 
-<section class="tema" id="ejemplo-divisores">
-  <h2>📦 Ejemplo de Divisores</h2>
-  <p>
-    Tienes <strong>12 caramelos</strong> y quieres repartirlos en partes iguales. ¿Cómo puedes dividirlos?
-  </p>
+    <section class="tema" id="que-son">
+      <h2>🔍 ¿Qué son los múltiplos y divisores?</h2>
+      <p>
+        Un <strong>múltiplo</strong> de un número es el resultado de multiplicarlo por otro número entero.
+        Por ejemplo, los múltiplos de 3 son: <strong>3, 6, 9, 12, 15...</strong>
+      </p>
+      <p>
+        Un <strong>divisor</strong> de un número es aquel que lo divide exactamente, sin dejar residuo.
+        Por ejemplo, los divisores de 12 son: <strong>1, 2, 3, 4, 6, 12</strong>
+      </p>
+    </section>
 
-  <div class="ejemplo">
-    <p>¿Puedes hacer grupos de 3? Sí: <strong>12 ÷ 3 = 4</strong></p>
-    <p>¿Y de 5? No: <strong>12 ÷ 5 = 2.4</strong> (no es exacto)</p>
-    <p>Entonces, <strong>3 es un divisor de 12</strong>, pero 5 no lo es.</p>
-  </div>
-</section>
+    <section class="tema" id="ejemplo-multiplos">
+      <h2>🧮 Ejemplo de Múltiplos</h2>
+      <p>
+        Imagina que tienes cajas con <strong>5 canicas cada una</strong>. ¿Cuántas canicas tendrás si llenas varias
+        cajas?
+      </p>
 
-<section class="tema" id="interactivo">
-  <h2>🎯 ¿Es múltiplo o divisor?</h2>
-  <p>Escribe un número y verifica si es múltiplo o divisor de otro número.</p>
+      <div class="ejemplo">
+        <p>1 caja → 5 canicas</p>
+        <p>2 cajas → 10 canicas</p>
+        <p>3 cajas → 15 canicas</p>
+        <p>...</p>
+        <p>¡Estás viendo los múltiplos de 5!</p>
 
-  <div class="interactivo">
-    <label for="numBase">Número base:</label>
-    <input type="number" id="numBase" placeholder="Ej. 12" />
+        <div class="imagenes-galletas">
+          <div class="item"><img src="../IMG/canica.png" alt="Canicas" /></div>
+          <span class="signo">×</span>
+          <div class="item"><img src="../IMG/caja.png" alt="Caja" /></div>
+        </div>
+      </div>
+    </section>
 
-    <label for="numPrueba">¿Es múltiplo o divisor de este número?:</label>
-    <input type="number" id="numPrueba" placeholder="Ej. 3" />
+    <section class="tema" id="ejemplo-divisores">
+      <h2>📦 Ejemplo de Divisores</h2>
+      <p>
+        Tienes <strong>12 caramelos</strong> y quieres repartirlos en partes iguales. ¿Cómo puedes dividirlos?
+      </p>
 
-    <button onclick="verificarRelacion()">Verificar</button>
+      <div class="ejemplo">
+        <p>¿Puedes hacer grupos de 3? Sí: <strong>12 ÷ 3 = 4</strong></p>
+        <p>¿Y de 5? No: <strong>12 ÷ 5 = 2.4</strong> (no es exacto)</p>
+        <p>Entonces, <strong>3 es un divisor de 12</strong>, pero 5 no lo es.</p>
+      </div>
+    </section>
 
-    <div id="resultadoRelacion"></div>
-  </div>
-</section>
+    <section class="tema" id="interactivo">
+      <h2>🎯 ¿Es múltiplo o divisor?</h2>
+      <p>Escribe un número y verifica si es múltiplo o divisor de otro número.</p>
 
-    <button onclick="volver()">🔙 Volver</button>
+      <div class="interactivo">
+        <label for="numBase">Número base:</label>
+        <input type="number" id="numBase" placeholder="Ej. 12" />
+
+        <label for="numPrueba">¿Es múltiplo o divisor de este número?:</label>
+        <input type="number" id="numPrueba" placeholder="Ej. 3" />
+
+        <button onclick="verificarRelacion()">Verificar</button>
+
+        <div id="resultadoRelacion"></div>
+      </div>
+    </section>
+
+   <button class="boton-volver" onclick="volver()">🔙 Volver</button>
+
     <a href="../HTML/2_3_multiplos_evaluacion.html" class="boton-evaluacion">📝 Ir a la Evaluación</a>
   </main>
 
+  <script src="../SCRIPT/stars.js"></script>
   <script src="../SCRIPT/2_3_multiplos.js"></script>
+  <script src="../SCRIPT/barraresponsiva.js"></script>
 </body>
+
 </html>
