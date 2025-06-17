@@ -1,13 +1,16 @@
-DROP DATABASE IF EXISTS PlataformaMatematica;
-CREATE DATABASE PlataformaMatematica;
-USE PlataformaMatematica;
+DROP DATABASE IF EXISTS MathData;
+CREATE DATABASE MathData;
+USE MathData;
 
 -- Tabla de usuarios
 CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     username VARCHAR(50) UNIQUE NOT NULL,
-    contrasena_hash VARCHAR(255) NOT NULL
+    contrasena_hash VARCHAR(255) NOT NULL,
+    fecha_creacion DATETIME NOT NULL DEFAULT NOW(),
+    ultima_sesion DATETIME DEFAULT NULL,
+	tiempo_total_actividad INT DEFAULT 0
 );
 
 -- Tabla de temas
