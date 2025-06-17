@@ -19,50 +19,7 @@ body {
   position: relative;
   min-height: 100vh;
   background-attachment: fixed;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--hueso);
-  padding: 1rem 2rem;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.navbar .brand {
-  display: flex;
-  align-items: center;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--gris-logo);
-}
-
-.navbar .brand img {
-  height: 40px;
-  margin-right: 10px;
-}
-
-.navbar nav a {
-  color: var(--gris-logo);
-  margin-left: 1.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.navbar nav a:hover {
-  color: var(--naranja-logo);
-}
-
-.header-sec {
-  background: linear-gradient(90deg, var(--rojo-logo), var(--amarillo-logo));
-  text-align: center;
-  padding: 2rem 1rem;
-  color: var(--blanco);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+   padding-top: 90px;
 }
 
 h1 {
@@ -73,8 +30,9 @@ h1 {
 main {
   max-width: 900px;
   margin: auto;
-  padding: 2rem;
+  padding: 6rem 2rem 2rem; /* 6rem para separar del header fijo */
 }
+
 
 .tema {
   background-color: var(--blanco);

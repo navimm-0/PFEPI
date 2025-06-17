@@ -19,6 +19,7 @@ body {
   position: relative;
   min-height: 100vh;
   background-attachment: fixed;
+  padding-top: 90px; /* Ajusta según la altura real del header */
 }
 
 .navbar {

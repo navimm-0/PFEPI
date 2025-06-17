@@ -4,41 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Proporciones</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files 
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
+    <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+    <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../CSS/2_11_proporciones_y_regla_de_tres_ejercicio_1.css" />
+    <link href="../CSS/barrageneral.css" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <div class="navbar">
-            <div class="brand">
-                <img src="../IMG/logo.png" alt="Math Way logo">
-            </div>
-            <nav>
-                <a href="HTML/login.html">Login</a>
-                <a href="HTML/registro.html">Registrarse</a>
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div
+            class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+            <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <div class="brand">
+                    <img src="../IMG/logo.png" alt="Math Way logo">
+                </div>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="../index.html" class="active">Inicio</a></li>
+                    <li><a href="#about">Avance</a></li>
+                    <li><a href="#features">Temario</a></li>
+                    <li><a href="#contact">Cuenta</a></li>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
+
+            <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+
         </div>
     </header>
 
-    <div id="problema">
-        Ayer 2 camiones transportaron una mercancía desde el puerto hasta el almacén. Hoy 3 camiones, iguales a los de ayer,
-        tendrán que hacer 6 viajes para transportar la misma cantidad de mercancía del almacén al centro comercial. ¿Cuántos
-        viajes tuvieron que hacer ayer los camiones?
-    </div>
+    <main>
+  <div id="problema">
+      Ayer 2 camiones transportaron una mercancía desde el puerto hasta el almacén. Hoy 3 camiones, iguales a los de ayer,
+      tendrán que hacer 6 viajes para transportar la misma cantidad de mercancía del almacén al centro comercial.
+      ¿Cuántos viajes tuvieron que hacer ayer los camiones?
+  </div>
 
-    <div class="Imagen"><img src="../IMG/almacendoscamiones.png"></div>
-    <div class="Imagen"><img src="../IMG/almacentrescamiones.png"></div>
+  <div class="Imagen"><img src="../IMG/almacendoscamiones.png"></div>
+  <div class="Imagen"><img src="../IMG/almacentrescamiones.png"></div>
 
-    <div id="contenedoropciones">
-        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 5 viajes</button>
-        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 9 viajes</button>
-        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 12 viajes</button>
-    </div>
+  <div id="contenedoropciones">
+      <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 5 viajes</button>
+      <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 9 viajes</button>
+      <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 12 viajes</button>
+  </div>
 
-    <div id="mensaje"></div>
-     <div id="contenedorBoton">
-        <button id="btnSiguiente" onclick="location.href='ejercicio2.html'">Siguiente ➜</button>
-    </div>
+  <div id="mensaje"></div>
+  <div id="contenedorBoton">
+      <button id="btnSiguiente" onclick="location.href='ejercicio2.html'">Siguiente ➜</button>
+  </div>
+</main>
+
 
     <!-- Script de lógica-->
     <script src="../SCRIPT/2_11_proporciones_y_regla_de_tres_ejercicio_1.js"></script>
