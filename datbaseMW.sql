@@ -120,8 +120,8 @@ INSERT INTO Tema (id_tema, titulo, nivel, id_padre) VALUES
 DELIMITER //
 
 CREATE PROCEDURE registrar_usuario (
-    IN _nombre VARCHAR(100),
-    IN _username VARCHAR(50),
+    IN _nombre VARCHAR(40),
+    IN _username VARCHAR(20),
     IN _contrasena_hash VARCHAR(255)
 )
 BEGIN

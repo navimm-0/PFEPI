@@ -4,7 +4,7 @@
   "description": ":movie_camera: VIDEO TUTORIAL\r :link: ¡VER ANTES DE INICIAR!:\r     https://youtu.be/F4KcMFW8g7I?si=GQR5Xg4tJTRt7iBF",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,14 @@
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-myconnection": "^1.0.4",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
     "mysql2": "^3.14.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
