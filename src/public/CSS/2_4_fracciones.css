@@ -85,7 +85,7 @@ main {
 }
 
 .imagenes-galletas .item img {
-  max-width: 80px;
+  max-width: 200px;
   height: auto;
   display: block;
 }

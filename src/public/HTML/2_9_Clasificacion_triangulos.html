@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mathway - Clasificación de Triángulos y Cuadriláteros</title>
+  <!-- Orden de carga de estilos -->
+  <link rel="stylesheet" href="../CSS/fondogeneral.css">
+  <link rel="stylesheet" href="../CSS/barrageneral.css">
+  <link rel="stylesheet" href="../CSS/2_9_clasificacion_triangulos.css">
+  <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Iconos y fuentes -->
+  <link href="../IMG/favicon.png" rel="icon">
+  <link href="../IMG/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Nunito&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Fondo animado -->
+  <canvas id="stars-bg"></canvas>
+
+  <!-- Barra superior -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html" class="active">Inicio</a></li>
+          <li><a href="#about">Avance</a></li>
+          <li><a href="#features">Temario</a></li>
+          <li><a href="#contact">Cuenta</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <section class="chuy">
+      <h1>🔺 Clasificación de Triángulos y Cuadriláteros 🔷</h1>
+      <p>Aprende a identificar las figuras geométricas por sus lados y ángulos</p>
+    </section>
+
+    <section class="tema" id="triangulos">
+      <h2>🔺 Triángulos</h2>
+      <p>Los triángulos tienen <strong>3 lados</strong> y se clasifican así:</p>
+
+      <div class="ejemplo">
+        <p><strong>Por sus lados:</strong></p>
+        <ul>
+          <li><strong>Equilátero:</strong> tres lados iguales.</li>
+          <li><strong>Isósceles:</strong> dos lados iguales.</li>
+          <li><strong>Escaleno:</strong> todos los lados diferentes.</li>
+        </ul>
+
+        <p><strong>Por sus ángulos:</strong></p>
+        <ul>
+          <li><strong>Acutángulo:</strong> todos sus ángulos son menores de 90°.</li>
+          <li><strong>Rectángulo:</strong> tiene un ángulo recto de 90°.</li>
+          <li><strong>Obtusángulo:</strong> tiene un ángulo mayor de 90°.</li>
+        </ul>
+
+        <div class="imagenes-galletas">
+          <div class="item"><img src="../IMG/triangulo_equilatero.png" alt="Triángulo equilátero" /></div>
+          <div class="item"><img src="../IMG/triangulo_rectangulo.png" alt="Triángulo rectángulo" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tema" id="cuadrilateros">
+      <h2>🔷 Cuadriláteros</h2>
+      <p>Los cuadriláteros tienen <strong>4 lados</strong> y pueden ser:</p>
+
+      <div class="ejemplo">
+        <ul>
+          <li><strong>Cuadrado:</strong> todos los lados iguales y ángulos rectos.</li>
+          <li><strong>Rectángulo:</strong> lados opuestos iguales y ángulos rectos.</li>
+          <li><strong>Rombo:</strong> lados iguales pero con ángulos no rectos.</li>
+          <li><strong>Romboide:</strong> lados opuestos iguales y ángulos oblicuos.</li>
+          <li><strong>Trapecio:</strong> solo un par de lados paralelos.</li>
+        </ul>
+
+        <div class="imagenes-galletas">
+          <div class="item"><img src="../IMG/cuadrado.png" alt="Cuadrado" /></div>
+          <div class="item"><img src="../IMG/trapecio.png" alt="Trapecio" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tema" id="curiosidad">
+      <h2>💡 Dato Curioso</h2>
+      <p>Los triángulos siempre suman <strong>180°</strong> en sus ángulos. Los cuadriláteros siempre suman <strong>360°</strong> 🔍📐</p>
+    </section>
+
+    <button class="boton-volver" onclick="volver()">🔙 Volver</button>
+    <a href="../HTML/clasificacion_figuras_evaluacion.html" class="boton-evaluacion">📝 Ir a la Evaluación</a>
+  </main>
+
+  <script src="../SCRIPT/stars.js"></script>
+  <script src="../SCRIPT/barraresponsiva.js"></script>
+  <script>
+    function volver() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>
