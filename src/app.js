@@ -3,6 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const mysql = require('mysql');
 const myConnection = require('express-myconnection');
+const session = require('express-session');
 
 const app = express();
 
@@ -23,7 +24,15 @@ app.use(myConnection(mysql, {
     port: 3306,
     database: 'mathdata'
 }, 'single'));
-app.use(express.urlencoded({extend: false})); //entender los datos de un form
+app.use(express.urlencoded({extended: false})); //entender los datos de un form
+app.use(session({
+  secret: 'clave-super-secreta',     // Cambia esto por una clave segura
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 2 // duración de la sesión: 2 horas
+  }
+}));
 
 // routes
 app.use('/', customerRoutes);

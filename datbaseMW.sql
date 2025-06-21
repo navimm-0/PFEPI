@@ -7,6 +7,7 @@ CREATE TABLE Usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     username VARCHAR(50) UNIQUE NOT NULL,
+    correo VARCHAR(60) UNIQUE NOT NULL,
     contrasena_hash VARCHAR(255) NOT NULL,
     fecha_creacion DATETIME NOT NULL DEFAULT NOW(),
     ultima_sesion DATETIME DEFAULT NULL,
@@ -120,13 +121,40 @@ INSERT INTO Tema (id_tema, titulo, nivel, id_padre) VALUES
 DELIMITER //
 
 CREATE PROCEDURE registrar_usuario (
-    IN _nombre VARCHAR(40),
-    IN _username VARCHAR(20),
+    IN _nombre VARCHAR(100),
+    IN _username VARCHAR(50),
+    IN _correo VARCHAR(100),
     IN _contrasena_hash VARCHAR(255)
 )
 BEGIN
-    INSERT INTO Usuario (nombre, username, contrasena_hash)
-    VALUES (_nombre, _username, _contrasena_hash);
+    INSERT INTO Usuario (nombre, username, correo, contrasena_hash)
+    VALUES (_nombre, _username, _correo, _contrasena_hash);
+END //
+
+CREATE FUNCTION usuario_existe (_username VARCHAR(50))
+RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+    DECLARE existe BOOLEAN;
+
+    SELECT COUNT(*) > 0 INTO existe
+    FROM Usuario
+    WHERE username = _username;
+
+    RETURN existe;
+END //
+
+CREATE FUNCTION correo_existe (_correo VARCHAR(60))
+RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+    DECLARE existe BOOLEAN;
+
+    SELECT COUNT(*) > 0 INTO existe
+    FROM Usuario
+    WHERE correo = _correo;
+
+    RETURN existe;
 END //
 
 CREATE PROCEDURE iniciar_sesion (

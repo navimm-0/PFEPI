@@ -71,6 +71,27 @@
   --contrast-color: #ffffff;
 }
 
+.is-valid {
+  border: 2px solid green;
+}
+.is-invalid {
+  border: 2px solid red;
+}
+
+.invalid-feedback {
+  display: block;
+  height: 1rem; /* o lo que se ajuste visualmente */
+  visibility: hidden;
+  color: red; /* o el color que uses para errores */
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+input.is-invalid + .invalid-feedback {
+  visibility: visible;
+}
+
+
 /* Smooth scroll */
 :root {
   scroll-behavior: smooth;

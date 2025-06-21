@@ -77,7 +77,7 @@
         <div class="row g-4 g-lg-5">
           <div class="col-lg-5">
             <div class="info-box" data-aos="fade-up" data-aos-delay="200">
-              <form action="forms/contact.php" method="post">
+              <form id="login-form" method="post">
               <h3>Inicia Sesión</h3>
               <p>Estamos felices de verte nuevamente.</p>
                 <br>
@@ -85,9 +85,10 @@
                 <div class="icon-box">
                   <i class="bi bi-person"></i>
                 </div>
-                <div class="content">
+                <div class="form-group">
                     <h4></h4>
-                    <input type="text" class="form-control" name="user" placeholder="Nombre de Usuario" required="true">
+                    <input type="text" class="form-control" name="user" placeholder="Nombre de Usuario">
+                    <div class="invalid-feedback"></div>
                 </div>
               </div>
 
@@ -95,9 +96,10 @@
                 <div class="icon-box">
                   <i class="bi bi-lock"></i>
                 </div>
-                <div class="content">
+                <div class="form-group">
                   <h4></h4>
-                  <input type="password" class="form-control" name="pass" placeholder="Contraseña" required="true">
+                  <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                  <div class="invalid-feedback"></div>
                 </div>
               </div>
 
@@ -105,7 +107,7 @@
               </div>
 
                 <div class="col-12 text-center">
-                  <button type="submit" class="btn">Iniciar</button>
+                  <button type="submit" name="action" value="login" class="btn">Iniciar</button>
                 </div>
 
               </form>
@@ -125,19 +127,23 @@
                   </div>
 
                   <div class="col-md-6 ">
-                    <input type="text" class="form-control" name="user" placeholder="Nombre de Usuario" required="true">
+                    <input type="text" name="username" class="form-control" placeholder="Nombre de Usuario">
+                    <div class="invalid-feedback"></div>
                   </div>
 
                   <div class="col-12">
-                    <input type="email" class="form-control" name="email" placeholder="Correo Electrónico" required="true">
+                    <input type="email" class="form-control" name="email" placeholder="Correo Electrónico">
+                    <div class="invalid-feedback"></div>
                   </div>
 
                   <div class="col-md-6">
                     <input type="password" name="pass" class="form-control" placeholder="Constraseña" required="true">
+                    <div class="invalid-feedback"></div>
                   </div>
 
                   <div class="col-md-6 ">
                     <input type="password" class="form-control" name="confpass" placeholder="Confirmar Constraseña" required="true">
+                    <div class="invalid-feedback"></div>
                   </div>
 
                   <div class="col-12">
@@ -146,9 +152,9 @@
                   <div class="col-12 text-center">
                     <div class="loading">Loading</div>
                     <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
+                    <div class="sent-message">Has sido registrado exitosamente!</div>
 
-                    <button type="submit" class="btn">Registrar</button>
+                    <button type="submit" name="action" value="register" class="btn">Registrar</button>
                   </div>
 
                 </div>
@@ -242,15 +248,9 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 
   <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="../SCRIPT/login.js"></script>
 
 </body>
 
