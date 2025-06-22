@@ -166,6 +166,31 @@ BEGIN
     WHERE username = _username;
 END //
 
+CREATE PROCEDURE cambiar_contrasena (
+    IN _username VARCHAR(50),
+    IN _nueva_contrasena_hash VARCHAR(255)
+)
+BEGIN
+    UPDATE Usuario
+    SET contrasena_hash = _nueva_contrasena_hash
+    WHERE username = _username;
+END //
+
+CREATE PROCEDURE actualizar_datos_usuario (
+    IN _id_usuario INT,
+    IN _nuevo_username VARCHAR(50),
+    IN _nuevo_correo VARCHAR(100),
+    IN _nuevo_nombre VARCHAR(60)
+)
+BEGIN
+    UPDATE Usuario
+    SET
+        username = _nuevo_username,
+        nombre = _nuevo_nombre,
+        correo = _nuevo_correo
+    WHERE id_usuario = _id_usuario;
+END //
+
 CREATE PROCEDURE completar_tema (
     IN _id_usuario INT,
     IN _id_tema INT

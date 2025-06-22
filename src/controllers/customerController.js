@@ -55,26 +55,21 @@ controller.login = (req, res) => {
     console.log('works');
 };
 
-controller.edit = (req, res) => {
+controller.update = (req, res) => {
     const { id } = req.params;
+    const { user, email, name } = req.body;
     req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM customer WHERE id = ?', [id], (err, customer) => {
-            res.render('customer_edit', {
-                data: customer[0]
-            });
+        conn.query('CALL actualizar_datos_usuario( ?, ?, ?, ?)', [id, user, name, email], (err, rows) => {
+           if (err) return res.status(500).send('Error en la consulta');
+            console.log('Actualización completada');
+            res.redirect('/ver-cuenta');
         });
     });
 };
 
-controller.update = (req, res) => {
-    const { id } = req.params;
-    const newCustomer = req.body;
-    req.getConnection((err, conn) => {
-        conn.query('UPDATE customer set ? WHERE id = ?', [newCustomer, id], (err, rows) => {
-            res.redirect('/');
-        });
-    });
-};
+controller.changePass = (req, res) => {
+  
+}
 
 controller.delete = (req, res) => {
     const { id } = req.params;
@@ -140,7 +135,7 @@ controller.valcon = (req, res) => {
       if(!match) return res.status(200).json({ code: 2}); // Contrase;a incorrecta
 
       // Se guarda el usuario en sesión
-      req.session.usuario = user;
+      req.session.usuario_id = datos.id_usuario;
 
       //Usuario autenticado correctamente
       return res.status(200).json({ code: 0}); //Éxito
@@ -150,11 +145,33 @@ controller.valcon = (req, res) => {
 
 controller.login = (req, res) => {
   // Puedes validar si está logueado con sesión si gustas
-  if (!req.session.usuario) {
+  if (!req.session.usuario_id) {
     return res.redirect('/'); // si no ha iniciado sesión
   }
 
-  res.render('cuenta', { usuario: req.session.usuario });
+  res.render('MenuP', { usuario: req.session.usuario_id });
+};
+
+controller.cuenta = (req, res) => {
+  console.log('Usuario en sesión:', req.session.usuario_id);
+
+  const user = req.session.usuario_id;
+
+  if (!user) {
+    return res.redirect('/');
+  }
+
+  req.getConnection((err, conn) => {
+    if (err) return res.status(500).send('Error de conexión');
+
+    conn.query('SELECT * FROM Usuario WHERE id_usuario = ?', [user], (err, result) => {
+      if (err) return res.status(500).send('Error al consultar usuario');
+      if (result.length === 0) return res.status(404).send('Usuario no encontrado');
+
+      const datos = result[0];
+      res.render('cuenta', { usuario: datos }); // Renderizar EJS con los datos del usuario
+    });
+  });
 };
 
 

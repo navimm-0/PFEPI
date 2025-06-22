@@ -1,55 +1,68 @@
 <%- include('partials/_header') %>
-
+<section id="contact" class="contact section light-background">
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-7">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                    <th>No</th>
-                    <th>Nombre</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% if(data) { %>
-                    <% for (var i = 0; i < data.length; i++) { %>
-                        <tr>
-                            <td><%- (i + 1) %></td>
-                            <td><%- data[i].name %></td>
-                            <td><%- data[i].username %></td>
-                            <td><%- data[i].correo %></td>
-                            <td>
-                                <a href="/delete/<%- data[i].id %>" class="btn btn-danger">Delete</a>
-                                <a href="/update/<%- data[i].id %>" class="btn btn-info">Update</a>
-                            </td>
-                            </tr>
-                        <% } %>
-                    <% } %>
-                </tbody>
-            </table>
+            <div class="card">
+                <div class="card-body">
+                    <h1>Perfil</h1>
+                    <form action="/update/<%- usuario.id_usuario %>" method="post" class="php-email-form">
+                        <div class="form-group">
+                            Username:
+                            <input type="text" name="user" value="<%- usuario.username %>" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            Correo Electrónico
+                            <input type="email" name="email" value="<%- usuario.correo %>" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            Nombre:
+                            <input type="text" name="name" value="<%- usuario.nombre %>" class="form-control">
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Los cambios se guardaron</div>
+                            <a href="#features">Eliminar Cuenta</a>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <form action="/add" method="post">
+                        <h3><%- usuario.username %></h3>
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Name" class="form-control">
+                            <a href="/ver-cuenta">Perfil</a>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="address" placeholder="Address" class="form-control">
+                            <a href="/cambiar-contra">Cambiar Contraseña</a>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="phone" placeholder="Phone" class="form-control">
+                            <a href="/ver-pagos">Pagos</a>
                         </div>
-                        <button type="submit" class="btn btn-primary">Save Customer</button>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</section>
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+  // Mostrar mensaje de "loading"
+  const loading = document.querySelector('.loading');
+  const sent = document.querySelector('.sent-message');
+  const error = document.querySelector('.error-message');
+
+  loading.style.display = 'block';
+  sent.style.display = 'none';
+  error.style.display = 'none';
+});
+</script>
+
 
 <%- include('partials/_footer') %>

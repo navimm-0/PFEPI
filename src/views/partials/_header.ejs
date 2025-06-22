@@ -21,11 +21,11 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
-  <link href="CSS/bootstrap-icons.css" rel="stylesheet">
-  <link href="CSS/bootstrap.min.css" rel="stylesheet">
+  <link href="/CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="/CSS/bootstrap.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="CSS/login.css" rel="stylesheet">
+  <link href="/CSS/login.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: iLanding
@@ -54,12 +54,23 @@
           <li><a href="../index.html" class="active">Inicio</a></li>
           <li><a href="#about">Avance</a></li>
           <li><a href="#features">Temario</a></li>
-          <li><a href="#contact">Cuenta</a></li>
+
+          <% if (usuario) { %>
+            <li><a href="/ver-cuenta">Cuenta</a></li>
+          <% } else { %>
+            <li><a href="#guardar">Guardar Progreso</a></li>
+          <% } %>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
+      <!--
+          <li><a href="/ver-cuenta">Cuenta</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
       <a class="btn-getstarted" href="login.html">Guardar Progreso</a>
+      -->
 
     </div>
   </header>
