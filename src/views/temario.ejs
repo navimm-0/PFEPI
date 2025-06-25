@@ -1,0 +1,32 @@
+<%- include('partials/_header') %>
+<section id="contact" class="contact section light-background">
+    <br><br>
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Nivel</th>
+                <th>Número</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let contador = 1; %>
+            <% data.forEach(function(tema) { %>
+                <tr>
+                    <td><%= contador++ %></td>
+                    <td><%= tema.id_tema %></td>
+                    <td><%= tema.titulo %></td>
+                    <td><%= tema.nivel %></td>
+                    <td><%= tema.numero %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    </div>
+</section>
+
+</section>
+<%- include('partials/_footer') %>

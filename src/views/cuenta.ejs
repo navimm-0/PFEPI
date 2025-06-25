@@ -6,25 +6,29 @@
             <div class="card">
                 <div class="card-body">
                     <h1>Perfil</h1>
-                    <form action="/update/<%- usuario.id_usuario %>" method="post" class="php-email-form">
+                    <form id="update-form" action="/update/<%- usuario.id_usuario %>" method="post" class="php-email-form">
                         <div class="form-group">
                             Username:
-                            <input type="text" name="user" value="<%- usuario.username %>" class="form-control">
+                            <input type="text" name="user" value="<%- usuario.username %>" class="form-control" required>
+                            <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group">
                             Correo Electrónico
-                            <input type="email" name="email" value="<%- usuario.correo %>" class="form-control">
+                            <input type="email" name="email" value="<%- usuario.correo %>" class="form-control" required>
+                            <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group">
                             Nombre:
-                            <input type="text" name="name" value="<%- usuario.nombre %>" class="form-control">
+                            <input type="text" name="name" value="<%- usuario.nombre %>" class="form-control" required>
+                            <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="col-12 text-center">
                             <div class="loading">Loading</div>
                             <div class="error-message"></div>
                             <div class="sent-message">Los cambios se guardaron</div>
-                            <a href="#features">Eliminar Cuenta</a>
+                            <a href="/eliminar-cuenta">Eliminar Cuenta</a>
+                            <button onclick="location.reload()">Descartar Cambios</button>
                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                         </div>
                     </form>
@@ -39,10 +43,13 @@
                             <a href="/ver-cuenta">Perfil</a>
                         </div>
                         <div class="form-group">
-                            <a href="/cambiar-contra">Cambiar Contraseña</a>
+                            <a href="/cambiarContra">Cambiar Contraseña</a>
                         </div>
                         <div class="form-group">
-                            <a href="/ver-pagos">Pagos</a>
+                            <a href="/ver-pagos">Suscripción</a>
+                        </div>
+                        <div class="form-group">
+                            <a href="/logout">Cerrar Sesión</a>
                         </div>
                 </div>
             </div>
@@ -54,7 +61,7 @@
 <script>
 document.querySelector('form').addEventListener('submit', function(e) {
   // Mostrar mensaje de "loading"
-  const loading = document.querySelector('.loading');
+  //const loading = document.querySelector('.loading');
   const sent = document.querySelector('.sent-message');
   const error = document.querySelector('.error-message');
 
@@ -62,7 +69,113 @@ document.querySelector('form').addEventListener('submit', function(e) {
   sent.style.display = 'none';
   error.style.display = 'none';
 });
-</script>
 
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('update-form');
+  const nombre = document.querySelector('[name="name"]');
+  const usuario = document.querySelector('[name="user"]');
+  const correo = document.querySelector('[name="email"]');
+
+  usuario.addEventListener('input', async () => {
+    const valor = usuario.value.trim();
+
+    if (!valor) {
+      marcarCampo(usuario, false, 'Debes ingresar un nombre de usuario.');
+      return;
+    }
+
+    if (!/^[a-zA-Z0-9_.-]+$/.test(valor)) {
+      marcarCampo(usuario, false, 'Solo se permiten letras, números, guiones bajos, puntos y guiones.');
+      return;
+    }
+
+    try {
+      const resp = await fetch(`/validar-usuario?username=${encodeURIComponent(valor)}`);
+      const data = await resp.json();
+
+      if (data.error) {
+        marcarCampo(usuario, false, 'Error al validar el nombre de usuario.');
+      } else {
+        marcarCampo(usuario, !data.existe, data.existe ? 'El nombre de usuario ya está en uso.' : '');
+      }
+    } catch (err) {
+      marcarCampo(usuario, false, 'Error de red al validar usuario.');
+    }
+  });
+
+  correo.addEventListener('input', async () => {
+    const valor = correo.value.trim();
+
+    if (!valor) {
+        marcarCampo(correo, false, 'Debes ingresar un correo.');
+        return;
+    }
+
+    if (!esCorreoValido(valor)) {
+        marcarCampo(correo, false, 'El formato del correo no es válido.');
+        return;
+    }
+
+    try {
+        const resp = await fetch(`/validar-correo?correo=${encodeURIComponent(valor)}`);
+        const { existe } = await resp.json(); // ✅ Corrección aquí
+        marcarCampo(correo, !existe, existe ? 'El correo ya está registrado.' : '');
+    } catch (err) {
+        marcarCampo(correo, false, 'Error de red al validar correo.');
+    }
+  });
+
+
+  nombre.addEventListener('input', () => {
+    const valor = nombre.value.trim();
+
+    if (!valor) {
+      marcarCampo(nombre, false, 'Debes ingresar tu nombre.');
+    } else if (valor.length > 50) {
+      marcarCampo(nombre, false, 'El nombre no puede exceder los 50 caracteres.');
+    } else if (!/^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+$/.test(valor)) {
+      marcarCampo(nombre, false, 'El nombre solo debe contener letras y espacios.');
+    } else {
+      marcarCampo(nombre, true);
+    }
+  });
+
+  function marcarCampo(input, valido, mensaje = "") {
+    const feedback = input.parentNode.querySelector('.invalid-feedback');
+    if (!feedback) return;
+
+    if (valido) {
+      input.classList.remove('is-invalid');
+      input.classList.add('is-valid');
+      feedback.textContent = '';
+    } else {
+      input.classList.remove('is-valid');
+      input.classList.add('is-invalid');
+      feedback.textContent = mensaje;
+    }
+  }
+
+  function esCorreoValido(correo) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+  }
+
+  form.addEventListener('submit', function (e) {
+    const campos = [nombre, usuario, correo];
+    let formularioValido = true;
+
+    for (const input of campos) {
+      if (input.classList.contains('is-invalid') || !input.value.trim()) {
+        formularioValido = false;
+        input.classList.add('is-invalid');
+      }
+    }
+
+    if (!formularioValido) {
+      e.preventDefault(); // ❌ Detiene el envío
+    }
+  });
+});
+
+</script>
 
 <%- include('partials/_footer') %>

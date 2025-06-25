@@ -9,6 +9,8 @@ const app = express();
 
 // importing routes
 const customerRoutes = require('./routes/customer');
+const renderRoutes = require('./routes/render');
+const temasRoutes = require('./routes/temas');
 
 // settings
 app.set('port', process.env.PORT || 3000);
@@ -20,7 +22,7 @@ app.use(morgan('dev'));
 app.use(myConnection(mysql, {
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: '',
     port: 3306,
     database: 'mathdata'
 }, 'single'));
@@ -36,6 +38,8 @@ app.use(session({
 
 // routes
 app.use('/', customerRoutes);
+app.use('/', renderRoutes);
+app.use('/', temasRoutes);
 
 // static files
 app.use(express.static(path.join(__dirname, 'public')));

@@ -1,0 +1,134 @@
+<%- include('partials/_header') %>
+<section id="contact" class="contact section light-background">
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Perfil</h1>
+                    <form id="update-form" action="/delete/<%- usuario_id %>" method="get" class="php-email-form">
+                        <div class="form-group">
+                            Contraseña:
+                            <input type="password" name="password" id="input-password" placeholder="Password" class="form-control" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            Escribe la palabra DESTRUIR para activar la opción
+                            <input type="text" name="text" id="input-destruir" class="form-control" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Se eliminó la cuenta</div>
+
+                            <button type="button" class="btn btn-secondary" id="btn-regresar">Regresar a Perfil</button>
+                            <button type="submit" class="btn btn-primary" id="btn-eliminar" disabled>Eliminar Cuenta</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                        <h3><%- usuario %></h3>
+                        <div class="form-group">
+                            <a href="/ver-cuenta">Perfil</a>
+                        </div>
+                        <div class="form-group">
+                            <a href="/cambiarContra">Cambiar Contraseña</a>
+                        </div>
+                        <div class="form-group">
+                            <a href="/ver-pagos">Suscripción</a>
+                        </div>
+                        <div class="form-group">
+                            <a href="/logout">Cerrar Sesión</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<script>
+document.getElementById('btn-regresar').addEventListener('click', () => {
+  window.location.href = '/ver-cuenta';
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('update-form');
+  const destruirInput = document.getElementById('input-destruir');
+  const passwordInput = document.getElementById('input-password');
+  const btnEliminar = document.getElementById('btn-eliminar');
+  const errorMsg = document.querySelector('.error-message');
+  const loading = document.querySelector('.loading');
+
+  // Activar botón solo si se escribe DESTRUIR
+  destruirInput.addEventListener('input', () => {
+    if (destruirInput.value.trim().toUpperCase() === 'DESTRUIR') {
+      btnEliminar.disabled = false;
+    } else {
+      btnEliminar.disabled = true;
+    }
+  });
+
+  // Ocultar mensaje de error al escribir de nuevo la contraseña
+  passwordInput.addEventListener('input', () => {
+    errorMsg.style.display = 'none';
+  });
+
+  // Interceptar el submit
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const password = passwordInput.value.trim();
+    if (!password) {
+      mostrarError('La contraseña es obligatoria');
+      return;
+    }
+
+    loading.style.display = 'block';
+    errorMsg.style.display = 'none';
+
+    try {
+        console.log('Enviando contraseña:', password);
+      const formData = new URLSearchParams();
+        formData.append('password', password);
+
+        const response = await fetch('/validar-contrel', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData.toString()
+      });
+
+      const result = await response.json();
+
+      if (result.code === 0) {
+        // Contraseña correcta: se envía el formulario
+        form.submit();
+      } else if (result.code === 2) {
+        mostrarError('Contraseña incorrecta. Intenta de nuevo.');
+      } else {
+        mostrarError('Error al validar la contraseña.');
+      }
+    } catch (err) {
+      console.error('Error en el fetch:', err);
+      mostrarError('Error de red al validar la contraseña.');
+    } finally {
+      loading.style.display = 'none';
+    }
+  });
+
+  function mostrarError(mensaje) {
+    errorMsg.textContent = mensaje;
+    errorMsg.style.display = 'block';
+  }
+});
+</script>
+
+
+<%- include('partials/_footer') %>

@@ -5,20 +5,6 @@ controller.index = (req, res) => {
     res.redirect('/index.html');
 };
 
-controller.list = (req, res) => {
-    req.getConnection((err, conn) => {
-        conn.query('SELECT * FROM usuario', (err, customers) => {
-            if (err) {
-                res.json(err);
-            }
-            console.log(customers);
-            res.render('cuenta', {
-                data: customers
-            });
-        });
-    });
-};
-
 controller.save = async(req, res) => {
   // Ver encabezados HTTP (importante para verificar el tipo de contenido)
   console.log("📥 Headers recibidos:", req.headers);
@@ -49,10 +35,19 @@ controller.save = async(req, res) => {
   });
 };
 
-controller.login = (req, res) => {
-    const data = req.body;
-    console.log(req.body);
-    console.log('works');
+controller.changePass = async(req, res) => {
+  const { id } = req.params;
+  const { password } = req.body;
+  console.log(id, password);
+
+    const hashedPass = await bcrypt.hash(password, 10);
+    req.getConnection((err, conn) => {
+        conn.query('CALL cambiar_contrasena( ?, ?)', [id, hashedPass], (err, rows) => {
+           if (err) return res.status(500).send('Error en la consulta');
+            console.log('Actualización completada');
+            res.redirect('/cambiarContra');
+        });
+    });
 };
 
 controller.update = (req, res) => {
@@ -67,16 +62,12 @@ controller.update = (req, res) => {
     });
 };
 
-controller.changePass = (req, res) => {
-  
-}
-
 controller.delete = (req, res) => {
     const { id } = req.params;
     //const id = req.params.id;
     req.getConnection((err, conn) => {
-        conn.query('DELETE FROM customer WHERE id = ?', [id], (err, rows) => {
-            res.redirect('/');
+        conn.query('CALL eliminar_usuario(?)', [id], (err, rows) => {
+            res.redirect('/login');
         });
     });
 };
@@ -136,6 +127,7 @@ controller.valcon = (req, res) => {
 
       // Se guarda el usuario en sesión
       req.session.usuario_id = datos.id_usuario;
+      req.session.usuario = user;
 
       //Usuario autenticado correctamente
       return res.status(200).json({ code: 0}); //Éxito
@@ -143,8 +135,9 @@ controller.valcon = (req, res) => {
   });
 };
 
-controller.login = (req, res) => {
+controller.iniciar = (req, res) => {
   // Puedes validar si está logueado con sesión si gustas
+  console.log('Usuario en sesión:', req.session.usuario_id, req.session.usuario);
   if (!req.session.usuario_id) {
     return res.redirect('/'); // si no ha iniciado sesión
   }
@@ -153,12 +146,16 @@ controller.login = (req, res) => {
 };
 
 controller.cuenta = (req, res) => {
+  if (!req.session.usuario_id) {
+    return res.redirect('/login'); // si no ha iniciado sesión
+  }
+  console.log('Usuario en sesión:', req.session.usuario_id, req.session.usuario);
   console.log('Usuario en sesión:', req.session.usuario_id);
 
   const user = req.session.usuario_id;
 
   if (!user) {
-    return res.redirect('/');
+    return res.redirect('/login');
   }
 
   req.getConnection((err, conn) => {
@@ -173,6 +170,43 @@ controller.cuenta = (req, res) => {
     });
   });
 };
+
+controller.valconel = (req, res) => {
+  const user = req.session.usuario;
+  const { password } = req.body;
+
+  if (!password || !user) {
+    return res.status(400).json({ code: -4, message: 'Datos incompletos' });
+  }
+
+  req.getConnection((err, conn) => {
+    if (err) return res.status(500).json({ code: -1 }); // Error de conexión
+
+    conn.query('CALL iniciar_sesion(?)', [user], (err, result) => {
+      if (err) return res.status(500).json({ code: -2 }); // Error de consulta SQL
+
+      const datos = result[0][0];
+      if (!datos) return res.status(404).json({ code: 1 }); // Usuario no encontrado
+
+      bcrypt.compare(password, datos.contrasena_hash)
+        .then(match => {
+          if (!match) return res.status(200).json({ code: 2 }); // Contraseña incorrecta
+
+          // Contraseña correcta: destruir sesión
+          req.session.destroy(err => {
+            if (err) return res.status(500).json({ code: -5, message: 'Error al cerrar sesión' });
+
+            res.clearCookie('connect.sid');
+            return res.status(200).json({ code: 0 }); // Éxito
+          });
+        })
+        .catch(() => {
+          return res.status(500).json({ code: -3 }); // Error en bcrypt
+        });
+    });
+  });
+};
+
 
 
 module.exports = controller;

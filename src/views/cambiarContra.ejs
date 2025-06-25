@@ -1,0 +1,131 @@
+<%- include('partials/_header') %>
+<section id="contact" class="contact section light-background">
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Cambiar Contraseña</h1>
+                    <form id="form-cambiar-pass" action="/changePass/<%- usuario_id %>" method="post" class="php-email-form">
+                        <div class="form-group">
+                            Nueva Contraseña:
+                            <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                            Confirmar Contraseña
+                            <input type="password" name="confpass" placeholder="Contraseña" class="form-control" required>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Se guardó la contraseña</div>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                        <h3><%- usuario %></h3>
+                        <div class="form-group">
+                            <a href="/ver-cuenta">Perfil</a>
+                        </div>
+                        <div class="form-group">
+                            <a href="/cambiarContra">Cambiar Contraseña</a>
+                        </div>
+                        <div class="form-group">
+                            <a href="/ver-pagos">Suscripción</a>
+                        </div>
+                        <div class="form-group">
+                            <a href="/logout">Cerrar Sesión</a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+  // Mostrar mensaje de "loading"
+  //const loading = document.querySelector('.loading');
+  const sent = document.querySelector('.sent-message');
+  const error = document.querySelector('.error-message');
+
+  loading.style.display = 'block';
+  sent.style.display = 'none';
+  error.style.display = 'none';
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('form-cambiar-pass');
+  const pass = document.querySelector('input[name="password"]');
+  const confpass = document.querySelector('input[name="confpass"]');
+
+  form.addEventListener('submit', function(e) {
+    const password = pass.value.trim();
+    const confirm = confpass.value.trim();
+
+    if (password !== confirm) {
+      e.preventDefault(); // ❌ Detener envío
+      mostrarError(confpass, false, 'Las contraseñas no coinciden.');
+    }
+  });
+
+  // Validación en tiempo real
+  pass.addEventListener('input', () => {
+    limpiarError(pass);
+    if (confpass.value.trim()) {
+      mostrarError(confpass, pass.value.trim() === confpass.value.trim(), 'Las contraseñas no coinciden.');
+    }
+  });
+
+  confpass.addEventListener('input', () => {
+    const coincide = pass.value.trim() === confpass.value.trim();
+    mostrarError(confpass, coincide, coincide ? '' : 'Las contraseñas no coinciden.');
+  });
+
+  function mostrarError(input, esValido, mensaje) {
+    const feedback = input.nextElementSibling;
+    if (!esValido) {
+      input.classList.add('is-invalid');
+      feedback.textContent = mensaje;
+    } else {
+      input.classList.remove('is-invalid');
+      input.classList.add('is-valid');
+      feedback.textContent = '';
+    }
+  }
+
+  function limpiarError(input) {
+    input.classList.remove('is-invalid');
+    input.classList.remove('is-valid');
+    const feedback = input.nextElementSibling;
+    if (feedback) feedback.textContent = '';
+  }
+});
+
+/* 
+document.getElementById('form-cambiar-pass').addEventListener('submit', function(e) {
+  const password = document.querySelector('input[name="password"]').value;
+  const confirm = document.querySelector('input[name="confpass"]').value;
+  const errorDiv = document.querySelector('.error-message');
+
+  if (password !== confirm) {
+    e.preventDefault();
+    errorDiv.textContent = 'Las contraseñas no coinciden.';
+    errorDiv.style.display = 'block';
+  } else {
+    errorDiv.style.display = 'none'; // Oculta mensaje si todo va bien
+  }
+});
+ */
+</script>
+
+<%- include('partials/_footer') %>
