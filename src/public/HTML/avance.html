@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Tu Avance - Math Way</title>
+      <link rel="stylesheet" href="../CSS/avance.css">
+      <link rel="stylesheet" href="../CSS/barrageneral.css">
+
+  <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="#">Avance</a></li>
+          <li><a href="#temario">Temario</a></li>
+          <li><a href="#cuenta">Cuenta</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+ <main class="contenido-avance">
+  <h1 class="titulo-principal">Tu Progreso en Math Way</h1>
+
+  <div class="tarjetas-avance">
+
+    <!-- Tarjeta Nivel 1 -->
+    <div class="tarjeta-nivel">
+      <h2 class="nivel-titulo">Nivel 1:</h2>
+      <div class="progreso">
+        <div class="barra"><div class="relleno" id="progreso1"></div></div>
+        <span id="porcentaje1" class="porcentaje-texto">0%</span>
+      </div>
+      <div class="temas-nivel" id="nivel1"></div>
+    </div>
+
+    <!-- Tarjeta Nivel 2 -->
+    <div class="tarjeta-nivel">
+      <h2 class="nivel-titulo">Nivel 2:</h2>
+      <div class="progreso">
+        <div class="barra"><div class="relleno" id="progreso2"></div></div>
+        <span id="porcentaje2" class="porcentaje-texto">0%</span>
+      </div>
+      <div class="temas-nivel" id="nivel2"></div>
+    </div>
+
+    <!-- Tarjeta Nivel 3 -->
+    <div class="tarjeta-nivel">
+      <h2 class="nivel-titulo">Nivel 3:</h2>
+      <div class="progreso">
+        <div class="barra"><div class="relleno" id="progreso3"></div></div>
+        <span id="porcentaje3" class="porcentaje-texto">0%</span>
+      </div>
+      <div class="temas-nivel" id="nivel3"></div>
+    </div>
+
+  </div>
+
+  <div class="volver">
+    <button class="boton-volver" onclick="volver()">🔙 Volver</button>
+  </div>
+</main>
+
+
+  <script>
+    function volver() {
+      window.history.back();
+    }
+
+    // Totales conocidos por nivel (puedes actualizarlos si cambian en la BD)
+    const totalPorNivel = {
+      nivel1: 19,  // temas con nivel 'básico'
+      nivel2: 25,  // 'intermedio'
+      nivel3: 26   // 'avanzado'
+    };
+
+    const progreso = {
+      nivel1: [],
+      nivel2: [],
+      nivel3: []
+    };
+
+    fetch('../scripts/cargar_avance.php')
+      .then(res => {
+        if (!res.ok) throw new Error("No autorizado");
+        return res.json();
+      })
+      .then(data => {
+        data.forEach(reg => {
+          let nivel = reg.nivel;
+          let grupo = nivel === "básico" ? "nivel1" :
+                      nivel === "intermedio" ? "nivel2" :
+                      nivel === "avanzado" ? "nivel3" : null;
+          if (grupo) {
+            progreso[grupo].push(reg.titulo);
+          }
+        });
+
+        mostrarAvance();
+      })
+      .catch(err => {
+        alert("Error al cargar tu avance. Asegúrate de haber iniciado sesión.");
+      });
+
+    function mostrarAvance() {
+      for (const nivel in progreso) {
+        const temas = progreso[nivel];
+        const contenedor = document.getElementById(nivel);
+        const total = totalPorNivel[nivel] || 1;
+        const completados = temas.length;
+        const porcentaje = Math.round((completados / total) * 100);
+
+        temas.forEach(titulo => {
+          const tarjeta = document.createElement('div');
+          tarjeta.className = 'tema';
+          tarjeta.textContent = `${titulo} ✅`;
+          contenedor.appendChild(tarjeta);
+        });
+
+        document.getElementById(`progreso${nivel.replace('nivel', '')}`).style.width = `${porcentaje}%`;
+        document.getElementById(`porcentaje${nivel.replace('nivel', '')}`).textContent = `${porcentaje}%`;
+      }
+    }
+  </script>
+</body>
+</html>
