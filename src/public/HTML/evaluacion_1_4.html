@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio: Sumas y Restas</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #fff59d, #aed6f1, #edbb99, #c39bd3, #f8bbd0);
+      background-size: 400% 400%;
+      animation: fondoAnimado 20s ease infinite;
+      text-align: center;
+      padding: 2rem;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    @keyframes fondoAnimado {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .tarjeta-ejercicio {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    input[type="number"] {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      width: 100px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d35400;
+    }
+
+    #resultado {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+         .problemas_1_5{
+  display: inline-block;
+  background-color: var(--naranja-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+
+.problemas_1_5:hover {
+  background-color: #d11795; /* más oscuro al pasar el mouse */
+}
+
+.finalizar_ejercicio{
+  display: inline-block;
+  background-color: var(--verde-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+.finalizar_ejercicio:hover{
+  background-color: #d4ac56; /* más oscuro al pasar el mouse */
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="tarjeta-ejercicio">
+    <h2>¡Practiquemos sumas y restas!</h2>
+    <p id="enunciado">¿Cuánto es 5 + 3?</p>
+    <input type="number" id="respuesta" placeholder="Tu respuesta">
+    <br>
+    <button onclick="verificarRespuesta()">Verificar</button>
+    <p id="resultado"></p>
+    <hr>
+    <button onclick="nuevoEjercicio()">Nuevo ejercicio</button>
+  </div>
+
+  <a href="problemas_1_5.html" class="problemas_1_5">Ir al siguiente </a>
+  <a href="finalizar_ejercicio" class="finalizar_ejercicio">Finalizar</a>
+
+  <script>
+    let a, b, operacion, respuestaCorrecta;
+
+    function nuevoEjercicio() {
+      a = Math.floor(Math.random() * 50);
+      b = Math.floor(Math.random() * 50);
+      operacion = Math.random() > 0.5 ? '+' : '-';
+
+      if (operacion === '-' && b > a) {
+        [a, b] = [b, a]; // Para evitar negativos
+      }
+
+      document.getElementById('enunciado').innerText = `¿Cuánto es ${a} ${operacion} ${b}?`;
+      document.getElementById('respuesta').value = '';
+      document.getElementById('resultado').innerText = '';
+    }
+
+    function verificarRespuesta() {
+      const respuesta = parseInt(document.getElementById('respuesta').value);
+      respuestaCorrecta = operacion === '+' ? a + b : a - b;
+
+      if (respuesta === respuestaCorrecta) {
+        document.getElementById('resultado').innerText = '✅ ¡Correcto!';
+        document.getElementById('resultado').style.color = 'green';
+      } else {
+        document.getElementById('resultado').innerText = `❌ Incorrecto. La respuesta correcta era ${respuestaCorrecta}`;
+        document.getElementById('resultado').style.color = 'red';
+      }
+    }
+
+    window.onload = nuevoEjercicio;
+  </script>
+</body>
+</html>

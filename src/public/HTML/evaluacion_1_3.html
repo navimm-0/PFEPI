@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Números Pares e Impares</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #f8bbd0, #aed6f1, #fff59d, #edbb99, #c39bd3);
+      background-size: 500% 500%;
+      animation: animarFondo 20s ease infinite;
+      text-align: center;
+      padding: 2rem;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    @keyframes animarFondo {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .contenedor {
+      background-color: #ffffffd9;
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    .numero {
+      font-size: 5rem;
+      color: #2980b9;
+      margin: 1rem 0;
+    }
+
+    .botones {
+      margin-top: 1.5rem;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 0.8rem 2rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 12px;
+      background-color: #7ed957;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #57b239;
+    }
+
+    .resultado {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+     .suma_resta_1_4{
+  display: inline-block;
+  background-color: var(--naranja-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+
+.suma_resta_1_4:hover {
+  background-color: #d11795; /* más oscuro al pasar el mouse */
+}
+
+.finalizar_ejercicio{
+  display: inline-block;
+  background-color: var(--verde-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+.finalizar_ejercicio:hover{
+  background-color: #d4ac56; /* más oscuro al pasar el mouse */
+}
+
+
+
+  </style>
+</head>
+<body>
+
+    <div>
+        <p> APRENDE CON NOSOTROS </p>
+        <h1>Ejercicio 3</h1>
+        <h2> Identifica si los números que se muestran son pares o impares</h2>
+    </div>
+
+  <div class="contenedor">
+    <h1>¿Es Par o Impar?</h1>
+    <div class="numero" id="numero"></div>
+
+    <div class="botones">
+      <button onclick="verificar('par')">Par</button>
+      <button onclick="verificar('impar')">Impar</button>
+    </div>
+
+    <div class="resultado" id="resultado"></div>
+  </div>
+  <a href="suma_resta_1_4.html" class="suma_resta_1_4">Ir al siguiente </a>
+  <a href="finalizar_ejercicio" class="finalizar_ejercicio">Finalizar</a>
+
+
+
+
+
+  <script>
+    let numeroActual = 0;
+
+    function generarNumero() {
+      numeroActual = Math.floor(Math.random() * 99) + 1;
+      document.getElementById("numero").textContent = numeroActual;
+      document.getElementById("resultado").textContent = "";
+    }
+
+    function verificar(respuesta) {
+      const esPar = numeroActual % 2 === 0;
+      const correcto = (respuesta === "par" && esPar) || (respuesta === "impar" && !esPar);
+      const resultado = document.getElementById("resultado");
+
+      if (correcto) {
+        resultado.textContent = "¡Correcto! 🎉";
+        resultado.style.color = "green";
+        setTimeout(generarNumero, 2000);
+      } else {
+        resultado.textContent = "Ups... Intenta de nuevo.";
+        resultado.style.color = "red";
+      }
+    }
+
+    window.onload = generarNumero;
+  </script>
+
+</body>
+</html>

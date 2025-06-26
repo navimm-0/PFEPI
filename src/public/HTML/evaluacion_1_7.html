@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicios de Tablas de Multiplicar</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #fff59d, #aed6f1, #edbb99, #c39bd3, #f8bbd0);
+      background-size: 400% 400%;
+      animation: fondoAnimado 20s ease infinite;
+      text-align: center;
+      padding: 2rem;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    @keyframes fondoAnimado {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .tarjeta {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    select, input[type="number"] {
+      padding: 0.6rem;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin: 1rem 0;
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #21618c;
+    }
+
+    #resultado {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .correcto {
+      color: green;
+      animation: rebote 0.4s;
+    }
+
+    .incorrecto {
+      color: red;
+      animation: sacudida 0.4s;
+    }
+
+    .unidades_de_medida_1_8{
+  display: inline-block;
+  background-color: var(--naranja-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+
+.unidades_de_medida_1_8:hover {
+  background-color: #d11795; /* más oscuro al pasar el mouse */
+}
+
+.finalizar_ejercicio{
+  display: inline-block;
+  background-color: var(--verde-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+.finalizar_ejercicio:hover{
+  background-color: #d4ac56; /* más oscuro al pasar el mouse */
+}
+
+
+
+
+    @keyframes rebote {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes sacudida {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="tarjeta">
+    <h2>🌟 Practica Tablas de Multiplicar</h2>
+    <label for="tabla">Elige una tabla:</label>
+    <select id="tabla" onchange="nuevoEjercicio()">
+      <option value="">--Selecciona--</option>
+      <option value="1">Tabla del 1</option>
+      <option value="2">Tabla del 2</option>
+      <option value="3">Tabla del 3</option>
+      <option value="4">Tabla del 4</option>
+      <option value="5">Tabla del 5</option>
+      <option value="6">Tabla del 6</option>
+      <option value="7">Tabla del 7</option>
+      <option value="8">Tabla del 8</option>
+      <option value="9">Tabla del 9</option>
+      <option value="10">Tabla del 10</option>
+      <option value="11">Tabla del 11</option>
+      <option value="12">Tabla del 12</option>
+    </select>
+    <p id="ejercicio">Selecciona una tabla para comenzar</p>
+    <input type="number" id="respuesta" placeholder="Tu respuesta">
+    <br>
+    <button onclick="verificar()">Verificar</button>
+    <p id="resultado"></p>
+    <hr>
+    <button onclick="nuevoEjercicio()">Otro ejercicio</button>
+  </div>
+
+  <a href="unidades_de_medida_1_8.html" class="unidades_de_medida_1_8">Ir al siguiente </a>
+  <a href="finalizar_ejercicio" class="finalizar_ejercicio">Finalizar</a>
+
+
+
+
+  <script>
+    let factor1 = 0;
+    let factor2 = 0;
+
+    function nuevoEjercicio() {
+      const tabla = parseInt(document.getElementById("tabla").value);
+      if (!tabla) {
+        document.getElementById("ejercicio").innerText = "Selecciona una tabla para comenzar";
+        return;
+      }
+
+      factor1 = tabla;
+      factor2 = Math.floor(Math.random() * 12) + 1;
+
+      document.getElementById("ejercicio").innerText = `¿Cuánto es ${factor1} × ${factor2}?`;
+      document.getElementById("respuesta").value = "";
+      document.getElementById("resultado").innerText = "";
+      document.getElementById("resultado").className = "";
+    }
+
+    function verificar() {
+      const resp = parseInt(document.getElementById("respuesta").value);
+      const correcto = factor1 * factor2;
+      const resultado = document.getElementById("resultado");
+
+      if (resp === correcto) {
+        resultado.innerText = "✅ ¡Muy bien!";
+        resultado.className = "correcto";
+      } else {
+        resultado.innerText = `❌ No. Era ${correcto}`;
+        resultado.className = "incorrecto";
+      }
+    }
+
+    window.onload = nuevoEjercicio;
+  </script>
+</body>
+</html>
+

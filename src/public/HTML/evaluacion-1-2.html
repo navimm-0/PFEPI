@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio: Valor Posicional</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(to bottom, #fef9e7, #f5cba7);
+      text-align: center;
+      padding: 2rem;
+    }
+    body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #fff59d, #aed6f1, #edbb99, #c39bd3, #f8bbd0);
+  background-size: 400% 400%;
+  animation: fondoAnimado 20s ease infinite;
+  text-align: center;
+  padding: 2rem;
+  min-height: 100vh;
+  margin: 0;
+}
+
+
+    .contenedor {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      color: #d35400;
+    }
+
+    .numero {
+      font-size: 4rem;
+      font-weight: bold;
+      margin: 1.5rem 0;
+      color: #27ae60;
+    }
+
+    .pregunta {
+      font-size: 1.2rem;
+      margin: 1rem 0 0.3rem;
+    }
+
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #2a80b9;
+    }
+    .finalizar_ejercicio{
+  display: inline-block;
+  background-color: var(--verde-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+.finalizar_ejercicio:hover{
+  background-color: #d4ac56; /* más oscuro al pasar el mouse */
+}
+
+
+
+
+    .resultado {
+      font-weight: bold;
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    @keyframes fondoAnimado {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+    
+    .num_par_1_3{
+  display: inline-block;
+  background-color: var(--verde-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+.num_par_1_3:hover{
+  background-color: #d4ac56; /* más oscuro al pasar el mouse */
+}
+  </style>
+
+  </style>
+</head>
+<body>
+    <div>
+        <p>APRENDE CON NOSOTROS</p>
+        <h1> Ejercicio 2</h1>
+    </div>
+
+  <div class="contenedor">
+    <h1>¿Cuántas centenas, decenas y unidades?</h1>
+    <div class="numero" id="numero"></div>
+
+    <div class="pregunta">Centenas:</div>
+    <select id="centenas"></select>
+
+    <div class="pregunta">Decenas:</div>
+    <select id="decenas"></select>
+
+    <div class="pregunta">Unidades:</div>
+    <select id="unidades"></select>
+
+    <br>
+    <button onclick="verificar()">Verificar</button>
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <a href="num_par_1_3.html" class="num_par_1_3"> Ir al siguiente</a>
+  <a href="finalizar_ejercicio" class="finalizar_ejercicio"> Finalizar</a>
+
+  <script>
+    let numeroActual = 0;
+
+    function generarNumero() {
+      numeroActual = Math.floor(Math.random() * 900) + 100; // número entre 100 y 999
+      document.getElementById("numero").textContent = numeroActual;
+    }
+
+    function llenarSelect(id) {
+      const select = document.getElementById(id);
+      select.innerHTML = "";
+      for (let i = 0; i <= 9; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        select.appendChild(option);
+      }
+    }
+
+    function verificar() {
+      const c = parseInt(document.getElementById("centenas").value);
+      const d = parseInt(document.getElementById("decenas").value);
+      const u = parseInt(document.getElementById("unidades").value);
+
+      const numeroIngresado = c * 100 + d * 10 + u;
+
+      const resultado = document.getElementById("resultado");
+      if (numeroIngresado === numeroActual) {
+        resultado.textContent = "¡Correcto! 🎉";
+        resultado.style.color = "green";
+        setTimeout(() => {
+          generarNumero();
+          resultado.textContent = "";
+        }, 2000);
+      } else {
+        resultado.textContent = "Intenta de nuevo.";
+        resultado.style.color = "red";
+      }
+    }
+
+    window.onload = () => {
+      llenarSelect("centenas");
+      llenarSelect("decenas");
+      llenarSelect("unidades");
+      generarNumero();
+    };
+  </script>
+
+</body>
+</html>

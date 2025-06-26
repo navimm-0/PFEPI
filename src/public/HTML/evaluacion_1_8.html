@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Unidades de Medición</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #aed6f1, #f8bbd0);
+      background-size: 400% 400%;
+      animation: fondoAnimado 20s ease infinite;
+      padding: 2rem;
+      margin: 0;
+      text-align: center;
+    }
+
+    @keyframes fondoAnimado {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .contenedor {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="number"] {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      width: 120px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background-color: #28b463;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1d8348;
+    }
+
+    #resultado {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .correcto {
+      color: green;
+      animation: rebote 0.4s;
+    }
+
+    .incorrecto {
+      color: red;
+      animation: sacudida 0.4s;
+    }
+
+    @keyframes rebote {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes sacudida {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      50% { transform: translateX(8px); }
+      75% { transform: translateX(-8px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h2>📏 Ejercicio de Unidades de Medición</h2>
+    <p id="pregunta">¿Cuántos centímetros hay en 3 metros?</p>
+    <input type="number" id="respuesta" placeholder="Tu respuesta">
+    <br>
+    <button onclick="verificar()">Verificar</button>
+    <p id="resultado"></p>
+    <hr>
+    <button onclick="nuevoEjercicio()">Nuevo ejercicio</button>
+  </div>
+
+  <script>
+    const ejercicios = [
+      { pregunta: "¿Cuántos centímetros hay en 3 metros?", respuesta: 300 },
+      { pregunta: "¿Cuántos mililitros hay en 2 litros?", respuesta: 2000 },
+      { pregunta: "¿Cuántos gramos hay en 5 kilogramos?", respuesta: 5000 },
+      { pregunta: "¿Cuántos metros hay en 1200 centímetros?", respuesta: 12 },
+      { pregunta: "¿Cuántos litros hay en 2500 mililitros?", respuesta: 2.5 },
+      { pregunta: "¿Cuántos kilogramos hay en 7500 gramos?", respuesta: 7.5 },
+      { pregunta: "¿Cuántos centímetros hay en 0.5 metros?", respuesta: 50 },
+      { pregunta: "¿Cuántos mililitros hay en 0.75 litros?", respuesta: 750 },
+      { pregunta: "¿Cuántos gramos hay en 0.2 kilogramos?", respuesta: 200 },
+      { pregunta: "¿Cuántos metros hay en 250 centímetros?", respuesta: 2.5 }
+    ];
+
+    let ejercicioActual = {};
+
+    function nuevoEjercicio() {
+      ejercicioActual = ejercicios[Math.floor(Math.random() * ejercicios.length)];
+      document.getElementById("pregunta").innerText = ejercicioActual.pregunta;
+      document.getElementById("respuesta").value = "";
+      document.getElementById("resultado").innerText = "";
+      document.getElementById("resultado").className = "";
+    }
+
+    function verificar() {
+      const resp = parseFloat(document.getElementById("respuesta").value);
+      const correcta = parseFloat(ejercicioActual.respuesta);
+      const resultado = document.getElementById("resultado");
+
+      if (Math.abs(resp - correcta) < 0.001) {
+        resultado.innerText = "✅ ¡Correcto!";
+        resultado.className = "correcto";
+      } else {
+        resultado.innerText = `❌ Incorrecto. La respuesta era ${correcta}`;
+        resultado.className = "incorrecto";
+      }
+    }
+
+    window.onload = nuevoEjercicio;
+  </script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Problemas de Suma y Resta</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #fff59d, #aed6f1, #edbb99, #c39bd3, #f8bbd0);
+      background-size: 400% 400%;
+      animation: fondoAnimado 20s ease infinite;
+      text-align: center;
+      padding: 2rem;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    @keyframes fondoAnimado {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .tarjeta-problema {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    input[type="number"] {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      width: 100px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d35400;
+    }
+
+    #resultado {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    .correcto {
+      color: green;
+      animation: rebote 0.4s;
+    }
+
+    .incorrecto {
+      color: red;
+      animation: sacudida 0.4s;
+    }
+
+    @keyframes rebote {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes sacudida {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(0); }
+    }
+    .multiplicacion_1_6{
+  display: inline-block;
+  background-color: var(--naranja-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+
+.multiplicacion_1_6:hover {
+  background-color: #d11795; /* más oscuro al pasar el mouse */
+}
+
+.finalizar_ejercicio{
+  display: inline-block;
+  background-color: var(--verde-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+.finalizar_ejercicio:hover{
+  background-color: #d4ac56; /* más oscuro al pasar el mouse */
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="tarjeta-problema" id="tarjeta">
+    <h2>🧠 Problema de Suma o Resta</h2>
+    <p id="problema">Luis tenía 120 canicas y regaló 45. ¿Cuántas tiene ahora?</p>
+    <input type="number" id="respuesta" placeholder="Tu respuesta">
+    <br>
+    <button onclick="verificar()">Verificar</button>
+    <p id="resultado"></p>
+    <hr>
+    <button onclick="nuevoProblema()">Nuevo problema</button>
+  </div>
+  <a href="multiplicacion_1_6.html" class="multiplicacion_1_6">Ir al siguiente </a>
+  <a href="finalizar_ejercicio" class="finalizar_ejercicio">Finalizar</a>
+
+  <script>
+    const problemas = [
+      { texto: "Luis tenía 120 canicas y regaló 45. ¿Cuántas tiene ahora?", respuesta: 75 },
+      { texto: "En una biblioteca hay 235 libros. Se prestaron 89. ¿Cuántos quedan?", respuesta: 146 },
+      { texto: "Claudia compró 134 dulces y le regalaron 56 más. ¿Cuántos tiene ahora?", respuesta: 190 },
+      { texto: "En una tienda había 300 galletas. Vendieron 175. ¿Cuántas quedan?", respuesta: 125 },
+      { texto: "Un tren transporta 420 personas. En la siguiente estación suben 87. ¿Cuántas hay en total?", respuesta: 507 },
+      { texto: "Pedro tenía 88 monedas y perdió 29. ¿Cuántas le quedan?", respuesta: 59 },
+      { texto: "En un estadio hay 765 personas. Salen 231. ¿Cuántas quedan?", respuesta: 534 },
+      { texto: "Sofía tenía 142 peluches y le dieron 39 más. ¿Cuántos tiene ahora?", respuesta: 181 },
+      { texto: "En una fábrica hicieron 600 juguetes. Se enviaron 478. ¿Cuántos quedan?", respuesta: 122 },
+      { texto: "Martín tenía 213 estampas. Regaló 98. ¿Cuántas le quedan?", respuesta: 115 }
+    ];
+
+    let problemaActual = {};
+
+    function nuevoProblema() {
+      problemaActual = problemas[Math.floor(Math.random() * problemas.length)];
+      document.getElementById("problema").innerText = problemaActual.texto;
+      document.getElementById("respuesta").value = "";
+      document.getElementById("resultado").innerText = "";
+      document.getElementById("resultado").className = "";
+    }
+
+    function verificar() {
+      const resp = parseInt(document.getElementById("respuesta").value);
+      const resultado = document.getElementById("resultado");
+
+      if (resp === problemaActual.respuesta) {
+        resultado.innerText = "✅ ¡Correcto!";
+        resultado.className = "correcto";
+      } else {
+        resultado.innerText = `❌ Incorrecto. La respuesta era ${problemaActual.respuesta}`;
+        resultado.className = "incorrecto";
+      }
+    }
+
+    window.onload = nuevoProblema;
+  </script>
+</body>
+</html>
+

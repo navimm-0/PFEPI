@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Problemas de Multiplicación</title>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #fff59d, #aed6f1, #edbb99, #c39bd3, #f8bbd0);
+      background-size: 400% 400%;
+      animation: fondoAnimado 20s ease infinite;
+      text-align: center;
+      padding: 2rem;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    @keyframes fondoAnimado {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .tarjeta-problema {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    input[type="number"] {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      width: 100px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background-color: #28b463;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1d8348;
+    }
+
+    #resultado {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    .correcto {
+      color: green;
+      animation: rebote 0.4s;
+    }
+
+    .incorrecto {
+      color: red;
+      animation: sacudida 0.4s;
+    }
+    .tablas_multiplicar_1_7{
+  display: inline-block;
+  background-color: var(--naranja-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+
+.tablas_multiplicar_1_7:hover {
+  background-color: #d11795; /* más oscuro al pasar el mouse */
+}
+
+.finalizar_ejercicio{
+  display: inline-block;
+  background-color: var(--verde-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+.finalizar_ejercicio:hover{
+  background-color: #d4ac56; /* más oscuro al pasar el mouse */
+}
+
+
+
+    @keyframes rebote {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes sacudida {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      50% { transform: translateX(10px); }
+      75% { transform: translateX(-10px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="tarjeta-problema" id="tarjeta">
+    <h2>🧠 Problema de Multiplicación</h2>
+    <p id="problema">Si cada caja tiene 4 lápices y hay 3 cajas, ¿cuántos lápices hay en total?</p>
+    <input type="number" id="respuesta" placeholder="Tu respuesta">
+    <br>
+    <button onclick="verificar()">Verificar</button>
+    <p id="resultado"></p>
+    <hr>
+    <button onclick="nuevoProblema()">Nuevo problema</button>
+  </div>
+  <a href="tablas_multiplicar_1_7.html" class="tablas_multiplicar_1_7">Ir al siguiente </a>
+  <a href="finalizar_ejercicio" class="finalizar_ejercicio">Finalizar</a>
+
+
+
+  <script>
+    const problemas = [
+      { texto: "Si cada caja tiene 4 lápices y hay 3 cajas, ¿cuántos lápices hay en total?", respuesta: 12 },
+      { texto: "Un paquete trae 6 galletas. Si compras 5 paquetes, ¿cuántas galletas tienes?", respuesta: 30 },
+      { texto: "Hay 7 filas de 8 sillas. ¿Cuántas sillas hay en total?", respuesta: 56 },
+      { texto: "Cada niño tiene 9 canicas. Si hay 4 niños, ¿cuántas canicas hay en total?", respuesta: 36 },
+      { texto: "Si en cada estante hay 10 libros y hay 6 estantes, ¿cuántos libros hay?", respuesta: 60 },
+      { texto: "Cada caja contiene 12 botellas. Si hay 3 cajas, ¿cuántas botellas hay?", respuesta: 36 },
+      { texto: "Hay 11 grupos con 5 alumnos cada uno. ¿Cuántos alumnos hay en total?", respuesta: 55 },
+      { texto: "Cada bicicleta tiene 2 ruedas. ¿Cuántas ruedas hay en 9 bicicletas?", respuesta: 18 },
+      { texto: "Un autobús lleva 7 niños. Si hay 6 autobuses, ¿cuántos niños hay?", respuesta: 42 },
+      { texto: "Cada pizza se corta en 8 rebanadas. Si se hornean 5 pizzas, ¿cuántas rebanadas hay?", respuesta: 40 }
+    ];
+
+    let problemaActual = {};
+
+    function nuevoProblema() {
+      problemaActual = problemas[Math.floor(Math.random() * problemas.length)];
+      document.getElementById("problema").innerText = problemaActual.texto;
+      document.getElementById("respuesta").value = "";
+      document.getElementById("resultado").innerText = "";
+      document.getElementById("resultado").className = "";
+    }
+
+    function verificar() {
+      const resp = parseInt(document.getElementById("respuesta").value);
+      const resultado = document.getElementById("resultado");
+
+      if (resp === problemaActual.respuesta) {
+        resultado.innerText = "✅ ¡Correcto!";
+        resultado.className = "correcto";
+      } else {
+        resultado.innerText = `❌ Incorrecto. La respuesta era ${problemaActual.respuesta}`;
+        resultado.className = "incorrecto";
+      }
+    }
+
+    window.onload = nuevoProblema;
+  </script>
+</body>
+</html>
