@@ -16,10 +16,14 @@
     <link href="../CSS/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../CSS/2_11_proporciones_y_regla_de_tres_ejercicio_1.css" />
-    <link href="../CSS/barrageneral.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/barrageneral.css">
+    <link rel="stylesheet" href="../CSS/fondogeneral.css">
 </head>
 
 <body>
+  <!-- Fondo animado -->
+  <canvas id="stars-bg"></canvas>
+
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div
             class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -46,31 +50,108 @@
         </div>
     </header>
 
-    <main>
-  <div id="problema">
-      Ayer 2 camiones transportaron una mercancía desde el puerto hasta el almacén. Hoy 3 camiones, iguales a los de ayer,
-      tendrán que hacer 6 viajes para transportar la misma cantidad de mercancía del almacén al centro comercial.
-      ¿Cuántos viajes tuvieron que hacer ayer los camiones?
-  </div>
+  <main>
+    <div id="ejercicio1" class="ejercicio" style="display: block;">
+      <div id="problema">Ayer 2 camiones transportaron una mercancía desde el puerto hasta el almacén. Hoy 3 camiones, iguales a los de ayer,
+      		tendrán que hacer 6 viajes para transportar la misma cantidad de mercancía del puerto al almacén.
+      		¿Cuántos viajes tuvieron que hacer ayer los camiones?
+      </div>
+      <div id="conteo">1/5</div>
+      <div class="Imagen"><img src="../IMG/almacendoscamiones.png"></div>
+      <div class="Imagen"><img src="../IMG/almacentrescamiones.png"></div>
+      <div id="contenedoropciones">
+        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 5 viajes</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 9 viajes</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 12 viajes</button>
+      </div>
+      <div id="mensaje"></div>
+      <div id="contenedorBoton">
+        <button class="btnSiguiente" style="display:none;" onclick="siguienteEjercicio()">Siguiente ➜</button>
+      </div>
+    </div>
 
-  <div class="Imagen"><img src="../IMG/almacendoscamiones.png"></div>
-  <div class="Imagen"><img src="../IMG/almacentrescamiones.png"></div>
+    <div id="ejercicio2" class="ejercicio">
+      <div id="problema">Seis personas pueden vivir en un hotel durante 12 días por  792 pesos. ¿Cuánto costará el hotel de  
+		15 personas durante ocho días?
+      </div>
+      <div id="conteo">2/5</div>
+      <div class="Imagen"><img src="../IMG/hotel6personas.png"></div>
+      <div class="Imagen"><img src="../IMG/hotel15personas.png"></div>
+      <div id="contenedoropciones">
+        <button class="opciones" onclick="verificarRespuesta(this)">Costara 930 pesos</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">Costara 1540 pesos</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">Costara 1320 pesos</button>
+      </div>
+      <div id="mensaje"></div>
+      <div id="contenedorBoton">
+      	<button class="btnSiguiente" style="display:none;" onclick="siguienteEjercicio()">Siguiente ➜</button>
+      </div>
+    </div>
 
-  <div id="contenedoropciones">
-      <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 5 viajes</button>
-      <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 9 viajes</button>
-      <button class="opciones" onclick="verificarRespuesta(this)">Realizaron 12 viajes</button>
-  </div>
+    <div id="ejercicio3" class="ejercicio">
+      <div id="problema">Si una casa tarda en construirse 20 días trabajando 8 obreros. ¿Cuántos días tardará si se 
+		contratan 2 obreros adicionales?
+      </div>
+      <div id="conteo">3/5</div>
+      <div class="Imagen"><img src="../IMG/8obreros.png"></div>
+      <div class="Imagen"><img src="../IMG/10obreros.png"></div>
+      <div id="contenedoropciones">
+        <button class="opciones" onclick="verificarRespuesta(this)">tardarán 16 dias</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">tardarán 14 dias</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">tardarán 12 dias</button>
+      </div>
+      <div id="mensaje"></div>
+      <div id="contenedorBoton">
+        <button class="btnSiguiente" style="display:none;" onclick="siguienteEjercicio()">Siguiente ➜</button>
+      </div>
+    </div>
 
-  <div id="mensaje"></div>
-  <div id="contenedorBoton">
-      <button id="btnSiguiente" onclick="location.href='ejercicio2.html'">Siguiente ➜</button>
-  </div>
-</main>
+    <div id="ejercicio4" class="ejercicio">
+      <div id="problema">Seis grifos, tardan  10 horas en llenar un depósito de 400 litros  de capacidad. ¿Cuántas horas tardarán
+		 cuatro grifos en llenar  2 depósitos de 500 litros cada uno?
+      </div>
+      <div id="conteo">4/5</div>
+      <div class="Imagen"><img src="../IMG/6grifos.png"></div>
+      <div class="Imagen"><img src="../IMG/4grifos.png"></div>
+      <div id="contenedoropciones">
+        <button class="opciones" onclick="verificarRespuesta(this)">tardaran 41.4 horas</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">tardaran 37.5 horas</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">tardaran 34 horas</button>
+      </div>
+      <div id="mensaje"></div>
+      <div id="contenedorBoton">
+        <button class="btnSiguiente" style="display:none;" onclick="siguienteEjercicio()">Siguiente ➜</button>
+      </div>
+    </div>
+
+    <div id="ejercicio5" class="ejercicio">
+      <div id="problema">2 kilogramos de café cuestan  160 pesos. ¿Cuánto cuestan 5 kilogramos del mismo producto?
+      </div>
+      <div id="conteo">5/5</div>
+      <div class="Imagen"><img src="../IMG/2kdecafe.png"></div>
+      <div class="Imagen"><img src="../IMG/5kdecafe.png"></div>
+      <div id="contenedoropciones">
+        <button class="opciones" onclick="verificarRespuesta(this)">Cuesta 550 pesos</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">Cuesta 400 pesos</button>
+        <button class="opciones" onclick="verificarRespuesta(this)">Cuesta 600 pesos</button>
+      </div>
+      <div id="mensaje"></div>
+      <div id="contenedorBoton">
+        <button class="btnSiguiente" style="display:none;" onclick="siguienteEjercicio()">Finalizar ➜</button>
+      </div>
+    </div>
+ 
+    <div id="resultadoFinal">
+      <img src="../IMG/aciertosimagen.png">
+      <p>¡Has completado todos los ejercicios!</br>
+      Total de aciertos: <span id="totalAciertos"></span> de 5</p>
+    </div>
+  </main>
 
 
     <!-- Script de lógica-->
     <script src="../SCRIPT/2_11_proporciones_y_regla_de_tres_ejercicio_1.js"></script>
+    <script src="../SCRIPT/stars.js"></script>
 </body>
 
 </html>

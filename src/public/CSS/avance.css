@@ -1,0 +1,133 @@
+body {
+  background: linear-gradient(180deg, #fffbe6 90%, #fffbe6 10%);
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.contenido-avance {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.titulo-principal {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--heading-color, #333);
+}
+
+/* Nueva estructura de tarjetas para cada nivel */
+.tarjetas-avance {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.tarjeta-nivel {
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  border-left: 10px solid var(--accent-color2, #f98e1c);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.tarjeta-nivel:hover {
+  transform: scale(1.01);
+}
+
+.nivel-titulo {
+  font-size: 1.5rem;
+  color: var(--accent-color, #2aace3);
+  margin-bottom: 1rem;
+}
+
+.progreso {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.barra {
+  flex: 1;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.relleno {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #65bddb, #f6db7b, #f1919f);
+  transition: width 0.6s ease;
+}
+
+.porcentaje-texto {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.temas-nivel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tema {
+  background: var(--surface-color, #ffffff);
+  border: 1px solid #ccc;
+  border-left: 6px solid var(--accent-color2, #f98e1c);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  flex: 1 1 45%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tema:hover {
+  transform: scale(1.01);
+}
+
+.tema-titulo {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.tema-descripcion {
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.2;
+}
+
+
+.tema:hover {
+  transform: scale(1.03);
+}
+
+.boton-volver {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.2rem;
+  background-color: var(--accent-color2, #f98e1c);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.boton-volver:hover {
+  background-color: #e57b14;
+}

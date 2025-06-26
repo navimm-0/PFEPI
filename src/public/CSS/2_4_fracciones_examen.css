@@ -1,0 +1,144 @@
+:root {
+  --rosa-principal: #f48fb1;
+  --morado-oscuro: #4a148c;
+  --rosado-fondo: #fffbe6;
+  --verde-evaluacion: #4caf50;
+  --verde-evaluacion-hover: #43a047;
+  --azul-borde: #2196f3;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--rosado-fondo);
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+canvas#stars-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Barra superior */
+.barra-material {
+  background-color: #ffffffdd;
+  backdrop-filter: blur(6px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 998;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.contenedor-barra {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-nuevo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-nuevo img {
+  height: 40px;
+}
+
+.logo-nuevo span {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--morado-oscuro);
+}
+
+.navegacion-nueva a {
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #444;
+}
+
+.navegacion-nueva a:hover,
+.navegacion-nueva a.activo {
+  color: var(--rosa-principal);
+  border-bottom: 2px solid var(--rosa-principal);
+  padding-bottom: 2px;
+}
+
+/* Main */
+main {
+  max-width: 1000px;
+  margin: 6rem auto 3rem auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.chuy h1 {
+  font-size: 2.2rem;
+  color: var(--morado-oscuro);
+  margin-bottom: 0.5rem;
+}
+
+.chuy p {
+  font-size: 1.1rem;
+}
+
+.tema {
+  background-color: #ffffff;
+  border-left: 8px solid var(--rosa-principal);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+#tiempoTranscurrido {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+#iniciarCronometro {
+  background-color: var(--verde-evaluacion);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+#iniciarCronometro:hover {
+  background-color: var(--verde-evaluacion-hover);
+}
+
+.boton-volver {
+  margin: 3rem auto;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--rosa-principal);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.boton-volver:hover {
+  background-color: #ec407a;
+  transform: scale(1.05);
+}

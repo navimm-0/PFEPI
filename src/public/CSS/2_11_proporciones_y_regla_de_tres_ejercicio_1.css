@@ -10,59 +10,23 @@
   --blanco: #ffffff;
 }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #ebe4d0 0%, #4b84ac 50%, #8a6bab 100%);
-  overflow-x: hidden;
-  color: var(--gris-logo);
-  position: relative;
-  min-height: 100vh;
-  background-attachment: fixed;
-  padding-top: 90px; /* Ajusta según la altura real del header */
+#conteo {
+  width: 7%;
+  height: auto;
+  margin: 1%;
+  margin-top: 0%;
+  padding: .5em;
+  font-family: 'Comic Sans MS', Arial, sans-serif;
+  text-align: justify;
+  font-size: 2em;
+  float:left;
+  color: var(--hueso);
 }
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--hueso);
-  padding: 1rem 2rem;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.navbar .brand {
-  display: flex;
-  align-items: center;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--gris-logo);
-}
-
-.navbar .brand img {
-  height: 40px;
-  margin-right: 10px;
-}
-
-.navbar nav a {
-  color: var(--gris-logo);
-  margin-left: 1.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.navbar nav a:hover {
-  color: var(--naranja-logo);
-}
-
 #problema {
-  width: 90%;
+  width: 85%;
   height: auto;
   margin: 3%;
-  margin-top: 2%;
+  margin-top: 0%;
   padding: .5em;
   background-color: var(--hueso);
   color: var(--gris-logo);
@@ -73,6 +37,31 @@ body {
   border-radius: 15px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
   line-height: 1.6;
+  float:left;
+}
+#resultadoFinal {
+  width: 90%;
+  height: 50%;
+  padding:2rem; 
+  display:none;
+  margin-left: 5%;
+}
+#resultadoFinal img{
+  height: 40%;
+  width:40%;
+  float:left;
+  margin-left: 5%;
+}
+#resultadoFinal p{
+  height: 80%;
+  width:40%;
+  text-align:center;
+  font-size:2.5em; 
+  float:left;
+  margin: 3%;
+  margin-top: 10%;
+  color: var(--rojo-logo);
+  font-family: 'Comic Sans MS', Arial, sans-serif;
 }
 
 .Imagen {
@@ -99,14 +88,6 @@ body {
             color: var(--verde-logo);
         }
 
-        .correcto {
-            color: var(--verde-logo);
-        }
-
-        .incorrecto {
-            color: var(--rojo-logo);
-        }
-
         .opciones {
             background-color: var(--azul-logo);
             color: white;
@@ -122,7 +103,7 @@ body {
         .opciones:hover {
             background-color: var(--cyan-logo);
         }
- #btnSiguiente {
+ .btnSiguiente {
             display: none;
             margin: 20px auto;
             padding: 15px 30px;
@@ -136,10 +117,41 @@ body {
             transition: background-color 0.3s;
         }
 
-        #btnSiguiente:hover {
+        .btnSiguiente:hover {
             background-color: var(--rojo-logo);
         }
 
         #contenedorBoton {
             text-align: center;
         }
+
+
+
+.ejercicio {
+      display: none;
+      padding: 2rem;
+    }
+
+    .correcto {
+      color: green;
+      font-weight: bold;
+    }
+
+    .incorrecto {
+      color: red;
+      font-weight: bold;
+    }
+
+    .opciones.desactivado {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .opciones.correcta {
+      background-color: #c8f7c5;
+    }
+
+    .opciones.incorrecta {
+      background-color: #f7c5c5;
+    }
+
