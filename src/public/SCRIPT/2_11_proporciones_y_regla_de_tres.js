@@ -1,38 +1,70 @@
-function volver() {
-  window.history.back();
-}
+let aciertos = 0;
+    let ejercicioActual = 1;
+    const totalEjercicios = 5;
 
-function verificarRespuesta() {
-  const respuesta = parseFloat(document.getElementById("respuesta").value);
-  const resultado = document.getElementById("resultadoRelacion");
+    const respuestasCorrectas = {
+      1: "Realizaron 9 viajes",
+      2: "Costara 1320 pesos",
+      3: "tardarán 16 dias",
+      4: "tardaran 37.5 horas",
+      5: "Cuesta 400 pesos"
+    };
 
-  if (isNaN(respuesta) || respuesta <= 0) {
-    resultado.innerHTML = `<p style="color: red;">⚠️ Ingresa un número válido mayor a 0.</p>`;
-    return;
-  }
+    function verificarRespuesta(boton) {
+      const opciones = boton.parentNode.querySelectorAll(".opciones");
+      const mensaje = boton.closest(".ejercicio").querySelector("#mensaje");
+      const btnSiguiente = boton.closest(".ejercicio").querySelector(".btnSiguiente");
+      const respuestaUsuario = boton.innerText;
+      const correcta = respuestasCorrectas[ejercicioActual];
 
-  if (respuesta === 12) {
-    resultado.innerHTML = `<p style="color: green;">🎉 ¡Correcto! 6 lápices cuestan 12 pesos.</p>`;
-    confeti();
-  } else {
-    resultado.innerHTML = `<p style="color: orange;">❌ No es correcto. ¡Intenta otra vez!</p>`;
-  }
-}
+      opciones.forEach(btn => {
+        btn.disabled = true;
+        btn.classList.add("desactivado");
+        if (btn.innerText === correcta) btn.classList.add("correcta");
+        else btn.classList.add("incorrecta");
+      });
 
-function confeti() {
-  const canvas = document.createElement("canvas");
-  canvas.style.position = "fixed";
-  canvas.style.top = "0";
-  canvas.style.left = "0";
-  canvas.style.width = "100%";
-  canvas.style.height = "100%";
-  canvas.style.zIndex = "1000";
-  document.body.appendChild(canvas);
+      if (respuestaUsuario === correcta) {
+        mensaje.textContent = "¡Correcto! 🎉 ¡Muy bien hecho!";
+        mensaje.className = "correcto";
+        aciertos++;
+        lanzarConfeti();
+      } else {
+        mensaje.textContent = "Intenta otra vez...";
+        mensaje.className = "incorrecto";
+      }
 
-  const jsConfetti = new JSConfetti({ canvas });
-  jsConfetti.addConfetti();
+      btnSiguiente.style.display = "inline-block";
+    }
 
-  setTimeout(() => {
-    canvas.remove();
-  }, 3000);
-}
+    function siguienteEjercicio() {
+      document.getElementById(`ejercicio${ejercicioActual}`).style.display = "none";
+      ejercicioActual++;
+
+      if (ejercicioActual <= totalEjercicios) {
+        document.getElementById(`ejercicio${ejercicioActual}`).style.display = "block";
+      } else {
+        document.getElementById("resultadoFinal").style.display = "block";
+        document.getElementById("totalAciertos").textContent = aciertos;
+      }
+    }
+
+    function lanzarConfeti() {
+      const cantidad = 20;
+      for (let i = 0; i < cantidad; i++) {
+        const confeti = document.createElement("div");
+        confeti.textContent = "🎊";
+        confeti.style.position = "fixed";
+        confeti.style.top = Math.random() * window.innerHeight + "px";
+        confeti.style.left = Math.random() * window.innerWidth + "px";
+        confeti.style.fontSize = "24px";
+        confeti.style.opacity = "1";
+        confeti.style.transition = "opacity 2s ease-out";
+        document.body.appendChild(confeti);
+
+        setTimeout(() => {
+          confeti.style.opacity = "0";
+          setTimeout(() => document.body.removeChild(confeti), 2000);
+        }, 100);
+      }
+    }
