@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Examen Avanzado - Fracciones</title>
+  <link rel="stylesheet" href="../CSS/fondogeneral.css">
+  <link rel="stylesheet" href="../CSS/2_4_fracciones_examen.css">
+  <link href="../IMG/favicon.png" rel="icon">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="stars-bg"></canvas>
+
+  <!-- Barra superior nueva -->
+  <header class="barra-material">
+    <div class="contenedor-barra">
+      <div class="logo-nuevo">
+        <img src="../IMG/logo.png" alt="Logo Math Way">
+        <span>Math Way</span>
+      </div>
+      <nav class="navegacion-nueva">
+        <a href="../index.html">Inicio</a>
+        <a href="material_extra.html">Material Extra</a>
+        <a href="evaluacion_avanzada.html" class="activo">Formato Examen</a>
+        <a href="avance.html">Avance</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="chuy">
+      <h1>🧠 Preguntas tipo examen: Fracciones</h1>
+      <p>Esta pequeña evaluacion no cuenta como progreso, esta planeada para que puedas medir tu tiempo y tu desempeño en una evaluacion de tipo examen. Te sugerimos activar el cronometro para ver cuanto tiempo tardas en completar las actividades.</p>
+      <button id="iniciarCronometro">⏱️ Iniciar Cronómetro</button>
+      <p id="tiempoTranscurrido">⏳ Tiempo: 00:00</p>
+    </section>
+
+    <section class="tema" id="evaluacion">
+      <form id="formAvanzado">
+        <div id="contenedorAvanzado"></div>
+        <button type="submit">📊 Ver Resultados</button>
+      </form>
+      <div id="resultadoFinal"></div>
+    </section>
+
+    <button class="boton-volver" onclick="volver()">🔙 Volver</button>
+  </main>
+
+  <script src="../SCRIPT/stars.js"></script>
+  <script src="../SCRIPT/barraresponsiva.js"></script>
+  <script src="../SCRIPT/2_4_fracciones_examen.js"></script>
+</body>
+</html>

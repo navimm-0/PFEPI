@@ -112,7 +112,7 @@ button:hover,
 }
 
 .imagenes-galletas .item img {
-  max-width: 80px;
+  max-width: 300px;
   height: auto;
   display: block;
 }
