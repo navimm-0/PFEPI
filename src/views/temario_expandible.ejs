@@ -1,0 +1,94 @@
+<%- include('partials/_header') %>
+<section class="section">
+  <div class="container">
+    <div class="section-title">
+        <br><br>
+        <h2>Temario por Niveles</h2>
+    </div>
+
+    <% const nombres = { básico: 'Nivel 1 Básico', intermedio: 'Nivel 2 Intermedio', avanzado: 'Nivel 3 Avanzado' }; %>
+
+    <% for (let nivel in niveles) { %>
+      <div class="faq">
+        <div class="faq-container">
+          <h3 class="faq-title"><%= nombres[nivel] %></h3>
+
+          <% niveles[nivel].forEach((tema, i) => { %>
+            <div class="faq-item">
+              <h3 onclick="toggleSubtemas('<%= tema.id_tema %>')">
+                <span class="num"><%= tema.numero %>.</span> <%= tema.titulo %>
+              </h3>
+              <i class="faq-toggle bi bi-chevron-down" onclick="toggleSubtemas('<%= tema.id_tema %>')"></i>
+
+              <% if (hijos[tema.id_tema]) { %>
+                <div class="faq-content" id="subtemas-<%= tema.id_tema %>">
+                  <ul>
+                    <% hijos[tema.id_tema].forEach(sub => { %>
+                      <li>
+                        <a href="/ver-tema/<%= sub.id_tema %>">
+                          <%= sub.numero %>. <%= sub.titulo %>
+                        </a>
+                      </li>
+                    <% }) %>
+                  </ul>
+                </div>
+              <% } else { %>
+                <div class="faq-content" id="subtemas-<%= tema.id_tema %>">
+                  <p><em>No hay subtemas disponibles.</em></p>
+                </div>
+              <% } %>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<script>
+  function toggleSubtemas(id) {
+    const item = document.getElementById('subtemas-' + id);
+    const parent = item.closest('.faq-item');
+    if (parent.classList.contains('faq-active')) {
+      parent.classList.remove('faq-active');
+    } else {
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('faq-active'));
+      parent.classList.add('faq-active');
+    }
+  }
+</script>
+
+<style>
+  .faq .faq-container .faq-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+  }
+
+  .faq .faq-container .faq-active .faq-content {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1rem;
+  }
+
+  .faq .faq-toggle {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .faq .faq-active .faq-toggle {
+    transform: rotate(90deg);
+    color: var(--accent-color);
+  }
+  
+  .section-title h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    }
+
+</style>
+
+
+<%- include('partials/_footer') %>

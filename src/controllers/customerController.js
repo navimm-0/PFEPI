@@ -142,7 +142,7 @@ controller.iniciar = (req, res) => {
     return res.redirect('/'); // si no ha iniciado sesión
   }
 
-  res.render('MenuP', { usuario: req.session.usuario_id });
+  res.redirect('/temas-basico', { usuario: req.session.usuario_id });
 };
 
 controller.cuenta = (req, res) => {
