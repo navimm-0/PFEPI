@@ -142,7 +142,7 @@ controller.iniciar = (req, res) => {
     return res.redirect('/'); // si no ha iniciado sesión
   }
 
-  res.redirect('/temas-basico', { usuario: req.session.usuario_id });
+  res.redirect('/ver-cuenta');
 };
 
 controller.cuenta = (req, res) => {

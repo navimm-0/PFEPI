@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Comparación y Equivalencia de Fracciones</title>
+  <link rel="stylesheet" href="../CSS/barrageneral.css">
+  <link rel="stylesheet" href="../CSS/fondogeneral.css">
+  <link rel="stylesheet" href="../CSS/2_6_fracciones_suma_resta.css">
+
+  <link href="../IMG/favicon.png" rel="icon">
+  <link href="../IMG/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Nunito&display=swap" rel="stylesheet">
+  <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header con navegación general -->
+ <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html" class="active">Inicio</a></li>
+          <li><a href="avance.html">Avance</a></li>
+          <li><a href="#features">Temario</a></li>
+          <li><a href="#contact">Cuenta</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+    </div>
+  </header>
+
+
+  <!-- Contenido principal -->
+  <section><br><br><br><br><br><br></section>
+  <main class="evaluacion">
+    <h1>Examen: Fracciones y Decimales</h1>
+    <div id="pregunta-container"></div>
+    <div id="retroalimentacion"></div>
+    <button id="siguiente-btn" style="display:none;">Siguiente</button>
+    <a class="boton-finalizar" id="finalizar-btn" href="index.html" style="display:none;">Finalizar Evaluación</a>
+    <button class="boton-volver" onclick="volver()">🔙 Volver</button>
+  </main>
+
+  <script>
+function volver() {
+  window.history.back();
+}
+
+const preguntas = [
+  {
+    "pregunta": "¿Cuál es el valor decimal de 1/2?",
+    "opciones": ["0.25", "0.5", "1.5", "2"],
+    "correcta": 1,
+    "explicacion": "1 dividido entre 2 es 0.5."
+  },
+  {
+    "pregunta": "¿1/4 es igual a qué número decimal?",
+    "opciones": ["0.2", "0.4", "0.25", "0.5"],
+    "correcta": 2,
+    "explicacion": "1 dividido entre 4 es 0.25."
+  },
+  {
+    "pregunta": "¿Qué fracción es igual a 0.5?",
+    "opciones": ["1/2", "1/3", "1/4", "2/3"],
+    "correcta": 0,
+    "explicacion": "0.5 es igual a la mitad, que es 1/2."
+  },
+  {
+    "pregunta": "¿Cuál es el valor decimal de 3/4?",
+    "opciones": ["0.75", "0.6", "0.8", "0.25"],
+    "correcta": 0,
+    "explicacion": "3 dividido entre 4 es 0.75."
+  },
+  {
+    "pregunta": "¿Cuál de estas fracciones es igual a 0.1?",
+    "opciones": ["1/10", "1/5", "2/10", "1/2"],
+    "correcta": 0,
+    "explicacion": "1 dividido entre 10 es 0.1."
+  },
+  {
+    "pregunta": "¿Qué fracción representa el decimal 0.25?",
+    "opciones": ["1/4", "1/2", "1/3", "3/4"],
+    "correcta": 0,
+    "explicacion": "0.25 es igual a 1/4."
+  },
+  {
+    "pregunta": "¿0.75 es igual a qué fracción?",
+    "opciones": ["3/4", "1/4", "2/4", "1/2"],
+    "correcta": 0,
+    "explicacion": "3 dividido entre 4 es 0.75."
+  },
+  {
+    "pregunta": "¿Qué fracción es igual a 0.2?",
+    "opciones": ["1/2", "1/5", "1/4", "1/3"],
+    "correcta": 1,
+    "explicacion": "1 dividido entre 5 es 0.2."
+  },
+  {
+    "pregunta": "¿Cuál es el valor decimal de 2/5?",
+    "opciones": ["0.5", "0.4", "0.25", "0.2"],
+    "correcta": 1,
+    "explicacion": "2 dividido entre 5 es 0.4."
+  },
+  {
+    "pregunta": "¿Qué fracción es equivalente a 0.5?",
+    "opciones": ["2/4", "3/4", "1/5", "1/3"],
+    "correcta": 0,
+    "explicacion": "2/4 también es 0.5."
+  }
+];
+
+let preguntasPendientes = [];
+let totalPreguntas = 0;
+let totalAciertos = 0;
+let preguntaActual = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  prepararPreguntas();
+  mostrarPregunta();
+});
+
+function prepararPreguntas() {
+  preguntasPendientes = preguntas.sort(() => 0.5 - Math.random()).slice(0, 5);
+  totalPreguntas = preguntasPendientes.length;
+  totalAciertos = 0;
+}
+
+function mostrarPregunta() {
+  const contenedor = document.getElementById('pregunta-container');
+  const retro = document.getElementById('retroalimentacion');
+  const btnFinalizar = document.getElementById('finalizar-btn');
+
+  btnFinalizar.style.display = 'none';
+  retro.innerHTML = '';
+
+  preguntaActual = preguntasPendientes.shift(); // sacar primera pregunta
+
+  contenedor.innerHTML = `
+    <h3>${preguntaActual.pregunta}</h3>
+    ${preguntaActual.opciones.map((op, i) => `<div class="opcion" data-indice="${i}">${op}</div>`).join('')}
+  `;
+
+  document.querySelectorAll('.opcion').forEach(opcion => {
+    opcion.addEventListener('click', () => {
+      const seleccionada = parseInt(opcion.dataset.indice);
+
+      if (seleccionada === preguntaActual.correcta) {
+        opcion.style.backgroundColor = "#c8e6c9";
+        retro.innerHTML = `<p><strong>Correcto:</strong> ${preguntaActual.explicacion}</p>`;
+        totalAciertos++;
+
+        document.querySelectorAll('.opcion').forEach(op => op.style.pointerEvents = 'none');
+
+        setTimeout(() => {
+          if (preguntasPendientes.length > 0) {
+            mostrarPregunta();
+          } else {
+            mostrarResultadoFinal();
+          }
+        }, 1000);
+      } else {
+        opcion.style.backgroundColor = "#ffcdd2";
+        retro.innerHTML = `<p><strong>Incorrecto.</strong> Esta pregunta volverá a intentarse más adelante.</p>`;
+
+        // Reinsertar pregunta al final
+        preguntasPendientes.push(preguntaActual);
+
+        setTimeout(() => {
+          mostrarPregunta();
+        }, 1200);
+      }
+    });
+  });
+}
+
+function mostrarResultadoFinal() {
+  const contenedor = document.getElementById('pregunta-container');
+  const retro = document.getElementById('retroalimentacion');
+  const btnFinalizar = document.getElementById('finalizar-btn');
+
+  const porcentaje = Math.round((totalAciertos / totalPreguntas) * 100);
+
+  contenedor.innerHTML = `<h2>Evaluación completada</h2>`;
+  retro.innerHTML = `<p>Respondiste correctamente <strong>${totalAciertos}</strong> de <strong>${totalPreguntas}</strong> preguntas.<br>
+  Tu porcentaje de acierto es: <strong>${porcentaje}%</strong>.</p>`;
+
+  btnFinalizar.style.display = 'inline-block';
+}
+
+</script>
+
+<style>
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #fff59d, #aed6f1, #edbb99, #c39bd3, #f8bbd0);
+  background-size: 400% 400%;
+  animation: fondoAnimado 20s ease infinite;
+  text-align: center;
+  padding: 2rem;
+  min-height: 100vh;
+  margin: 0;
+}
+
+@keyframes fondoAnimado {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.evaluacion {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+button, .boton-finalizar {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.8rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 0.3s ease;
+}
+
+button:hover, .boton-finalizar:hover {
+  background-color: #388e3c;
+}
+
+.boton-volver {
+  background-color: #ff9800;
+}
+
+.boton-volver:hover {
+  background-color: #f57c00;
+}
+
+.opcion {
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  background: #f1f1f1;
+  border-radius: 6px;
+  cursor: pointer;
+  max-width: 300px;
+}
+
+.opcion:hover {
+  background-color: #dce775;
+}
+</style>
+
+</body>
+</html>

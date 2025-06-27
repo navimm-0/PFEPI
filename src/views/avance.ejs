@@ -1,0 +1,37 @@
+<%- include('partials/_header') %>
+
+<link rel="stylesheet" href="../CSS/avance.css">
+<main class="contenido-avance">
+  <br><br><br>
+  <h1 class="titulo-principal">Tu Progreso en Math Way</h1>
+  
+  <div class="tarjetas-avance">
+    <% ['1', '2', '3'].forEach(function(n) { 
+      let nivelTexto = n === '1' ? 'basico' : n === '2' ? 'intermedio' : 'avanzado'; 
+      let porcentajeNivel = porcentaje[nivelTexto] || 0;
+    %>
+      <div class="tarjeta-nivel">
+        <h2 class="nivel-titulo">
+          <a href="/obtener-lecciones/<%- nivelTexto %>/">
+            Nivel <%= n %>:
+          </a>
+        </h2>
+        <div class="progreso">
+          <div class="barra">
+            <div class="relleno" style="width: <%= porcentajeNivel%>%"></div>
+          </div>
+          <span class="porcentaje-texto"><%= porcentajeNivel %>%</span>
+        </div>
+        <div class="temas-nivel" id="nivel<%= n %>"></div>
+      </div>
+    <% }); %>
+
+  </div>
+
+
+  <div class="volver">
+    <button class="boton-volver" onclick="volver()">🔙 Volver</button>
+  </div>
+</main>
+
+<%- include('partials/_footer') %>

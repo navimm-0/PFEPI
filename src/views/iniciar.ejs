@@ -1,0 +1,44 @@
+<%- include('partials/_header') %>
+<section class="chuy">
+  <h1><%= titulo_padre %>: Elige un <span class="marca">
+    <span class="m">T</span><span class="a">e</span><span class="t">m</span><span class="h">a</span>
+  </span> para resolver problemas</h1>
+</section>
+
+<section class="zona-caminos">
+  <section class="camino-temas">
+    <% temas.forEach(t => { %>
+      <div class="tema">
+        <h2><%= t.numero %> <%= t.titulo %></h2>
+        <div class="tarjetas">
+
+          <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-tema/<%= t.id_tema %>">
+            <div class="icono bi bi-journal-text"></div>
+            <div class="texto">Teoría</div>
+            <span class="etiqueta">APRENDE</span>
+          </a>
+
+          <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-video/<%= t.id_tema %>">
+            <div class="icono bi bi-camera-video"></div>
+            <div class="texto">Video</div>
+            <span class="etiqueta">PRACTICA</span>
+          </a>
+
+          <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-ejercicios/<%= t.id_tema %>">
+            <div class="icono bi bi-pencil-square"></div>
+            <div class="texto">Ejercicios</div>
+            <span class="etiqueta">PRACTICA</span>
+          </a>
+
+        </div>
+      </div>
+    <% }) %>
+  </section>
+</section>
+
+<style>
+    .tarjeta.incompleto {
+    filter: grayscale(100%);
+    opaci
+</style>
+<%- include('partials/_footer') %>

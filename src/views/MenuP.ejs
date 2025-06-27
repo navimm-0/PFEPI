@@ -32,18 +32,21 @@
           <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-<%= t.nivel %>">
             <article class="portfolio-entry">
               <figure class="entry-image">
-                <img src="<%= t.imagen_url %>" class="img-fluid" alt="Imagen de <%= t.titulo %>" loading="lazy">
+                <img src="<%= t.imagen_url %>" 
+                  class="img-fluid <%= t.completado ? '' : 'gris' %>" 
+                  alt="Imagen de <%= t.titulo %>" loading="lazy"
+                  onerror="this.src='/img/10obreros.png'">
                 <div class="entry-overlay">
                   <div class="overlay-content">
                     <div class="entry-meta"><%= t.nombre_padre %></div>
                     <h3 class="entry-title"><%= t.numero %>. <%= t.titulo %></h3>
                     <div class="entry-links">
-                      <a href="<%= t.imagen_url %>" class="glightbox"
+                      <a href="/ver-tema/<%= t.id_tema %>" class="glightbox"
                         data-gallery="temas-gallery-<%= t.nivel %>"
                         data-glightbox="title: <%= t.numero %>. <%= t.titulo %>; description: Tema hijo de <%= t.nombre_padre %>">
                         <i class="bi bi-journal-text"></i>
                       </a>
-                      <a href="/ver-tema/<%= t.id_tema %>">
+                      <a href="/ver-ejercicios/<%= t.id_tema %>">
                         <i class="bi bi-pencil-square"></i>
                       </a>
                     </div>
@@ -59,6 +62,15 @@
 </section>
 
 <style>
+  .gris {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+
+  .gris:hover {
+    filter: grayscale(50%);
+  }
+  
 .portfolio .portfolio-filters {
   display: flex;
   justify-content: center;

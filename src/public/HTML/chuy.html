@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Comparación y Equivalencia de Fracciones</title>
+  <link rel="stylesheet" href="../CSS/barrageneral.css">
+  <link rel="stylesheet" href="../CSS/fondogeneral.css">
+  <link rel="stylesheet" href="../CSS/2_6_fracciones_suma_resta.css">
+
+  <link href="../IMG/favicon.png" rel="icon">
+  <link href="../IMG/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Nunito&display=swap" rel="stylesheet">
+  <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header con navegación general -->
+ <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html" class="active">Inicio</a></li>
+          <li><a href="avance.html">Avance</a></li>
+          <li><a href="#features">Temario</a></li>
+          <li><a href="#contact">Cuenta</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+    </div>
+  </header>
+
+
+  <!-- Contenido principal -->
+  <section><br><br><br><br><br><br><br><br></section>
+  <main class="evaluacion">
+    <section class="evaluacion">
+    <h2>Ejercicios de Fracciones y Decimales</h2>
+    <div id="preguntaActual"></div>
+    <div id="resultado-final" style="margin-top: 2rem;"></div>
+    <button class="boton-volver" onclick="volver()">Regresar</button>
+    </section>
+  </main>
+  </body>
+</html>
+
+<script>
+const preguntas = [
+  {
+    "pregunta": "¿Cuál es el valor decimal de 1/2?",
+    "opciones": ["0.25", "0.5", "1.5", "2"],
+    "correcta": 1,
+    "explicacion": "1 dividido entre 2 es 0.5."
+  },
+  {
+    "pregunta": "¿1/4 es igual a qué número decimal?",
+    "opciones": ["0.2", "0.4", "0.25", "0.5"],
+    "correcta": 2,
+    "explicacion": "1 dividido entre 4 es 0.25."
+  },
+  {
+    "pregunta": "¿Qué fracción es igual a 0.5?",
+    "opciones": ["1/2", "1/3", "1/4", "2/3"],
+    "correcta": 0,
+    "explicacion": "0.5 es igual a la mitad, que es 1/2."
+  },
+  {
+    "pregunta": "¿Cuál es el valor decimal de 3/4?",
+    "opciones": ["0.75", "0.6", "0.8", "0.25"],
+    "correcta": 0,
+    "explicacion": "3 dividido entre 4 es 0.75."
+  },
+  {
+    "pregunta": "¿Cuál de estas fracciones es igual a 0.1?",
+    "opciones": ["1/10", "1/5", "2/10", "1/2"],
+    "correcta": 0,
+    "explicacion": "1 dividido entre 10 es 0.1."
+  },
+  {
+    "pregunta": "¿Qué fracción representa el decimal 0.25?",
+    "opciones": ["1/4", "1/2", "1/3", "3/4"],
+    "correcta": 0,
+    "explicacion": "0.25 es igual a 1/4."
+  },
+  {
+    "pregunta": "¿0.75 es igual a qué fracción?",
+    "opciones": ["3/4", "1/4", "2/4", "1/2"],
+    "correcta": 0,
+    "explicacion": "3 dividido entre 4 es 0.75."
+  },
+  {
+    "pregunta": "¿Qué fracción es igual a 0.2?",
+    "opciones": ["1/2", "1/5", "1/4", "1/3"],
+    "correcta": 1,
+    "explicacion": "1 dividido entre 5 es 0.2."
+  },
+  {
+    "pregunta": "¿Cuál es el valor decimal de 2/5?",
+    "opciones": ["0.5", "0.4", "0.25", "0.2"],
+    "correcta": 1,
+    "explicacion": "2 dividido entre 5 es 0.4."
+  },
+  {
+    "pregunta": "¿Qué fracción es equivalente a 0.5?",
+    "opciones": ["2/4", "3/4", "1/5", "1/3"],
+    "correcta": 0,
+    "explicacion": "2/4 también es 0.5."
+  }
+];
+
+function obtenerPreguntasAleatorias(cantidad) {
+  const copia = [...preguntas];
+  const seleccionadas = [];
+  for (let i = 0; i < cantidad; i++) {
+    const index = Math.floor(Math.random() * copia.length);
+    seleccionadas.push(copia.splice(index, 1)[0]);
+  }
+  return seleccionadas;
+}
+
+let preguntasSeleccionadas = obtenerPreguntasAleatorias(5);
+let cola = [...preguntasSeleccionadas];
+let totalIntentos = 0;
+let aciertos = 0;
+let numeroPregunta = 1;
+
+function mostrarSiguientePregunta() {
+  const contenedor = document.getElementById("preguntaActual");
+  contenedor.innerHTML = "";
+
+  if (cola.length === 0) {
+    const porcentaje = Math.round((aciertos / totalIntentos) * 100);
+    document.getElementById("resultado-final").innerHTML = `
+      <div>
+        <h3>✅ Evaluación completada</h3>
+        <p>Intentos totales: ${totalIntentos}</p>
+        <p>Respuestas correctas: ${aciertos}</p>
+        <p><strong>Porcentaje de aciertos: ${porcentaje}%</strong></p>
+        <a href="/completar-tema" class="boton-finalizar">🏁 Finalizar evaluación</a>
+      </div>
+    `;
+    return;
+  }
+
+  const actual = cola[0];
+
+  const opcionesHTML = actual.opciones.map((op, i) => `
+    <div class="opcion" onclick="responder(${i})">${op}</div>
+  `).join('');
+
+  contenedor.innerHTML = `
+    <div>
+      <p><strong>Pregunta ${numeroPregunta} de 5:</strong> ${actual.pregunta}</p>
+      ${opcionesHTML}
+      <div id="retroActual" style="margin-top: 1rem;"></div>
+    </div>
+  `;
+}
+
+function responder(indiceSeleccionado) {
+  const actual = cola.shift();
+  const retroDiv = document.getElementById("retroActual");
+  totalIntentos++;
+
+  if (indiceSeleccionado === actual.correcta) {
+    aciertos++;
+    numeroPregunta++;
+    retroDiv.innerHTML = `<p style="color: green;">✅ ¡Correcto!</p>`;
+    setTimeout(mostrarSiguientePregunta, 800);
+  } else {
+    retroDiv.innerHTML = `
+      <p style="color: red;">❌ Incorrecto.</p>
+      <p><strong>Explicación:</strong> ${actual.explicacion}</p>
+    `;
+    cola.push(actual);
+    setTimeout(mostrarSiguientePregunta, 1800);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarSiguientePregunta();
+});
+</script>
+
+
+<style>
+
+@keyframes fondoAnimado {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.evaluacion {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+button, .boton-finalizar {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.8rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 0.3s ease;
+}
+
+button:hover, .boton-finalizar:hover {
+  background-color: #388e3c;
+}
+
+.boton-volver {
+  background-color: #ff9800;
+}
+
+.boton-volver:hover {
+  background-color: #f57c00;
+}
+
+.opcion {
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  background: #f1f1f1;
+  border-radius: 6px;
+  cursor: pointer;
+  max-width: 300px;
+}
+
+.opcion:hover {
+  background-color: #dce775;
+}
+</style>

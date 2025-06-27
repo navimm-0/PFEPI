@@ -1,0 +1,258 @@
+:root {
+  --naranja-logo: #f98e1c;
+  --azul-logo: #2aace3;
+  --verde-logo: #8bc34a;
+  --amarillo-logo: #fff3cd;
+  --gris-logo: #333;
+  --blanco: #fff;
+}
+
+body {
+  margin: 0;
+  font-family: var(--default-font);
+  background: linear-gradient(90deg, #65bddb, #f6db7b, #f1919f);
+  overflow-x: hidden;
+  color: var(--gris-logo);
+  position: relative;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+.hero .marca {
+  font-weight: bold;
+  display: inline;
+  white-space: nowrap;
+}
+
+.hero .marca span {
+  font-weight: bold;
+  display: inline;
+}
+
+.hero .marca .m {
+  color: var(--naranja-logo);
+}
+
+.hero .marca .a {
+  color: var(--cyan-logo);
+}
+
+.hero .marca .t {
+  color: #00bcd4;
+}
+
+.hero .marca .h {
+  color: var(--azul-logo);
+}
+
+.hero .marca .w {
+  color: #4dd0e1;
+}
+
+.hero .marca .a2 {
+  color: var(--amarillo-chuy);
+}
+
+.hero .marca .y {
+  color: var(--verde-logo);
+}
+
+/* Título principal */
+.chuy {
+  margin-top: 1.5rem; /* más arriba */
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background-color: #fffbe6; /* fondo claro estilo pastel */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chuy h1 {
+  font-size: 2.2rem;
+  color: var(--gris-logo);
+  margin: 0;
+}
+
+.chuy .marca {
+  display: inline-block;
+  background: linear-gradient(to right, var(--naranja-logo), var(--azul-logo));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+.step-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap; /* para hacerlo responsive */
+}
+
+.info-texto {
+  flex: 1 1 60%;
+}
+
+.imagen-lateral {
+  flex: 1 1 35%;
+  text-align: right;
+}
+
+.imagen-lateral img {
+  max-width: 120px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.steps .steps-wrapper {
+  position: relative;
+  padding: 20px 0;
+}
+
+.steps .steps-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 85%);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.steps .step-item {
+  margin-bottom: 50px;
+  width: 100%;
+  position: relative;
+}
+
+.steps .step-item:last-child {
+  margin-bottom: 0;
+}
+
+.steps .step-item:nth-child(even) .step-content {
+  flex-direction: row-reverse;
+}
+
+.steps .step-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.steps .step-icon {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  background-color: var(--surface-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+  transition: all 0.3s ease-in-out;
+}
+
+.steps .step-icon i {
+  font-size: 32px;
+  color: var(--accent-color);
+  transition: transform 0.3s ease-in-out;
+}
+
+.steps .step-info {
+  flex: 1;
+  background-color: var(--surface-color);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.steps .step-info:hover {
+  transform: translateY(-5px);
+}
+
+.steps .step-number {
+  display: inline-block;
+  font-family: var(--heading-font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.steps h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.steps p {
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .steps .steps-wrapper::before {
+    left: 25px;
+  }
+
+  .steps .step-item .step-content {
+    flex-direction: row !important;
+  }
+
+  .steps .step-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .steps .step-icon i {
+    font-size: 24px;
+  }
+
+  .steps .step-info {
+    padding: 20px;
+  }
+
+  .steps h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .steps .step-content {
+    gap: 20px;
+  }
+
+  .steps .step-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .steps .step-icon i {
+    font-size: 20px;
+  }
+
+  .steps .step-info {
+    padding: 15px;
+  }
+
+  .steps h3 {
+    font-size: 1.2rem;
+  }
+
+  .steps p {
+    font-size: 0.95rem;
+  }
+}
