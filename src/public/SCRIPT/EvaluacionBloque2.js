@@ -168,6 +168,7 @@ document.getElementById("formAvanzado").addEventListener("submit", function(e) {
           correctas >= 3 ? "👍 Buen intento. ¡Sigue practicando!" :
           "📘 Revisa el material extra para reforzar tus conocimientos."}</p>
       <button onclick="reintentar()">🔄 Reintentar Examen</button>
+      <button onclick="reintentar()">📊 Finalizar</button>
     </div>
   `;
 });
