@@ -288,6 +288,37 @@ BEGIN
     WHERE id_usuario = _id_usuario;
 END //
 
+CREATE PROCEDURE completar_evalua (
+    IN _id_usuario INT,
+    IN _id_tema INT
+)
+BEGIN
+    DECLARE _id_padre INT;
+
+    -- Insertar todos los temas anteriores
+    INSERT INTO Avance (id_usuario, id_tema, completado, fecha_completado)
+    SELECT _id_usuario, id_tema, TRUE, NOW()
+    FROM Tema
+    WHERE id_tema <= _id_tema
+    ON DUPLICATE KEY UPDATE completado = TRUE, fecha_completado = NOW();
+
+    -- Obtener el id_padre del tema recibido
+    SELECT id_padre INTO _id_padre
+    FROM Tema
+    WHERE id_tema = _id_tema;
+
+    -- Actualizar el campo ultimo_tema
+    UPDATE Usuario
+    SET ultimo_tema = _id_padre
+    WHERE id_usuario = _id_usuario;
+    
+    -- Actualizar primera_vez
+    UPDATE Usuario
+    SET primera_vez = false
+    WHERE id_usuario = _id_usuario;
+END //
+
+
 CREATE PROCEDURE obtener_lecciones_completadas (
     IN _id_usuario INT
 )
@@ -391,5 +422,23 @@ BEGIN
     SET porcentaje_avanzado = IF(total_avanzado = 0, 0, FLOOR((completado_avanzado * 100) / total_avanzado));
 END //
 
-
 DELIMITER ;
+
+-- Población de la base --
+UPDATE Tema
+SET video = TRUE
+WHERE id_tema = 31;
+
+INSERT INTO Usuario (id_usuario, nombre, username, correo, contrasena_hash, primera_vez, ultimo_tema)
+VALUES (100, 'Usuario Prueba', 'usuario100', 'usuario100@email.com', 'hash_prueba', FALSE, 6);
+
+INSERT INTO Avance (id_usuario, id_tema, completado, fecha_completado) VALUES
+(100, 2, TRUE, NOW()),
+(100, 3, TRUE, NOW()),
+(100, 4, TRUE, NOW()),
+(100, 7, TRUE, NOW()),
+(100, 8, TRUE, NOW()),
+(100, 26, TRUE, NOW()),
+(100, 27, TRUE, NOW()),
+(100, 28, TRUE, NOW()),
+(100, 29, TRUE, NOW()); -- Examen 6

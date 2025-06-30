@@ -51,18 +51,19 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="/inicio" class="active">Inicio</a></li>
-          <li><a href="/porcentaje-avance">Avance</a></li>
-          <li><a href="/temario">Temario</a></li>
-
           <% if (usuario) { %>
+            <li><a href="/inicio" class="active">Inicio</a></li>
+            <li><a href="/porcentaje-avance">Avance</a></li>
+            <li><a href="/temario">Temario</a></li>
             <li><a href="/ver-cuenta">Cuenta</a></li>
           <% } else { %>
+            <li><a class="disabled-link">Avance</a></li>
             <li><a href="/login">Guardar Progreso</a></li>
           <% } %>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+
 
       <!--
           <li><a href="/ver-cuenta">Cuenta</a></li>

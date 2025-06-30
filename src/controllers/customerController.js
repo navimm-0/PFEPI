@@ -190,6 +190,25 @@ controller.completarT = (req, res) => {
   });
 }
 
+controller.completarE = (req, res) => {
+  if (!req.session.usuario_id) {
+    return res.redirect('/login'); // si no ha iniciado sesión
+  }
+    const id = parseInt(req.params.id);
+    const user = req.session.usuario_id;
+  
+  req.getConnection((err, conn) => {
+    if (err) return res.status(500).send('Error de conexión');
+
+    conn.query('CALL completar_evalua(?,?)', [user, id], (err, result) => {
+      if (err) return res.status(500).send('Error al consultar usuario');
+
+      const datos = result[0];
+      return res.redirect('/login-exito'); // ir a temas
+    });
+  });
+}
+
 controller.valconel = (req, res) => {
   const user = req.session.usuario;
   const { password } = req.body;

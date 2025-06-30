@@ -157,6 +157,9 @@ document.getElementById("formAvanzado").addEventListener("submit", function(e) {
 
   const minutos = String(Math.floor(tiempo / 60)).padStart(2, "0");
   const segundos = String(tiempo % 60).padStart(2, "0");
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
 
   const resultado = document.getElementById("resultadoFinal");
   resultado.innerHTML = `
@@ -168,10 +171,11 @@ document.getElementById("formAvanzado").addEventListener("submit", function(e) {
           correctas >= 3 ? "👍 Buen intento. ¡Sigue practicando!" :
           "📘 Revisa el material extra para reforzar tus conocimientos."}</p>
       <button onclick="reintentar()">🔄 Reintentar Examen</button>
-      <button onclick="reintentar()">📊 Finalizar</button>
+      ${correctas >= 3 ? `<button onclick="window.location.href='/finalizar/${id}'">📊 Finalizar</button>` : ''}
     </div>
   `;
-});
+
+  });
 
 // =========================
 // 5. REINTENTAR EXAMEN

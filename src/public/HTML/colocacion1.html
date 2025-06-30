@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Evaluación Bloque 1</title>
+  <link rel="stylesheet" href="../CSS/barrageneral.css">
+  <link rel="stylesheet" href="../CSS/fondogeneral.css">
+  <link rel="stylesheet" href="../CSS/bootstrap-icons.css">
+  <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+</head>
+<body>
+<header id="header" class="header d-flex align-items-center fixed-top">
+  <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <div class="brand"><img src="../IMG/logo.png" alt="Math Way logo"></div>
+    </a>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="../index.html" class="active">Inicio</a></li>
+        <li><a href="avance.html">Avance</a></li>
+        <li><a href="#features">Temario</a></li>
+        <li><a href="#contact">Cuenta</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+    <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+  </div>
+</header>
+
+<section><br><br><br><br><br><br><br><br></section>
+<main class="evaluacion">
+  <section class="evaluacion">
+    <h2>Evaluación Nivel 1</h2>
+    <div id="preguntaActual"></div>
+    <div id="resultado-final" style="margin-top: 2rem;"></div>
+  </section>
+</main>
+</body>
+
+<script>
+const id = new URLSearchParams(window.location.search).get('id') || 1;
+
+const preguntas = [
+  {
+    pregunta: "¿Cuál es el número que sigue después del 99?",
+    opciones: ["100", "90", "101", "98"],
+    correcta: 0,
+    explicacion: "Después de 99 sigue el 100.",
+    id_tema: 2
+  },
+  {
+    pregunta: "¿Cuál es el valor posicional del número 4 en 342?",
+    opciones: ["Centena", "Decena", "Unidad", "Mil"],
+    correcta: 1,
+    explicacion: "El 4 está en la posición de las decenas.",
+    id_tema: 3
+  },
+  {
+    pregunta: "¿Cuál de los siguientes números es impar?",
+    opciones: ["2", "4", "6", "7"],
+    correcta: 3,
+    explicacion: "7 no puede dividirse en dos partes iguales, es impar.",
+    id_tema: 4
+  },
+  {
+    pregunta: "¿Cuánto es 38 + 47?",
+    opciones: ["85", "86", "75", "90"],
+    correcta: 1,
+    id_tema: 7,
+    explicacion: "38 + 47 = 85"
+  },
+  {
+    pregunta: "Juan tiene 6 canicas. Regala 2. ¿Cuántas le quedan?",
+    opciones: ["8", "4", "2", "6"],
+    correcta: 1,
+    id_tema: 8,
+    explicacion: "6 - 2 = 4"
+  },
+  {
+    pregunta: "¿Cuántas veces se repite el número 5 en 5 + 5 + 5?",
+    opciones: ["2", "4", "3", "5"],
+    correcta: 2,
+    id_tema: 9,
+    explicacion: "Se repite 3 veces: 5 + 5 + 5"
+  },
+  {
+    pregunta: "¿Cuánto es 3 x 4?",
+    opciones: ["7", "12", "9", "15"],
+    correcta: 1,
+    id_tema: 10,
+    explicacion: "3 x 4 = 12"
+  },
+  {
+    pregunta: "¿Cuál es la unidad más pequeña?",
+    opciones: ["Metro", "Kilómetro", "Centímetro", "Milímetro"],
+    correcta: 3,
+    id_tema: 13,
+    explicacion: "El milímetro es más pequeño que el centímetro."
+  },
+  {
+    pregunta: "¿Cuál reloj muestra media hora?",
+    opciones: ["12:30", "3:00", "1:15", "4:45"],
+    correcta: 0,
+    id_tema: 14,
+    explicacion: "Media hora es por ejemplo 12:30."
+  },
+  {
+    pregunta: "¿Cuál es una unidad de peso?",
+    opciones: ["Litro", "Metro", "Kilogramo", "Segundo"],
+    correcta: 2,
+    id_tema: 15,
+    explicacion: "El kilogramo es unidad de peso."
+  },
+  {
+    pregunta: "¿Cuál es una figura con 4 lados iguales?",
+    opciones: ["Triángulo", "Círculo", "Cuadrado", "Rombo"],
+    correcta: 2,
+    id_tema: 17,
+    explicacion: "El cuadrado tiene 4 lados iguales."
+  },
+  {
+    pregunta: "Si estás de frente, ¿a qué lado queda tu mano derecha?",
+    opciones: ["Izquierda", "Atrás", "Derecha", "Arriba"],
+    correcta: 2,
+    id_tema: 18,
+    explicacion: "La mano derecha está al lado derecho."
+  },
+  {
+    pregunta: "¿Cuál es un ejemplo de recolección de datos?",
+    opciones: ["Sumar 2+2", "Contar cuántos niños hay en clase", "Multiplicar", "Dibujar"],
+    correcta: 1,
+    id_tema: 19,
+    explicacion: "Contar niños es recolección de datos."
+  },
+  {
+    pregunta: "Según el pictograma, ¿qué fruta se vende más si hay más manzanas dibujadas?",
+    opciones: ["Plátano", "Manzana", "Naranja", "Pera"],
+    correcta: 1,
+    id_tema: 22,
+    explicacion: "El pictograma muestra más manzanas."
+  },
+  {
+    pregunta: "¿Qué debes hacer si terminas todos los ejercicios correctamente?",
+    opciones: ["Esperar", "Salir", "Volver a empezar", "Guardar progreso"],
+    correcta: 3,
+    id_tema: 23,
+    explicacion: "¡Recuerda guardar tu progreso!"
+  }
+];
+
+let cola = [...preguntas];
+let totalIntentos = 0;
+let aciertos = 0;
+let numeroPregunta = 1;
+let ultimoIdCorrecto = null;
+
+function mostrarSiguientePregunta() {
+  const contenedor = document.getElementById("preguntaActual");
+  const resultadoFinal = document.getElementById("resultado-final");
+  contenedor.innerHTML = "";
+  resultadoFinal.innerHTML = "";
+
+  if (cola.length === 0) {
+    resultadoFinal.innerHTML = `
+      <div>
+        <h3>✅ Evaluación completada</h3>
+        <p>Intentos totales: ${totalIntentos}</p>
+        <p>Respuestas correctas: ${aciertos}</p>
+        <p><strong>Porcentaje de aciertos: ${Math.round((aciertos / totalIntentos) * 100)}%</strong></p>
+        <p>Gracias por responder este examen.</p>
+        <a href="/temas/${ultimoIdCorrecto}" class="boton-finalizar">📚 Ir a temas</a>
+      </div>
+    `;
+    return;
+  }
+
+  const actual = cola[0];
+  const opcionesHTML = actual.opciones.map((op, i) => `
+    <div class="opcion" onclick="responder(${i})">${op}</div>
+  `).join('');
+
+  contenedor.innerHTML = `
+    <div>
+      <p><strong>Pregunta ${numeroPregunta} de ${preguntas.length}:</strong> ${actual.pregunta}</p>
+      ${opcionesHTML}
+      <div id="retroActual" style="margin-top: 1rem;"></div>
+    </div>
+  `;
+}
+
+function responder(indiceSeleccionado) {
+  const actual = cola.shift();
+  const retroDiv = document.getElementById("retroActual");
+  totalIntentos++;
+
+  if (indiceSeleccionado === actual.correcta) {
+    aciertos++;
+    numeroPregunta++;
+    ultimoIdCorrecto = actual.id_tema; // Guardamos el id del tema asociado a la respuesta correcta
+    retroDiv.innerHTML = `<p style="color: green;">✅ ¡Correcto!</p>`;
+    setTimeout(mostrarSiguientePregunta, 800);
+  } else {
+    retroDiv.innerHTML = `
+      <p style="color: red;">❌ Incorrecto.</p>
+      <p><strong>Explicación:</strong> ${actual.explicacion}</p>
+      <p>Gracias por responder este examen.</p>
+      <a href="/colocar/${ultimoIdCorrecto}" class="boton-finalizar">📚 Ir a temas</a>
+    `;
+    cola = []; // Detenemos la evaluación
+  }
+}
+
+document.addEventListener("DOMContentLoaded", mostrarSiguientePregunta);
+</script>
+
+<style>
+.evaluacion {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+button, .boton-finalizar {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.8rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 0.3s ease;
+}
+
+.opcion {
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  background: #f1f1f1;
+  border-radius: 6px;
+  cursor: pointer;
+  max-width: 300px;
+  text-align: center;
+}
+
+.opcion:hover {
+  background-color: #dce775;
+}
+</style>

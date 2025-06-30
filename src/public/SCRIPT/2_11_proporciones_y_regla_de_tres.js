@@ -27,6 +27,7 @@ function confeti() {
   canvas.style.width = "100%";
   canvas.style.height = "100%";
   canvas.style.zIndex = "1000";
+  canvas.style.pointerEvents = "none"; // ← Esto evita que bloquee los clics
   document.body.appendChild(canvas);
 
   const jsConfetti = new JSConfetti({ canvas });
@@ -36,3 +37,11 @@ function confeti() {
     canvas.remove();
   }, 3000);
 }
+
+const params = new URLSearchParams(window.location.search);
+  const id = params.get("id"); // por ejemplo, de "?id=7"
+
+  if (id) {
+    const btn = document.getElementById("btnEjercicios");
+    btn.href = `/ver-ejercicios/${id}`;
+  }

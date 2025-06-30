@@ -22,37 +22,45 @@
           <h2><%= t.numero %> <%= t.titulo %></h2>
           <div class="tarjetas">
 
-            <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-tema/<%= t.id_tema %>">
-              <div class="icono bi bi-journal-text"></div>
-              <div class="texto">Teoría</div>
-              <span class="etiqueta">APRENDER</span>
-            </a>
-
-          <% if (t.video) { %>
-            <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-video/<%= t.id_tema %>">
-              <div class="icono bi bi-camera-video"></div>
-              <div class="texto">Video</div>
-              <span class="etiqueta">VER</span>
-            </a>
-          <% } %>
-
-            <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-ejercicios/<%= t.id_tema %>">
-              <div class="icono bi bi-pencil-square"></div>
-              <div class="texto">Ejercicios</div>
-              <span class="etiqueta">PRACTICAR</span>
-            </a>
-
-            <% if (t.completado) { %>
-              <a class="tarjeta">
-              <div class="icono bi">
-                <% if (t.imagen_url) { %>
-                  <img src="<%= t.imagen_url %>" alt="Imagen del tema" class="imagen-completado">
-                <% } %>
-              </div>
-              <span class="etiqueta">TEMA COMPLETADO</span>
+            <% if (t.numero.startsWith('Ex')) { %>
+              <a class="tarjeta examen <%= !t.completado ? 'incompleto' : '' %>" href="/ver-examen/<%= t.id_tema %>">
+                <div class="icono bi bi-clipboard-check"></div>
+                <div class="texto">Examen</div>
+                <span class="etiqueta">EVALUACIÓN</span>
               </a>
-            <% } %>
+            <% } else { %>
 
+                <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-tema/<%= t.id_tema %>">
+                  <div class="icono bi bi-journal-text"></div>
+                  <div class="texto">Teoría</div>
+                  <span class="etiqueta">APRENDER</span>
+                </a>
+
+              <% if (t.video) { %>
+                <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-video/<%= t.id_tema %>">
+                  <div class="icono bi bi-camera-video"></div>
+                  <div class="texto">Video</div>
+                  <span class="etiqueta">VER</span>
+                </a>
+              <% } %>
+
+                <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-ejercicios/<%= t.id_tema %>">
+                  <div class="icono bi bi-pencil-square"></div>
+                  <div class="texto">Ejercicios</div>
+                  <span class="etiqueta">PRACTICAR</span>
+                </a>
+
+                <% if (t.completado) { %>
+                  <a class="tarjeta">
+                  <div class="icono bi">
+                    <% if (t.imagen_url) { %>
+                      <img src="<%= t.imagen_url %>" alt="Imagen del tema" class="imagen-completado">
+                    <% } %>
+                  </div>
+                  <span class="etiqueta">TEMA COMPLETADO</span>
+                  </a>
+                <% } %>
+              <% } %>
           </div>
         </div>
       <% }) %>

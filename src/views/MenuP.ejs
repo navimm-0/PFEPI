@@ -12,17 +12,25 @@
 
       <!-- Filtros -->
       <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="200">
-        <li data-filter="*" class="filter-active">
-          <i class="bi bi-grid-3x3"></i> Todos
+        <li data-filter="*" class="<%= !nivel ? 'filter-active' : '' %>">
+          <a href="/obtener-lecciones">
+            <i class="bi bi-grid-3x3"></i> Todos
+          </a>
         </li>
-        <li data-filter=".filter-básico">
-          <i class="bi bi-pencil"></i> Básico
+        <li data-filter=".filter-básico" class="<%= nivel === 'básico' ? 'filter-active' : '' %>">
+          <a href="/obtener-lecciones/básico">
+            <i class="bi bi-pencil"></i> Básico
+          </a>
         </li>
-        <li data-filter=".filter-intermedio">
-          <i class="bi bi-bar-chart"></i> Intermedio
+        <li data-filter=".filter-intermedio" class="<%= nivel === 'intermedio' ? 'filter-active' : '' %>">
+          <a href="/obtener-lecciones/intermedio">
+            <i class="bi bi-bar-chart"></i> Intermedio
+          </a>
         </li>
-        <li data-filter=".filter-avanzado">
-          <i class="bi bi-layers"></i> Avanzado
+        <li data-filter=".filter-avanzado" class="<%= nivel === 'avanzado' ? 'filter-active' : '' %>">
+          <a href="/obtener-lecciones/avanzado">
+            <i class="bi bi-layers"></i> Avanzado
+          </a>
         </li>
       </ul>
 
@@ -38,7 +46,7 @@
                   onerror="this.src='/img/10obreros.png'">
                 <div class="entry-overlay">
                   <div class="overlay-content">
-                    <div class="entry-meta"><%= t.nombre_padre %></div>
+                    <div class="entry-meta"><%= t.numero_padre %>. <%= t.nombre_padre %></div>
                     <h3 class="entry-title"><%= t.numero %>. <%= t.titulo %></h3>
                     <div class="entry-links">
                       <a href="/ver-tema/<%= t.id_tema %>" class="glightbox"
@@ -61,8 +69,10 @@
   </div><!-- End container-fluid -->
 </section>
 <div class="volver">
-    <button class="boton-volver" onclick="volver()">🔙 Volver</button>
-  </div>
+  <button class="boton-volver" onclick="window.location.href='/porcentaje-avance'">🔙 Volver</button>
+</div>
+
+
 
 
 <style>
@@ -88,6 +98,11 @@
 
   .gris:hover {
     filter: grayscale(50%);
+  }
+
+  .portfolio-filters .filter-active a,
+  .portfolio-filters li.filter-active a {
+    color: #ffffff; /* texto azul */
   }
   
 .portfolio .portfolio-filters {

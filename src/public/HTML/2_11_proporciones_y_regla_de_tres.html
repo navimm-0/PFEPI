@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mathway - Proporciones y Regla de Tres</title>
-  <link rel="stylesheet" href="../CSS/barrageneral.css" />
   <link rel="stylesheet" href="../CSS/barrageneral.css">
   <link rel="stylesheet" href="../CSS/fondogeneral.css">
   <link rel="stylesheet" href="../CSS/2_6_fracciones_suma_resta.css">
@@ -18,6 +17,9 @@
   <link href="../CSS/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <!-- Fondo animado de estrellas -->
+  <canvas id="stars-bg"></canvas>
+
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div
       class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -43,13 +45,13 @@
 
     </div>
   </header>
-
-  <div class="header-sec">
+  <!-- Contenido principal -->
+  <main>
+  <div class="chuy">
     <h1>¡Bienvenido a Proporciones y Regla de Tres!</h1>
     <p>Aprende a resolver problemas usando comparaciones mágicas ✨📏</p>
   </div>
 
-  <main>
     <section class="tema" id="que-son">
       <h2>📏 ¿Qué son las proporciones?</h2>
       <p>
@@ -104,7 +106,7 @@
     </section>
 
     <button onclick="volver()">🔙 Volver</button>
-    <a href="../HTML/2_11_proporciones_y_regla_de_tres_ejercicio_1.html" class="boton-evaluacion">📝 Realizar ejercicios</a>
+    <a id="btnEjercicios" href="#" class="boton-evaluacion">Realizar Ejercicios 📝</a>
   </main>
 
   <script src="../SCRIPT/2_11_proporciones_y_regla_de_tres.js"></script>
