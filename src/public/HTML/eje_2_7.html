@@ -50,7 +50,6 @@
     <h2>Ejercicios de Fracciones y Decimales</h2>
     <div id="preguntaActual"></div>
     <div id="resultado-final" style="margin-top: 2rem;"></div>
-    <button class="boton-volver" onclick="volver()">Regresar</button>
     </section>
   </main>
   </body>
@@ -141,6 +140,7 @@ function mostrarSiguientePregunta() {
   contenedor.innerHTML = "";
 
   if (cola.length === 0) {
+    const id = new URLSearchParams(window.location.search).get('id');
     const porcentaje = Math.round((aciertos / totalIntentos) * 100);
     document.getElementById("resultado-final").innerHTML = `
       <div>
@@ -148,7 +148,7 @@ function mostrarSiguientePregunta() {
         <p>Intentos totales: ${totalIntentos}</p>
         <p>Respuestas correctas: ${aciertos}</p>
         <p><strong>Porcentaje de aciertos: ${porcentaje}%</strong></p>
-        <a href="/completar-tema" class="boton-finalizar">🏁 Finalizar evaluación</a>
+        <a href="/finalizar/${id}" class="boton-finalizar">🏁 Finalizar evaluación</a>
       </div>
     `;
     return;

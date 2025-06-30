@@ -16,6 +16,7 @@ router.get('/validar-correo', customerController.valcor);
 router.post('/validar-contra', customerController.valcon);
 router.get('/ver-cuenta', customerController.cuenta);
 router.post('/validar-contrel', customerController.valconel);
+router.get('/finalizar/:id', customerController.completarT);
 //router.get('/cambiar-contra', customerController.changePass);
 
 module.exports = router;

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Concepto de Fracciones</title>
+  <link rel="stylesheet" href="../CSS/barrageneral.css">
+  <link rel="stylesheet" href="../CSS/fondogeneral.css">
+  <link rel="stylesheet" href="../CSS/2_4_fracciones.css">
+  <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Fondo animado -->
+  <canvas id="stars-bg"></canvas>
+
+  <!-- Header con barra de búsqueda -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div
+      class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html" class="active">Inicio</a></li>
+          <li><a href="avance.html">Avance</a></li>
+          <li><a href="#features">Temario</a></li>
+          <li><a href="#contact">Cuenta</a></li>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+
+    </div>
+  </header>
+
+<main>
+  <section class="chuy">
+    <h1>¡Aprende a Contar del 1 al 100!</h1>
+    <p>Vamos a subir una escalera de números juntos 🚶‍♂️🔢</p>
+  </section>
+
+  <section class="tema" id="introduccion-conteo">
+    <h2>👣 Paso a paso</h2>
+    <p>
+      Contar es como dar pasos en una escalera. Empezamos en el <strong>1</strong> y subimos uno por uno.
+    </p>
+    <p>
+      Cada número es un amigo nuevo que vamos a conocer. ¿Listo para empezar?
+    </p>
+  </section>
+
+  <section class="tema" id="tabla-voz">
+  <h2>🗣️ Escucha y Aprende los Números</h2>
+  <p>Haz clic en un número para escucharlo en voz alta.</p>
+  <div id="tablaNumeros" class="tabla-numeros"></div>
+  </section>
+
+  <section class="tema" id="visual-contar">
+    <h2>🧱 Contemos juntos</h2>
+    <p>Haz clic en el botón para contar hasta 100 uno por uno.</p>
+    <div class="interactivo">
+      <button onclick="contar()">Contar uno más</button>
+      <div id="contador" style="font-size: 2rem; margin-top: 1rem;">0</div>
+      <div id="lista-numeros" style="margin-top: 1rem; max-height: 200px; overflow-y: auto;"></div>
+    </div>
+  </section>
+
+  <section class="tema" id="conteo-decenas">
+    <h2>🔟 Cuenta de 10 en 10</h2>
+    <p>Ahora probemos con decenas: 10, 20, 30...</p>
+    <div class="interactivo">
+      <button onclick="contarDecenas()">Contar por decenas</button>
+      <div id="decenas" style="font-size: 2rem; margin-top: 1rem;">0</div>
+    </div>
+  </section>
+
+  <section class="tema" id="practica">
+  <h2>🎯 ¡Practica y Aprende a Escribir Números!</h2>
+  <p>Escribe un número del 1 al 100. Te diremos si está bien, y cómo se escribe con letras.</p>
+  <div class="interactivo">
+    <label for="inputNumero">Escribe un número:</label>
+    <input type="number" id="inputNumero" placeholder="Ej. 37" min="1" max="100" />
+    <button onclick="verificarNumero()">Verificar</button>
+    <div id="respuestaNumero" style="margin-top: 0.5rem;"></div>
+    <div id="numeroLetra" style="margin-top: 1rem; font-size: 1.3rem; font-weight: bold; color: #0099ff;"></div>
+  </div>
+</section>
+<a id="btnEjercicios" href="#" class="boton-evaluacion">Ir a los Ejercicios 📝</a>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id"); // por ejemplo, de "?id=7"
+
+  if (id) {
+    const btn = document.getElementById("btnEjercicios");
+    btn.href = `/ver-ejercicios/${id}`;
+  }
+
+let numero = 0;
+function contar() {
+  if (numero < 100) {
+    numero++;
+    document.getElementById('contador').textContent = numero;
+    const lista = document.getElementById('lista-numeros');
+    const nuevo = document.createElement('div');
+    nuevo.textContent = numero;
+    lista.appendChild(nuevo);
+  }
+}
+
+function hablar(texto) {
+  const voz = new SpeechSynthesisUtterance(texto);
+  voz.lang = "es-ES";
+  speechSynthesis.speak(voz);
+}
+
+let decena = 0;
+function contarDecenas() {
+  if (decena < 100) {
+    decena += 10;
+    document.getElementById('decenas').textContent = decena;
+  }
+}
+
+const numerosALetras = [
+  '', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve',
+  'diez', 'once', 'doce', 'trece', 'catorce', 'quince', 'dieciséis', 'diecisiete', 'dieciocho', 'diecinueve',
+  'veinte', 'veintiuno', 'veintidós', 'veintitrés', 'veinticuatro', 'veinticinco', 'veintiséis', 'veintisiete',
+  'veintiocho', 'veintinueve', 'treinta', 'treinta y uno', 'treinta y dos', 'treinta y tres', 'treinta y cuatro',
+  'treinta y cinco', 'treinta y seis', 'treinta y siete', 'treinta y ocho', 'treinta y nueve',
+  'cuarenta', 'cuarenta y uno', 'cuarenta y dos', 'cuarenta y tres', 'cuarenta y cuatro', 'cuarenta y cinco',
+  'cuarenta y seis', 'cuarenta y siete', 'cuarenta y ocho', 'cuarenta y nueve',
+  'cincuenta', 'cincuenta y uno', 'cincuenta y dos', 'cincuenta y tres', 'cincuenta y cuatro',
+  'cincuenta y cinco', 'cincuenta y seis', 'cincuenta y siete', 'cincuenta y ocho', 'cincuenta y nueve',
+  'sesenta', 'sesenta y uno', 'sesenta y dos', 'sesenta y tres', 'sesenta y cuatro',
+  'sesenta y cinco', 'sesenta y seis', 'sesenta y siete', 'sesenta y ocho', 'sesenta y nueve',
+  'setenta', 'setenta y uno', 'setenta y dos', 'setenta y tres', 'setenta y cuatro',
+  'setenta y cinco', 'setenta y seis', 'setenta y siete', 'setenta y ocho', 'setenta y nueve',
+  'ochenta', 'ochenta y uno', 'ochenta y dos', 'ochenta y tres', 'ochenta y cuatro',
+  'ochenta y cinco', 'ochenta y seis', 'ochenta y siete', 'ochenta y ocho', 'ochenta y nueve',
+  'noventa', 'noventa y uno', 'noventa y dos', 'noventa y tres', 'noventa y cuatro',
+  'noventa y cinco', 'noventa y seis', 'noventa y siete', 'noventa y ocho', 'noventa y nueve',
+  'cien'
+];
+
+function verificarNumero() {
+  const valor = parseInt(document.getElementById('inputNumero').value);
+  const respuesta = document.getElementById('respuestaNumero');
+  const letra = document.getElementById('numeroLetra');
+
+  if (valor >= 1 && valor <= 100) {
+    respuesta.textContent = `✅ El número ${valor} es correcto.`;
+    respuesta.style.color = 'green';
+    letra.textContent = `Se escribe: "${numerosALetras[valor]}"`;
+  } else {
+    respuesta.textContent = 'Ese número no está entre 1 y 100.';
+    respuesta.style.color = 'red';
+    letra.textContent = '';
+  }
+}
+
+// ✅ Función que genera la tabla correctamente
+function crearTabla() {
+  const tabla = document.getElementById("tablaNumeros");
+  for (let i = 1; i <= 100; i++) {
+    const celda = document.createElement("div");
+    celda.textContent = i;
+    celda.onclick = () => leerNumero(i);
+    tabla.appendChild(celda);
+  }
+}
+
+function leerNumero(n) {
+  const texto = numerosALetras[n];
+  const mensaje = new SpeechSynthesisUtterance(texto);
+  mensaje.lang = "es-ES";
+  window.speechSynthesis.speak(mensaje);
+}
+
+// ✅ Ejecutar al cargar la página
+window.onload = function () {
+  crearTabla(); // Mostrar la tabla
+
+    window.speechSynthesis.cancel(); // Limpia la cola
+
+  // Texto a leer
+  const textoIntro = `
+    ¡Aprende a contar del uno al cien!
+    Vamos a subir una escalera de números juntos.
+
+    Paso a paso.
+    Contar es como dar pasos en una escalera. Empezamos en el uno y subimos uno por uno.
+    Cada número es un amigo nuevo que vamos a conocer. ¿Listo para empezar?
+
+    Escucha y aprende los números.
+    Haz clic en un número para escucharlo en voz alta.
+  `;
+
+  // Crear el mensaje
+  const mensaje = new SpeechSynthesisUtterance(textoIntro);
+  mensaje.lang = "es-ES";
+  mensaje.rate = 1.1; // un poco más lento para niños
+  mensaje.pitch = 1.1; // tono un poco más agudo y amable
+
+   // ✅ Evitar múltiples repeticiones
+  mensaje.onend = function () {
+    // Cuando termina, limpiamos nuevamente por seguridad
+    window.speechSynthesis.cancel();
+  };
+
+  // Reproducir
+  window.speechSynthesis.speak(mensaje);
+};
+</script>
+
+<style>
+  #numeroLetra {
+  text-transform: capitalize;
+  background-color: #eaf4ff;
+  padding: 0.7rem;
+  border-left: 5px solid #0099ff;
+  border-radius: 5px;
+  margin-top: 0.8rem;
+}
+.tabla-numeros {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0.5rem;
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 10px;
+}
+
+.tabla-numeros div {
+  background-color: #e0f7fa;
+  padding: 0.6rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tabla-numeros div:hover {
+  background-color: #b2ebf2;
+  transform: scale(1.1);
+}
+</style>

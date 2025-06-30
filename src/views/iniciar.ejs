@@ -1,44 +1,96 @@
 <%- include('partials/_header') %>
-<section class="chuy">
-  <h1><%= titulo_padre %>: Elige un <span class="marca">
-    <span class="m">T</span><span class="a">e</span><span class="t">m</span><span class="h">a</span>
-  </span> para resolver problemas</h1>
-</section>
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <link rel="stylesheet" href="../CSS/menuP_ejercicios.css" />
 
-<section class="zona-caminos">
-  <section class="camino-temas">
-    <% temas.forEach(t => { %>
-      <div class="tema">
-        <h2><%= t.numero %> <%= t.titulo %></h2>
-        <div class="tarjetas">
+  <canvas id="stars-bg"></canvas>
 
-          <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-tema/<%= t.id_tema %>">
-            <div class="icono bi bi-journal-text"></div>
-            <div class="texto">Teoría</div>
-            <span class="etiqueta">APRENDE</span>
-          </a>
+<main>
+  <div class="contenedor-btn-regresar">
+      <a href="/unidades" class="btn-regresar">← Ir a Unidades</a>
+  </div>
 
-          <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-video/<%= t.id_tema %>">
-            <div class="icono bi bi-camera-video"></div>
-            <div class="texto">Video</div>
-            <span class="etiqueta">PRACTICA</span>
-          </a>
-
-          <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-ejercicios/<%= t.id_tema %>">
-            <div class="icono bi bi-pencil-square"></div>
-            <div class="texto">Ejercicios</div>
-            <span class="etiqueta">PRACTICA</span>
-          </a>
-
-        </div>
-      </div>
-    <% }) %>
+  <section class="chuy">
+    <h1><%= num_padre %>. <%= titulo_padre %> <br> Elige un <span class="marca">
+      <span class="m">T</span><span class="a">e</span><span class="t">m</span><span class="h">a</span>
+    </span> para explorar</h1>
   </section>
-</section>
+
+  <section class="zona-caminos">
+    <section class="camino-temas">
+      <% temas.forEach(t => { %>
+        <div class="tema">
+          <h2><%= t.numero %> <%= t.titulo %></h2>
+          <div class="tarjetas">
+
+            <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-tema/<%= t.id_tema %>">
+              <div class="icono bi bi-journal-text"></div>
+              <div class="texto">Teoría</div>
+              <span class="etiqueta">APRENDER</span>
+            </a>
+
+          <% if (t.video) { %>
+            <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-video/<%= t.id_tema %>">
+              <div class="icono bi bi-camera-video"></div>
+              <div class="texto">Video</div>
+              <span class="etiqueta">VER</span>
+            </a>
+          <% } %>
+
+            <a class="tarjeta <%= !t.completado ? 'incompleto' : '' %>" href="/ver-ejercicios/<%= t.id_tema %>">
+              <div class="icono bi bi-pencil-square"></div>
+              <div class="texto">Ejercicios</div>
+              <span class="etiqueta">PRACTICAR</span>
+            </a>
+
+            <% if (t.completado) { %>
+              <a class="tarjeta">
+              <div class="icono bi">
+                <% if (t.imagen_url) { %>
+                  <img src="<%= t.imagen_url %>" alt="Imagen del tema" class="imagen-completado">
+                <% } %>
+              </div>
+              <span class="etiqueta">TEMA COMPLETADO</span>
+              </a>
+            <% } %>
+
+          </div>
+        </div>
+      <% }) %>
+    </section>
+  </section>
+</main>
 
 <style>
     .tarjeta.incompleto {
-    filter: grayscale(100%);
-    opaci
+  filter: grayscale(100%);
+  opacity: 0.6;
+  }
+
+  .tema-completado {
+    background-color: #e8f5e9;
+    border-left: 5px solid #4caf50;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: #2e7d32;
+  }
+
+  .tarjeta {
+    position: relative;
+    width: 200px; /* o el ancho que uses */
+    height: 138px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .tarjeta .imagen-completado {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* recorta proporcionalmente para que encaje */
+    border-radius: 8px;
+    display: block;
+  }
 </style>
 <%- include('partials/_footer') %>

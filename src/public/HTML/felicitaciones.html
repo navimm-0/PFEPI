@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Buen trabajo!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #f8bbd0, #c39bd3, #aed6f1);
+      background-size: 400% 400%;
+      animation: fondoAnimado 20s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      color: #4caf50;
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .boton {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .boton:hover {
+      background-color: #388e3c;
+    }
+
+    @keyframes fondoAnimado {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .confeti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ffeb3b;
+      animation: caer 3s linear infinite;
+    }
+
+    @keyframes caer {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>🎉 ¡Buen trabajo!</h1>
+  <p>Has completado los ejercicios con éxito.</p>
+
+  <a href="/inicio" class="boton">Ver otros temas</a>
+
+  <!-- Confeti -->
+  <script>
+    for (let i = 0; i < 100; i++) {
+      const confeti = document.createElement('div');
+      confeti.className = 'confeti';
+      confeti.style.left = Math.random() * 100 + 'vw';
+      confeti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      confeti.style.backgroundColor = ['#f44336', '#ffeb3b', '#4caf50', '#2196f3'][Math.floor(Math.random() * 4)];
+      document.body.appendChild(confeti);
+    }
+  </script>
+
+</body>
+</html>

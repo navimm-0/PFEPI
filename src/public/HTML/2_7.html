@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mathway - Decimales y Fracciones</title>
+
+  <!-- Hojas de estilo -->
+  <link rel="stylesheet" href="../CSS/barrageneral.css">
+  <link rel="stylesheet" href="../CSS/fondogeneral.css">
+  <link rel="stylesheet" href="../CSS/2_7_introduccion_decimales.css">
+
+  <link href="../IMG/favicon.png" rel="icon">
+  <link href="../IMG/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Inter&family=Nunito&display=swap" rel="stylesheet">
+  <link href="../CSS/bootstrap-icons.css" rel="stylesheet">
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header con navegación -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <div class="brand">
+          <img src="../IMG/logo.png" alt="Math Way logo">
+        </div>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="../index.html" class="active">Inicio</a></li>
+          <li><a href="avance.html">Avance</a></li>
+          <li><a href="#features">Temario</a></li>
+          <li><a href="#contact">Cuenta</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+      <a class="btn-getstarted" href="index.html#about">Guardar Progreso</a>
+    </div>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <div class="chuy">
+      <h1>¡Bienvenido al mundo de los decimales!</h1>
+      <p>Descubre cómo los decimales y las fracciones están conectados 🔢✨</p>
+    </div>
+
+    <section class="tema" id="que-es-un-decimal">
+      <h2>📌 ¿Qué es un número decimal?</h2>
+      <p>
+        Un <strong>número decimal</strong> representa una parte de un todo, ¡igual que las fracciones! Se escribe con una <strong>coma o punto</strong>.
+        Por ejemplo: <strong>0.5</strong> representa <strong>la mitad</strong>.
+      </p>
+    </section>
+
+    <section class="tema" id="relacion-fraccion-decimal">
+      <h2>🔁 Relación entre fracciones y decimales</h2>
+      <p>
+        Puedes <strong>convertir fracciones en decimales</strong> dividiendo el numerador entre el denominador.
+      </p>
+      <div class="ejemplo">
+        <p><strong>1/2 = 1 ÷ 2 = 0.5</strong></p>
+        <p><strong>3/4 = 3 ÷ 4 = 0.75</strong></p>
+        <p><strong>1/10 = 1 ÷ 10 = 0.1</strong></p>
+      </div>
+    </section>
+
+    <section class="tema" id="ejemplo-visual">
+      <h2>🍰 Fracciones y decimales visuales</h2>
+      <p>Observa esta fracción: <strong>1/4</strong>. ¿Sabías que también se escribe como <strong>0.25</strong>?</p>
+      <div class="imagenes-galletas">
+        <div class="item"><img src="../IMG/frac_1_4.gif" alt="1/4 representado gráficamente" /></div>
+        <span class="signo">=</span>
+        <p><strong>0.25</strong></p>
+      </div>
+    </section>
+
+    <section class="tema" id="interactivo-decimales">
+      <h2>🧮 Convierte una fracción en decimal</h2>
+      <p>Escribe una fracción y observa su valor decimal.</p>
+
+      <div class="interactivo">
+        <label for="numerador">Numerador:</label>
+        <input type="number" id="numerador" placeholder="Ej. 1" />
+        <label for="denominador">Denominador:</label>
+        <input type="number" id="denominador" placeholder="Ej. 4" />
+        <div style="margin-top: 1rem;">
+          <button onclick="convertirADecimal()">Convertir</button>
+        </div>
+        <div id="resultadoDecimal"></div>
+      </div>
+    </section>
+
+    <button class="boton-volver" onclick="volver()">🔙 Volver</button>
+    <a id="btnEjercicios" href="#" class="boton-evaluacion">Ir a los Ejercicios 📝</a>
+  </main>
+
+  <script src="../SCRIPT/2_7_introduccion_decimales.js"></script>
+</body>
+</html>

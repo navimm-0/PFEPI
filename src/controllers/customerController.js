@@ -142,7 +142,7 @@ controller.iniciar = (req, res) => {
     return res.redirect('/'); // si no ha iniciado sesión
   }
 
-  res.redirect('/ver-cuenta');
+  res.redirect('/inicio');
 };
 
 controller.cuenta = (req, res) => {
@@ -170,6 +170,25 @@ controller.cuenta = (req, res) => {
     });
   });
 };
+
+controller.completarT = (req, res) => {
+  if (!req.session.usuario_id) {
+    return res.redirect('/login'); // si no ha iniciado sesión
+  }
+    const id = parseInt(req.params.id);
+    const user = req.session.usuario_id;
+  
+  req.getConnection((err, conn) => {
+    if (err) return res.status(500).send('Error de conexión');
+
+    conn.query('CALL completar_tema(?,?)', [user, id], (err, result) => {
+      if (err) return res.status(500).send('Error al consultar usuario');
+
+      const datos = result[0];
+      res.redirect('/html/felicitaciones.html'); // Renderizar EJS con los datos del usuario
+    });
+  });
+}
 
 controller.valconel = (req, res) => {
   const user = req.session.usuario;

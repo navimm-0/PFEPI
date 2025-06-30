@@ -13,6 +13,8 @@ CREATE TABLE Usuario (
     ultima_sesion DATETIME DEFAULT NULL,
 	tiempo_total_actividad INT DEFAULT 0
 );
+ALTER TABLE Usuario ADD COLUMN primera_vez BOOLEAN DEFAULT TRUE;
+ALTER TABLE Usuario ADD COLUMN ultimo_tema INT DEFAULT 1;
 
 -- Tabla de temas
 CREATE TABLE Tema (
@@ -122,6 +124,8 @@ INSERT INTO Tema (id_tema, titulo, nivel, id_padre, numero, imagen_url) VALUES
 (68, 'Medidas de tendencia central (media, mediana, moda)', 'avanzado', 67, '3.11', 'https://th.bing.com/th/id/R.9444d44d52660a4ac3c08d00802c8719?rik=HyDtnbULofxbNA&pid=ImgRaw&r=0&sres=1&sresct=1'),
 (69, 'Probabilidad clásica y frecuencias relativas', 'avanzado', 67, '3.12', 'https://i.ytimg.com/vi/3wSV95fmSb8/maxresdefault.jpg'),
 (70, 'Examen de desempeño 15', 'avanzado', 67, 'Ex15', 'https://i.pinimg.com/736x/89/35/a8/8935a811bfade8674354cbbdb01b2750.jpg');
+
+ALTER TABLE Tema ADD COLUMN video BOOLEAN DEFAULT FALSE;
 
 -- Vistas
 CREATE VIEW vista_temas_principales AS
@@ -260,14 +264,28 @@ BEGIN
     WHERE id_usuario = _id_usuario;
 END //
 
+-- DROP PROCEDURE completar_tema;
 CREATE PROCEDURE completar_tema (
     IN _id_usuario INT,
     IN _id_tema INT
 )
 BEGIN
+    DECLARE _id_padre INT;
+
+    -- 1. Insertar o actualizar en la tabla Avance
     INSERT INTO Avance (id_usuario, id_tema, completado, fecha_completado)
     VALUES (_id_usuario, _id_tema, TRUE, NOW())
     ON DUPLICATE KEY UPDATE completado = TRUE, fecha_completado = NOW();
+
+    -- 2. Obtener el id_padre del tema completado
+    SELECT id_padre INTO _id_padre
+    FROM Tema
+    WHERE id_tema = _id_tema;
+
+    -- 3. Actualizar el campo ultimo_tema en Usuario
+    UPDATE Usuario
+    SET ultimo_tema = _id_padre
+    WHERE id_usuario = _id_usuario;
 END //
 
 CREATE PROCEDURE obtener_lecciones_completadas (
@@ -281,7 +299,7 @@ BEGIN
     ORDER BY A.fecha_completado DESC;
 END //
 
-DROP PROCEDURE obtener_avance_usuario;
+-- DROP PROCEDURE obtener_avance_usuario;
 CREATE PROCEDURE obtener_avance_usuario (
     IN _id_usuario INT,
     IN _nivel VARCHAR(20),
@@ -295,7 +313,9 @@ BEGIN
         T.numero,
         T.id_padre,
         T.imagen_url,
+        T.video,
         P.titulo AS nombre_padre,
+        P.numero AS numero_padre,
         COALESCE(A.completado, FALSE) AS completado,
         A.fecha_completado
     FROM Tema T

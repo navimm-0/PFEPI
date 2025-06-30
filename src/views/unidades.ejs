@@ -1,0 +1,51 @@
+<%- include('partials/_header') %>
+
+  <link rel="stylesheet" href="../CSS/main.css" />
+  <link rel="stylesheet" href="../CSS/menuP_ejercicios.css" />
+
+  <canvas id="stars-bg"></canvas>
+
+  <main>
+    <section class="chuy">
+    <h1>Elige una <span class="marca">
+      <span class="m">U</span><span class="a">n</span><span class="t">i</span><span class="h">d</span><span class="w">a</span><span class="a">d</span>
+    </span> para explorarla</h1>
+  </section>
+
+  <section class="zona-caminos">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Unidad</th>
+        <th>Título</th>
+        <th>Nivel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% temas.forEach(function(tema) { %>
+        <tr data-id="<%= tema.id_tema %>" class="fila-tema">
+          <td>Unidad <%= tema.numero %></td>
+          <td><%= tema.titulo %></td>
+          <td><%= tema.nivel %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  </section>
+  </main>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".fila-tema").forEach(fila => {
+      fila.style.cursor = "pointer";
+      fila.addEventListener("click", () => {
+        const id = fila.dataset.id;
+        window.location.href = `/temas/${id}`;
+      });
+    });
+  });
+</script>
+
+
+</body>
+</html>

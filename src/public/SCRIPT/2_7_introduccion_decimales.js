@@ -17,3 +17,11 @@ function convertirADecimal() {
     <p><strong>${num}/${den}</strong> = <strong>${decimal.toFixed(4)}</strong></p>
   `;
 }
+
+const params = new URLSearchParams(window.location.search);
+  const id = params.get("id"); // por ejemplo, de "?id=7"
+
+  if (id) {
+    const btn = document.getElementById("btnEjercicios");
+    btn.href = `/ver-ejercicios/${id}`;
+  }

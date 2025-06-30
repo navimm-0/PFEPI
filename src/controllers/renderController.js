@@ -47,4 +47,33 @@ controller.deleteAcc = (req, res) => {
         usuario: req.session.usuario
     });
 }
+
+controller.inicio = (req, res) => {
+  if (!req.session.usuario_id || !req.session.usuario) {
+    return res.redirect('index.html');
+  }
+  const usuarioId = req.session.usuario_id;
+
+  req.getConnection((err, conn) => {
+    if (err) {
+      console.error("Error de conexión a la base de datos:", err);
+      return res.status(500).send("Error de conexión");
+    }
+
+    const sql = "SELECT ultimo_tema FROM Usuario WHERE id_usuario = ?";
+    conn.query(sql, [usuarioId], (err, results) => {
+      if (err) {
+        console.error("Error en la consulta:", err);
+        return res.status(500).send("Error en la consulta");
+      }
+
+      if (results.length === 0) {
+        return res.status(404).send("Usuario no encontrado");
+      }
+
+      const idPadre = results[0].ultimo_tema;
+      return res.redirect(`/temas/${idPadre}`);
+    });
+  });
+}
 module.exports = controller;

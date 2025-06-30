@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contando Objetos</title>
+  <style>
+    :root {
+      --rojo-logo: #f44336;
+      --amarillo-logo: #85fd35;
+      --azul-logo: #03a9f4;
+      --naranja-logo: #f91cb7;
+      --verde-logo: #e4e12e;
+      --cyan-logo: #2aace3;
+      --hueso: #fffdf7;
+      --gris-logo: #333333;
+      --blanco: #ffffff;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: radial-gradient(circle, #fdf6e3, #ffe0b2, #ffcc80);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .contenedor {
+      background: linear-gradient(180deg, #fefefe, #f9f9f9);
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+
+    .objetos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      gap: 10px;
+    }
+
+    .objeto {
+      font-size: 2rem;
+    }
+
+    .opciones button {
+      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 12px;
+      background-color: #7ed957;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .opciones button:hover {
+      background-color: #57b239;
+    }
+
+    .resultado {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .valor_posicional_1_2{
+  display: inline-block;
+  background-color: var(--naranja-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+
+.valor_posicional_1_2:hover {
+  background-color: #d11795; /* más oscuro al pasar el mouse */
+}
+
+.finalizar_ejercicio{
+  display: inline-block;
+  background-color: var(--verde-logo);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  margin-top: 70px
+}
+.finalizar_ejercicio:hover{
+  background-color: #d4ac56; /* más oscuro al pasar el mouse */
+}
+
+
+  
+  </style>
+</head>
+<body>
+  <div class="texto">
+    <p>APRENDE A CONTAR</p>
+    <h1 id="titulo-ejercicio">Ejercicio 1</h1>
+  </div>
+
+  <div class="contenedor">
+    <h2>¿Cuántas manzanas hay?</h2>
+    <div class="objetos" id="objetos"></div>
+    <div class="opciones" id="opciones"></div>
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <a id="btn-siguiente" href="#" class="valor_posicional_1_2" style="display: none;">Siguiente ejercicio ➡️</a>
+  <a id="btn-finalizar" class="finalizar_ejercicio" style="display: none;">Finalizar ✅</a>
+
+  <script>
+  let cantidad = 0;
+  let ejercicioActual = 1;
+  const totalEjercicios = 5;
+
+  function generarNumeroAleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function hablar(texto) {
+    window.speechSynthesis.cancel(); // 🔁 Cancela lectura anterior
+    const voz = new SpeechSynthesisUtterance(texto);
+    voz.lang = "es-ES";
+    speechSynthesis.speak(voz);
+  }
+
+  function generarEjercicio() {
+    const objetos = document.getElementById("objetos");
+    const opciones = document.getElementById("opciones");
+    const resultado = document.getElementById("resultado");
+    const titulo = document.getElementById("titulo-ejercicio");
+    const btnSiguiente = document.getElementById("btn-siguiente");
+    const btnFinalizar = document.getElementById("btn-finalizar");
+
+    cantidad = generarNumeroAleatorio(2, 77);
+    objetos.innerHTML = "";
+    opciones.innerHTML = "";
+    resultado.textContent = "";
+    btnSiguiente.style.display = "none";
+    btnFinalizar.style.display = "none";
+    titulo.textContent = `Ejercicio ${ejercicioActual}`;
+
+    // Mostrar manzanas
+    for (let i = 0; i < cantidad; i++) {
+      const span = document.createElement("span");
+      span.textContent = "🍎";
+      span.classList.add("objeto");
+      objetos.appendChild(span);
+    }
+
+    // Opciones con respuesta correcta incluida
+    const respuestas = new Set([cantidad]);
+    while (respuestas.size < 3) {
+      respuestas.add(generarNumeroAleatorio(1, 10));
+    }
+
+    // Mezclar y mostrar botones
+    [...respuestas].sort(() => Math.random() - 0.5).forEach(num => {
+      const btn = document.createElement("button");
+      btn.textContent = num;
+      btn.onclick = () => verificarRespuesta(num);
+      opciones.appendChild(btn);
+    });
+
+    hablar("¿Cuántas manzanas puedes contar?");
+  }
+
+  function verificarRespuesta(opcion) {
+    const resultado = document.getElementById("resultado");
+    const btnSiguiente = document.getElementById("btn-siguiente");
+    const btnFinalizar = document.getElementById("btn-finalizar");
+
+    if (opcion === cantidad) {
+      resultado.textContent = "¡Correcto!";
+      resultado.style.color = "green";
+      hablar(`¡Muy bien! Has contado ${cantidad} manzanas.`);
+
+      // Mostrar siguiente o finalizar
+      if (ejercicioActual < totalEjercicios) {
+        btnSiguiente.style.display = "inline-block";
+      } else {
+        btnFinalizar.style.display = "inline-block";
+      }
+    } else {
+      resultado.textContent = "Ups, intenta de nuevo.";
+      resultado.style.color = "red";
+      hablar("Eso no es correcto. Intenta otra vez.");
+    }
+  }
+
+  document.getElementById("btn-siguiente").addEventListener("click", function (e) {
+    e.preventDefault();
+    ejercicioActual++;
+    generarEjercicio();
+  });
+
+  window.onload = generarEjercicio;
+
+  function obtenerIdDesdeUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
+  }
+
+  document.getElementById("btn-finalizar").addEventListener("click", function () {
+    const id = obtenerIdDesdeUrl(); // o como lo estés obteniendo
+    this.href = `/finalizar/${id}`;
+  });
+
+  </script>
+
+</body>
+</html>
